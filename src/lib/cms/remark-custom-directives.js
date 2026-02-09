@@ -276,7 +276,7 @@ function renderCallout(type, content, attrs) {
 	html += '</div>';
 	html += '</div>';
 
-	return html;
+	return `\n\n${html}\n\n`;
 }
 
 /**
@@ -295,7 +295,7 @@ function renderColoredSection(content, attrs) {
 		attrs.class || ''
 	].filter(Boolean);
 
-	return `<div class="${classes.join(' ')}">\n\n${content.trim()}\n\n</div>`;
+	return `\n\n<div class="${classes.join(' ')}">\n\n${content.trim()}\n\n</div>\n\n`;
 }
 
 /**
@@ -305,5 +305,5 @@ function renderHighlightBox(content, attrs) {
 	const classes = ['highlight-box', attrs.class || ''].filter(Boolean);
 	const variant = attrs.variant || 'default';
 
-	return `<div class="${classes.join(' ')}" data-variant="${variant}">\n\n${content.trim()}\n\n</div>`;
+	return `\n\n<div class="${classes.join(' ')}" data-variant="${variant}">\n\n${content.trim()}\n\n</div>\n\n`;
 }
