@@ -34,11 +34,41 @@
 			<div class="exp-item">
 				<div class="exp-icon" style="background: {item.color}">
 					{#if item.type === 'work'}
-						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+						<svg
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="white"
+							stroke-width="2"
+							><rect x="2" y="7" width="20" height="14" rx="2" /><path
+								d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"
+							/></svg
+						>
 					{:else if item.type === 'education'}
-						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
+						<svg
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="white"
+							stroke-width="2"
+							><path d="M22 10v6M2 10l10-5 10 5-10 5z" /><path
+								d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"
+							/></svg
+						>
 					{:else}
-						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+						<svg
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="white"
+							stroke-width="2"
+							><circle cx="12" cy="8" r="6" /><path
+								d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"
+							/></svg
+						>
 					{/if}
 				</div>
 				<div class="exp-content">

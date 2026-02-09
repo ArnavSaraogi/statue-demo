@@ -22,7 +22,7 @@
 		title = 'Prestigious Address',
 		subtitle = 'Location',
 		image = 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=2069',
-		description = 'Nestled in one of San Francisco\'s most coveted neighborhoods.',
+		description = "Nestled in one of San Francisco's most coveted neighborhoods.",
 		highlights = [],
 		mapEnabled = true,
 		mapTitle = 'Visit Our Property',
@@ -51,7 +51,9 @@
 				<img src={image} alt={title} class="w-full h-[500px] object-cover" />
 			</div>
 			<div class="animate-on-scroll animate-fade-right">
-				<p class="text-[var(--color-primary)] text-xs tracking-[0.25em] uppercase mb-4">{subtitle}</p>
+				<p class="text-[var(--color-primary)] text-xs tracking-[0.25em] uppercase mb-4">
+					{subtitle}
+				</p>
 				<h2 class="text-4xl md:text-5xl font-light text-white mb-8 leading-tight">{title}</h2>
 				<p class="text-gray-400 text-lg leading-relaxed mb-8">{description}</p>
 				<div class="space-y-4">
@@ -72,15 +74,15 @@
 		{#if mapEnabled}
 			<div class="max-w-6xl mx-auto">
 				<div class="text-center mb-16 animate-on-scroll animate-fade-up">
-					<p class="text-[var(--color-primary)] text-xs tracking-[0.25em] uppercase mb-4">
-						Map
-					</p>
+					<p class="text-[var(--color-primary)] text-xs tracking-[0.25em] uppercase mb-4">Map</p>
 					<h3 class="text-3xl md:text-4xl font-light text-white mb-6">{mapTitle}</h3>
 					<p class="text-gray-400 text-lg">{mapDescription}</p>
 				</div>
 
 				<div class="animate-on-scroll animate-fade-up" style:transition-delay="0.1s">
-					<div class="relative w-full h-[500px] border border-[var(--color-border)] overflow-hidden">
+					<div
+						class="relative w-full h-[500px] border border-[var(--color-border)] overflow-hidden"
+					>
 						<iframe
 							title="Property Location Map"
 							src={mapUrl}

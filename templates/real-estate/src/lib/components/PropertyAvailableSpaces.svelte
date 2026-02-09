@@ -22,11 +22,61 @@
 		subtitle = 'Available Now',
 		title = 'All Available Spaces',
 		spaces = [
-			{ name: 'Ste 117', floor: '1st Floor', capacity: '-', size: '1,133', sizeUnit: 'SF', rentalRate: '$4,600', rateUnit: '/MO', spaceUse: 'Office', available: true },
-			{ name: 'Ste 118', floor: '1st Floor', capacity: '-', size: '205', sizeUnit: 'SF', rentalRate: '$1,200', rateUnit: '/MO', spaceUse: 'Office', available: true },
-			{ name: 'Ste 06', floor: '1st Floor', capacity: '4', size: '545', sizeUnit: 'SF', rentalRate: '$2,075', rateUnit: '/MO', spaceUse: 'Office', available: true },
-			{ name: 'Ste 106', floor: '1st Floor', capacity: '-', size: '389', sizeUnit: 'SF', rentalRate: '$1,285', rateUnit: '/MO', spaceUse: 'Office', available: true },
-			{ name: 'Ste 07', floor: '1st Floor', capacity: '-', size: '240', sizeUnit: 'SF', rentalRate: '$2,400', rateUnit: '/MO', spaceUse: 'Office/Medical', available: true }
+			{
+				name: 'Ste 117',
+				floor: '1st Floor',
+				capacity: '-',
+				size: '1,133',
+				sizeUnit: 'SF',
+				rentalRate: '$4,600',
+				rateUnit: '/MO',
+				spaceUse: 'Office',
+				available: true
+			},
+			{
+				name: 'Ste 118',
+				floor: '1st Floor',
+				capacity: '-',
+				size: '205',
+				sizeUnit: 'SF',
+				rentalRate: '$1,200',
+				rateUnit: '/MO',
+				spaceUse: 'Office',
+				available: true
+			},
+			{
+				name: 'Ste 06',
+				floor: '1st Floor',
+				capacity: '4',
+				size: '545',
+				sizeUnit: 'SF',
+				rentalRate: '$2,075',
+				rateUnit: '/MO',
+				spaceUse: 'Office',
+				available: true
+			},
+			{
+				name: 'Ste 106',
+				floor: '1st Floor',
+				capacity: '-',
+				size: '389',
+				sizeUnit: 'SF',
+				rentalRate: '$1,285',
+				rateUnit: '/MO',
+				spaceUse: 'Office',
+				available: true
+			},
+			{
+				name: 'Ste 07',
+				floor: '1st Floor',
+				capacity: '-',
+				size: '240',
+				sizeUnit: 'SF',
+				rentalRate: '$2,400',
+				rateUnit: '/MO',
+				spaceUse: 'Office/Medical',
+				available: true
+			}
 		],
 		showCapacity = true
 	}: PropertyAvailableSpacesProps = $props();
@@ -52,11 +102,17 @@
 					<tr class="border-b border-[var(--color-border)] text-left">
 						<th class="pb-4 text-gray-400 text-sm font-normal tracking-wider uppercase">Space</th>
 						{#if showCapacity}
-							<th class="pb-4 text-gray-400 text-sm font-normal tracking-wider uppercase">Capacity</th>
+							<th class="pb-4 text-gray-400 text-sm font-normal tracking-wider uppercase"
+								>Capacity</th
+							>
 						{/if}
 						<th class="pb-4 text-gray-400 text-sm font-normal tracking-wider uppercase">Size</th>
-						<th class="pb-4 text-gray-400 text-sm font-normal tracking-wider uppercase">Rental Rate</th>
-						<th class="pb-4 text-gray-400 text-sm font-normal tracking-wider uppercase">Space Use</th>
+						<th class="pb-4 text-gray-400 text-sm font-normal tracking-wider uppercase"
+							>Rental Rate</th
+						>
+						<th class="pb-4 text-gray-400 text-sm font-normal tracking-wider uppercase"
+							>Space Use</th
+						>
 						<th class="pb-4"></th>
 					</tr>
 				</thead>
@@ -80,8 +136,18 @@
 								<td class="py-6 text-gray-300">
 									{#if space.capacity && space.capacity !== '-'}
 										<span class="flex items-center gap-2">
-											<svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+											<svg
+												class="w-4 h-4 text-gray-500"
+												fill="none"
+												stroke="currentColor"
+												viewBox="0 0 24 24"
+											>
+												<path
+													stroke-linecap="round"
+													stroke-linejoin="round"
+													stroke-width="1.5"
+													d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"
+												/>
 											</svg>
 											{space.capacity}
 										</span>
@@ -98,7 +164,9 @@
 								<span class="text-gray-500">{space.rateUnit || '/MO'}</span>
 							</td>
 							<td class="py-6">
-								<span class="px-3 py-1 bg-[var(--color-card)] border border-[var(--color-border)] text-gray-300 text-sm">
+								<span
+									class="px-3 py-1 bg-[var(--color-card)] border border-[var(--color-border)] text-gray-300 text-sm"
+								>
 									{space.spaceUse}
 								</span>
 							</td>
@@ -110,7 +178,12 @@
 									stroke="currentColor"
 									viewBox="0 0 24 24"
 								>
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M19 9l-7 7-7-7"
+									/>
 								</svg>
 							</td>
 						</tr>
@@ -153,14 +226,22 @@
 								<p class="text-gray-500 text-sm">{space.spaceUse}</p>
 							</div>
 						</div>
-						<span class="text-[var(--color-primary)] font-medium">{space.rentalRate}<span class="text-gray-500 text-sm">{space.rateUnit || '/MO'}</span></span>
+						<span class="text-[var(--color-primary)] font-medium"
+							>{space.rentalRate}<span class="text-gray-500 text-sm">{space.rateUnit || '/MO'}</span
+							></span
+						>
 					</div>
 					<div class="flex items-center gap-6 text-sm text-gray-400">
 						<span>{space.size} {space.sizeUnit || 'SF'}</span>
 						{#if showCapacity && space.capacity && space.capacity !== '-'}
 							<span class="flex items-center gap-1">
 								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="1.5"
+										d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"
+									/>
 								</svg>
 								{space.capacity}
 							</span>

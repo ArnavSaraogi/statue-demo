@@ -25,23 +25,40 @@
 
 <section class="relative h-screen flex items-center justify-center overflow-hidden">
 	<!-- Top gradient fade for navbar readability -->
-	<div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black/60 via-black/30 to-transparent z-10"></div>
+	<div
+		class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black/60 via-black/30 to-transparent z-10"
+	></div>
 	<!-- Subtle scrim overlay: only darken bottom edge -->
-	<div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/50 z-10"></div>
+	<div
+		class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/50 z-10"
+	></div>
 	<!-- Additional bottom fade to match background -->
-	<div class="absolute inset-0 bg-gradient-to-t from-[var(--color-background)] via-transparent to-transparent z-10"></div>
+	<div
+		class="absolute inset-0 bg-gradient-to-t from-[var(--color-background)] via-transparent to-transparent z-10"
+	></div>
 	<img src={heroImage} alt="Luxury Estate" class="absolute inset-0 w-full h-full object-cover" />
 	<div class="relative z-20 text-center px-4 max-w-5xl -mt-20">
 		<!-- Mobile: blur container, Desktop: no container -->
 		<div class="md:contents">
-			<div class="md:hidden rounded-2xl px-6 py-8 mb-4" style="background: rgba(0,0,0,0.4); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);">
-				<p class="text-[var(--color-primary)] text-sm tracking-[0.3em] uppercase mb-3 animate-on-scroll animate-fade-up">
+			<div
+				class="md:hidden rounded-2xl px-6 py-8 mb-4"
+				style="background: rgba(0,0,0,0.4); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);"
+			>
+				<p
+					class="text-[var(--color-primary)] text-sm tracking-[0.3em] uppercase mb-3 animate-on-scroll animate-fade-up"
+				>
 					{badge}
 				</p>
-				<h1 class="text-4xl font-light text-white mb-4 leading-tight animate-on-scroll animate-fade-up" style="transition-delay: 0.1s;">
+				<h1
+					class="text-4xl font-light text-white mb-4 leading-tight animate-on-scroll animate-fade-up"
+					style="transition-delay: 0.1s;"
+				>
 					{@html title}
 				</h1>
-				<p class="text-base text-gray-300 font-light leading-relaxed animate-on-scroll animate-fade-up" style="transition-delay: 0.2s;">
+				<p
+					class="text-base text-gray-300 font-light leading-relaxed animate-on-scroll animate-fade-up"
+					style="transition-delay: 0.2s;"
+				>
 					{description}
 				</p>
 			</div>
@@ -68,7 +85,10 @@
 				</p>
 			</div>
 		</div>
-		<div class="flex flex-col sm:flex-row justify-center gap-4 animate-on-scroll animate-fade-up" style:transition-delay="0.3s;">
+		<div
+			class="flex flex-col sm:flex-row justify-center gap-4 animate-on-scroll animate-fade-up"
+			style:transition-delay="0.3s;"
+		>
 			{#if primaryCta}
 				<a
 					href={primaryCta.url}

@@ -44,9 +44,7 @@
 		// console.log push to logs array instead of browser console
 		console.log = (...args) => {
 			logs.push(
-				args
-					.map((a) => (typeof a === 'object' ? JSON.stringify(a, null, 2) : String(a)))
-					.join(' ')
+				args.map((a) => (typeof a === 'object' ? JSON.stringify(a, null, 2) : String(a))).join(' ')
 			);
 		};
 		console.error = (...args) => {

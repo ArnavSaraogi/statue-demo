@@ -21,19 +21,19 @@ Edit the config to point to your spec:
 import { defineConfig } from 'orval';
 
 export default defineConfig({
-  api: {
-    input: './static/openapi.json',  // Your spec file
-    output: {
-      target: './src/lib/api/endpoints.ts',
-      schemas: './src/lib/api/models',
-      client: 'fetch',
-      mode: 'tags-split',
-      clean: true,
-      prettier: true,
-      //Change this to your own API endpoint
-      baseUrl: 'https://petstore.swagger.io/v2'
-    }
-  }
+	api: {
+		input: './static/openapi.json', // Your spec file
+		output: {
+			target: './src/lib/api/endpoints.ts',
+			schemas: './src/lib/api/models',
+			client: 'fetch',
+			mode: 'tags-split',
+			clean: true,
+			prettier: true,
+			//Change this to your own API endpoint
+			baseUrl: 'https://petstore.swagger.io/v2'
+		}
+	}
 });
 ```
 
@@ -49,31 +49,31 @@ This creates typed API functions in `src/lib/api/`.
 
 ```svelte
 <script>
-  import { onMount } from 'svelte';
-  import { getPetById } from '$lib/api/pet/pet';
+	import { onMount } from 'svelte';
+	import { getPetById } from '$lib/api/pet/pet';
 
-  let pet = null;
-  let error = null;
+	let pet = null;
+	let error = null;
 
-  onMount(async () => {
-    try {
-      const response = await getPetById(1);
-      pet = response.data;
-    } catch (e) {
-      error = e.message;
-    }
-  });
+	onMount(async () => {
+		try {
+			const response = await getPetById(1);
+			pet = response.data;
+		} catch (e) {
+			error = e.message;
+		}
+	});
 </script>
 
 {#if error}
-  <p class="error">{error}</p>
+	<p class="error">{error}</p>
 {:else if pet}
-  <div class="pet-card">
-    <h2>{pet.name}</h2>
-    <p>Status: {pet.status}</p>
-  </div>
+	<div class="pet-card">
+		<h2>{pet.name}</h2>
+		<p>Status: {pet.status}</p>
+	</div>
 {:else}
-  <p>Loading...</p>
+	<p>Loading...</p>
 {/if}
 ```
 
@@ -97,13 +97,13 @@ src/lib/api/
 
 ## Configuration Options
 
-| Option | Description |
-|--------|-------------|
-| `input` | Path to OpenAPI spec (JSON/YAML) |
-| `output.target` | Output file for endpoints |
-| `output.schemas` | Output folder for TypeScript models |
-| `output.client` | HTTP client: `fetch`, `axios`, `angular` |
-| `output.mode` | Split mode: `tags-split`, `split`, `single` |
+| Option           | Description                                 |
+| ---------------- | ------------------------------------------- |
+| `input`          | Path to OpenAPI spec (JSON/YAML)            |
+| `output.target`  | Output file for endpoints                   |
+| `output.schemas` | Output folder for TypeScript models         |
+| `output.client`  | HTTP client: `fetch`, `axios`, `angular`    |
+| `output.mode`    | Split mode: `tags-split`, `split`, `single` |
 
 ## Advanced: Multiple APIs
 
@@ -111,22 +111,22 @@ src/lib/api/
 import { defineConfig } from 'orval';
 
 export default defineConfig({
-  petstore: {
-    input: './static/petstore.json',
-    output: {
-      target: './src/lib/api/petstore/endpoints.ts',
-      schemas: './src/lib/api/petstore/models',
-      client: 'fetch'
-    }
-  },
-  payment: {
-    input: './static/payment-api.json',
-    output: {
-      target: './src/lib/api/payment/endpoints.ts',
-      schemas: './src/lib/api/payment/models',
-      client: 'fetch'
-    }
-  }
+	petstore: {
+		input: './static/petstore.json',
+		output: {
+			target: './src/lib/api/petstore/endpoints.ts',
+			schemas: './src/lib/api/petstore/models',
+			client: 'fetch'
+		}
+	},
+	payment: {
+		input: './static/payment-api.json',
+		output: {
+			target: './src/lib/api/payment/endpoints.ts',
+			schemas: './src/lib/api/payment/models',
+			client: 'fetch'
+		}
+	}
 });
 ```
 

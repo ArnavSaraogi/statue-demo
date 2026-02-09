@@ -27,8 +27,13 @@
 		{:else}
 			<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
 				{#each stats as stat, index}
-					<div class="text-center animate-on-scroll animate-scale" style:transition-delay="{index * 0.1}s;">
-						<p class="text-4xl md:text-5xl font-light text-[var(--color-primary)] mb-2">{stat.value}</p>
+					<div
+						class="text-center animate-on-scroll animate-scale"
+						style:transition-delay="{index * 0.1}s;"
+					>
+						<p class="text-4xl md:text-5xl font-light text-[var(--color-primary)] mb-2">
+							{stat.value}
+						</p>
 						<p class="text-gray-400 text-xs tracking-wider uppercase">{stat.label}</p>
 					</div>
 				{/each}

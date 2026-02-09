@@ -25,117 +25,112 @@
 -->
 
 <script lang="ts">
-  import { onDestroy, tick } from 'svelte';
-  import { browser } from '$app/environment';
+	import { onDestroy, tick } from 'svelte';
+	import { browser } from '$app/environment';
 
-  export interface TableOfContentsProps {
-    headings: Array<{
-      id: string;
-      text: string;
-      level: number;
-    }>;
-    title?: string;
-  }
+	export interface TableOfContentsProps {
+		headings: Array<{
+			id: string;
+			text: string;
+			level: number;
+		}>;
+		title?: string;
+	}
 
-  let {
-    headings = [],
-    title = 'On this page'
-  }: TableOfContentsProps = $props();
+	let { headings = [], title = 'On this page' }: TableOfContentsProps = $props();
 
-  let activeId = $state('');
-  let observer: IntersectionObserver | undefined;
+	let activeId = $state('');
+	let observer: IntersectionObserver | undefined;
 
-  // Filter to only show h2 and h3 headings
-  let visibleHeadings = $derived(headings.filter(h => h.level === 2 || h.level === 3));
+	// Filter to only show h2 and h3 headings
+	let visibleHeadings = $derived(headings.filter((h) => h.level === 2 || h.level === 3));
 
-  // Setup observer when headings change
-  $effect(() => {
-    if (browser && headings.length > 0) {
-      setupObserver();
-    }
-  });
+	// Setup observer when headings change
+	$effect(() => {
+		if (browser && headings.length > 0) {
+			setupObserver();
+		}
+	});
 
-  async function setupObserver() {
-    await tick(); // Wait for DOM to update
+	async function setupObserver() {
+		await tick(); // Wait for DOM to update
 
-    // Disconnect previous observer
-    if (observer) {
-      observer.disconnect();
-    }
+		// Disconnect previous observer
+		if (observer) {
+			observer.disconnect();
+		}
 
-    // Create new intersection observer
-    observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            activeId = entry.target.id;
-          }
-        });
-      },
-      {
-        rootMargin: '-80px 0px -80% 0px',
-        threshold: 0
-      }
-    );
+		// Create new intersection observer
+		observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						activeId = entry.target.id;
+					}
+				});
+			},
+			{
+				rootMargin: '-80px 0px -80% 0px',
+				threshold: 0
+			}
+		);
 
-    // Observe all heading elements
-    headings.forEach((heading) => {
-      const element = document.getElementById(heading.id);
-      if (element) {
-        observer!.observe(element);
-      }
-    });
-  }
+		// Observe all heading elements
+		headings.forEach((heading) => {
+			const element = document.getElementById(heading.id);
+			if (element) {
+				observer!.observe(element);
+			}
+		});
+	}
 
-  onDestroy(() => {
-    if (observer) {
-      observer.disconnect();
-    }
-  });
+	onDestroy(() => {
+		if (observer) {
+			observer.disconnect();
+		}
+	});
 
-  function scrollToHeading(id: string) {
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 80; // Navbar height
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
+	function scrollToHeading(id: string) {
+		const element = document.getElementById(id);
+		if (element) {
+			const offset = 80; // Navbar height
+			const elementPosition = element.getBoundingClientRect().top;
+			const offsetPosition = elementPosition + window.pageYOffset - offset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+			window.scrollTo({
+				top: offsetPosition,
+				behavior: 'smooth'
+			});
 
-      // Update URL hash without jumping
-      history.pushState(null, '', `#${id}`);
-      activeId = id;
-    }
-  }
+			// Update URL hash without jumping
+			history.pushState(null, '', `#${id}`);
+			activeId = id;
+		}
+	}
 </script>
 
 {#if visibleHeadings.length > 0}
-  <aside class="toc-sidebar pr-4">
-    <h4 class="text-sm font-semibold text-[var(--color-foreground)] mb-4">
-      {title}
-    </h4>
+	<aside class="toc-sidebar pr-4">
+		<h4 class="text-sm font-semibold text-[var(--color-foreground)] mb-4">
+			{title}
+		</h4>
 
-    <nav class="toc-nav">
-      <ul class="space-y-1 border-l border-[var(--color-border)]">
-        {#each visibleHeadings as heading}
-          <li
-            style="padding-left: {(heading.level - 2) * 0.75}rem"
-          >
-            <button
-              on:click={() => scrollToHeading(heading.id)}
-              class="block w-full text-left py-1 px-3 text-sm transition-colors border-l-2 -ml-px cursor-pointer
+		<nav class="toc-nav">
+			<ul class="space-y-1 border-l border-[var(--color-border)]">
+				{#each visibleHeadings as heading}
+					<li style="padding-left: {(heading.level - 2) * 0.75}rem">
+						<button
+							on:click={() => scrollToHeading(heading.id)}
+							class="block w-full text-left py-1 px-3 text-sm transition-colors border-l-2 -ml-px cursor-pointer
                 {activeId === heading.id
-                  ? 'border-[var(--color-primary)] text-[var(--color-primary)] font-medium'
-                  : 'border-transparent text-[var(--color-muted)] hover:text-[var(--color-foreground)] hover:border-[var(--color-muted)]'}"
-            >
-              {heading.text}
-            </button>
-          </li>
-        {/each}
-      </ul>
-    </nav>
-  </aside>
+								? 'border-[var(--color-primary)] text-[var(--color-primary)] font-medium'
+								: 'border-transparent text-[var(--color-muted)] hover:text-[var(--color-foreground)] hover:border-[var(--color-muted)]'}"
+						>
+							{heading.text}
+						</button>
+					</li>
+				{/each}
+			</ul>
+		</nav>
+	</aside>
 {/if}

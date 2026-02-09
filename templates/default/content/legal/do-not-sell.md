@@ -2,9 +2,9 @@
 title: Do Not Sell or Share My Personal Information
 description: California residents can opt-out of the sale or sharing of their personal information
 warning:
-  type: "info"
-  title: "Warning: This \"Do Not Sell\" functionality is currently a placeholder and has not been fully implemented."
-  message: "The form will not actually process opt-out requests until properly configured."
+  type: 'info'
+  title: 'Warning: This "Do Not Sell" functionality is currently a placeholder and has not been fully implemented.'
+  message: 'The form will not actually process opt-out requests until properly configured.'
 ---
 
 # Do Not Sell or Share My Personal Information
@@ -12,7 +12,7 @@ warning:
 Under the California Consumer Privacy Act (CCPA) and the California Privacy Rights Act (CPRA),
 California residents have the right to opt-out of the sale or sharing of their personal information.
 
-On this page, as California residents, you can exercise your right to opt-out of the sale or sharing 
+On this page, as California residents, you can exercise your right to opt-out of the sale or sharing
 of your personal information.
 
 ## How Do We Collect Your Personal Information?
@@ -34,6 +34,7 @@ To opt-out of the sale or sharing of your personal information, please contact u
 **Subject Line:** Do Not Sell Request
 
 **Required Information:**
+
 - Your full name
 - Your email address
 - Confirmation that you are a California resident
@@ -43,8 +44,8 @@ We will process your request within {{legal.doNotSell.processingTime}} and send 
 
 ## More Information
 
-For more information about our privacy practices, please review our 
+For more information about our privacy practices, please review our
 [Privacy Policy](/legal/privacy-policy).
 
 If you have any questions or concerns, please contact us at:
-[{{contact.privacyEmail}}](mailto:{{contact.privacyEmail}}) 
+[{{contact.privacyEmail}}](mailto:{{contact.privacyEmail}})

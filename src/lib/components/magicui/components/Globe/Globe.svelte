@@ -36,9 +36,9 @@ All components in this directory are sourced from the svelte-animations project 
 
 	let phi = 0;
 	let width = 0;
-  $effect(() => {
-    console.log(width, "X");
-  });
+	$effect(() => {
+		console.log(width, 'X');
+	});
 	let onResize = () => {
 		width = canvas.offsetWidth;
 	};
@@ -57,20 +57,21 @@ All components in this directory are sourced from the svelte-animations project 
 		const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
 		return result
 			? [
-				parseInt(result[1], 16) / 255,
-				parseInt(result[2], 16) / 255,
-				parseInt(result[3], 16) / 255
-			]
+					parseInt(result[1], 16) / 255,
+					parseInt(result[2], 16) / 255,
+					parseInt(result[3], 16) / 255
+				]
 			: [0, 0, 0];
 	}
 
 	// Get CSS variable color and convert to RGB array
-	function getCssColorAsRgb(variableName: string, fallback: string = '#000000'): [number, number, number] {
+	function getCssColorAsRgb(
+		variableName: string,
+		fallback: string = '#000000'
+	): [number, number, number] {
 		if (typeof document === 'undefined') return hexToRgbArray(fallback);
 
-		const value = getComputedStyle(document.documentElement)
-			.getPropertyValue(variableName)
-			.trim();
+		const value = getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();
 
 		return hexToRgbArray(value || fallback);
 	}
@@ -97,14 +98,14 @@ All components in this directory are sourced from the svelte-animations project 
 			width: width,
 			height: width,
 			phi: 0,
-      theta: 0.3,
-      dark: 1,
-      diffuse: 0.4, // 1.2
-      mapSamples: 16000,
-      mapBrightness: 1.2, // 6
-      baseColor: baseColor,
-      markerColor: markerColor,
-      glowColor: glowColor,
+			theta: 0.3,
+			dark: 1,
+			diffuse: 0.4, // 1.2
+			mapSamples: 16000,
+			mapBrightness: 1.2, // 6
+			baseColor: baseColor,
+			markerColor: markerColor,
+			glowColor: glowColor,
 			markers: [
 				{ location: [14.5995, 120.9842], size: 0.03 },
 				{ location: [19.076, 72.8777], size: 0.03 },
@@ -115,7 +116,7 @@ All components in this directory are sourced from the svelte-animations project 
 				{ location: [19.4326, -99.1332], size: 0.04 },
 				{ location: [40.7128, -74.006], size: 0.1 },
 				{ location: [34.6937, 135.5022], size: 0.05 },
-				{ location: [41.0082, 28.9784], size: 0.06 },
+				{ location: [41.0082, 28.9784], size: 0.06 }
 			],
 			onRender: onRender
 		});
@@ -127,31 +128,29 @@ All components in this directory are sourced from the svelte-animations project 
 	});
 </script>
 
-<main
-  class="absolute inset-0 mx-auto aspect-[1/1] w-full max-w-[600px]"
->
-  <canvas
-    class="h-full w-full [contain:layout_paint_size]"
-    bind:this={canvas}
-    on:pointerdown={(e) => {
-      pointerInteracting = e.clientX - pointerInteractionMovement;
-      canvas.style.cursor = "grabbing";
-    }}
-    on:pointerup={() => {
-      pointerInteracting = null;
-      canvas.style.cursor = "grab";
-    }}
-    on:pointerout={() => {
-      pointerInteracting = null;
-      canvas.style.cursor = "grab";
-    }}
-    on:mousemove={(e) => {
-      if (pointerInteracting !== null) {
-        console.log("working");
-        const delta = e.clientX - pointerInteracting;
-        pointerInteractionMovement = delta;
-        x.set(delta / 200);
-      }
-    }}
-  />
+<main class="absolute inset-0 mx-auto aspect-[1/1] w-full max-w-[600px]">
+	<canvas
+		class="h-full w-full [contain:layout_paint_size]"
+		bind:this={canvas}
+		on:pointerdown={(e) => {
+			pointerInteracting = e.clientX - pointerInteractionMovement;
+			canvas.style.cursor = 'grabbing';
+		}}
+		on:pointerup={() => {
+			pointerInteracting = null;
+			canvas.style.cursor = 'grab';
+		}}
+		on:pointerout={() => {
+			pointerInteracting = null;
+			canvas.style.cursor = 'grab';
+		}}
+		on:mousemove={(e) => {
+			if (pointerInteracting !== null) {
+				console.log('working');
+				const delta = e.clientX - pointerInteracting;
+				pointerInteractionMovement = delta;
+				x.set(delta / 200);
+			}
+		}}
+	/>
 </main>

@@ -4,7 +4,6 @@ about: Suggest an idea for this project
 title: '[Feat]: '
 labels: ['feature', 'triage']
 assignees: ''
-
 ---
 
 **Describe the solution you'd like:**

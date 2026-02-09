@@ -4,12 +4,12 @@
 
 	// Map of icon names to Lucide icon components
 	const iconMap = {
-		'info': 'Info',
+		info: 'Info',
 		'alert-triangle': 'AlertTriangle',
 		'circle-x': 'CircleX',
 		'circle-check': 'CircleCheck',
 		'file-text': 'FileText',
-		'lightbulb': 'Lightbulb'
+		lightbulb: 'Lightbulb'
 	};
 
 	onMount(async () => {

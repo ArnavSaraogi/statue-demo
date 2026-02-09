@@ -4,8 +4,8 @@ export const prerender = true;
 
 /** @type {import('./$types').PageServerLoad} */
 export function load() {
-  return {
-    contact: siteConfig.contact,
-    profile: siteConfig.profile
-  };
+	return {
+		contact: siteConfig.contact,
+		profile: siteConfig.profile
+	};
 }

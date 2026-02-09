@@ -4,12 +4,12 @@
 -->
 
 <script>
-  import { SwaggerUI } from 'statue-ssg';
+	import { SwaggerUI } from 'statue-ssg';
 </script>
 
 <svelte:head>
-  <title>API Documentation</title>
-  <meta name="description" content="Interactive API documentation" />
+	<title>API Documentation</title>
+	<meta name="description" content="Interactive API documentation" />
 </svelte:head>
 
 <SwaggerUI url="/openapi-example.json" />

@@ -83,7 +83,8 @@
 
 	function prevFloorPlan() {
 		if (floorPlanLevels.length === 0) return;
-		currentFloorPlanIndex = (currentFloorPlanIndex - 1 + floorPlanLevels.length) % floorPlanLevels.length;
+		currentFloorPlanIndex =
+			(currentFloorPlanIndex - 1 + floorPlanLevels.length) % floorPlanLevels.length;
 	}
 
 	function handleKeydown(e: KeyboardEvent) {
@@ -103,9 +104,10 @@
 	function scrollCarousel(direction: 'left' | 'right') {
 		if (!carouselContainer) return;
 		const scrollAmount = carouselContainer.clientWidth * 0.8;
-		const newPosition = direction === 'left'
-			? carouselContainer.scrollLeft - scrollAmount
-			: carouselContainer.scrollLeft + scrollAmount;
+		const newPosition =
+			direction === 'left'
+				? carouselContainer.scrollLeft - scrollAmount
+				: carouselContainer.scrollLeft + scrollAmount;
 		carouselContainer.scrollTo({ left: newPosition, behavior: 'smooth' });
 	}
 
@@ -117,7 +119,9 @@
 
 	let canScrollLeft = $derived(carouselScrollPosition > 0);
 	let canScrollRight = $derived(
-		carouselContainer ? carouselScrollPosition < carouselContainer.scrollWidth - carouselContainer.clientWidth - 10 : true
+		carouselContainer
+			? carouselScrollPosition < carouselContainer.scrollWidth - carouselContainer.clientWidth - 10
+			: true
 	);
 </script>
 
@@ -137,11 +141,23 @@
 			<!-- Left Arrow -->
 			<button
 				onclick={() => scrollCarousel('left')}
-				class="cursor-pointer absolute left-0 top-0 bottom-0 z-10 w-20 md:w-32 flex items-center justify-center bg-gradient-to-r from-black/90 via-black/50 to-transparent text-white transition-all duration-300 {canScrollLeft ? 'opacity-100' : 'opacity-0 pointer-events-none'}"
+				class="cursor-pointer absolute left-0 top-0 bottom-0 z-10 w-20 md:w-32 flex items-center justify-center bg-gradient-to-r from-black/90 via-black/50 to-transparent text-white transition-all duration-300 {canScrollLeft
+					? 'opacity-100'
+					: 'opacity-0 pointer-events-none'}"
 				disabled={!canScrollLeft}
 				aria-label="Previous images"
 			>
-				<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="56"
+					height="56"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="1.5"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
 					<polyline points="15 18 9 12 15 6"></polyline>
 				</svg>
 			</button>
@@ -149,11 +165,23 @@
 			<!-- Right Arrow -->
 			<button
 				onclick={() => scrollCarousel('right')}
-				class="cursor-pointer absolute right-0 top-0 bottom-0 z-10 w-20 md:w-32 flex items-center justify-center bg-gradient-to-l from-black/90 via-black/50 to-transparent text-white transition-all duration-300 {canScrollRight ? 'opacity-100' : 'opacity-0 pointer-events-none'}"
+				class="cursor-pointer absolute right-0 top-0 bottom-0 z-10 w-20 md:w-32 flex items-center justify-center bg-gradient-to-l from-black/90 via-black/50 to-transparent text-white transition-all duration-300 {canScrollRight
+					? 'opacity-100'
+					: 'opacity-0 pointer-events-none'}"
 				disabled={!canScrollRight}
 				aria-label="Next images"
 			>
-				<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="56"
+					height="56"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="1.5"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
 					<polyline points="9 18 15 12 9 6"></polyline>
 				</svg>
 			</button>
@@ -178,7 +206,9 @@
 								alt={image.caption}
 								class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
 							/>
-							<div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
+							<div
+								class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300"
+							/>
 						</div>
 					</button>
 				{/each}
@@ -191,12 +221,14 @@
 		</div>
 	</section>
 
-<!-- Grid Gallery (Single-unit) -->
+	<!-- Grid Gallery (Single-unit) -->
 {:else}
 	<section id="gallery" class="py-32 px-4">
 		<div class="max-w-7xl mx-auto">
 			<div class="text-center mb-16 animate-on-scroll animate-fade-up">
-				<p class="text-[var(--color-primary)] text-xs tracking-[0.25em] uppercase mb-4">{subtitle}</p>
+				<p class="text-[var(--color-primary)] text-xs tracking-[0.25em] uppercase mb-4">
+					{subtitle}
+				</p>
 				<h2 class="text-4xl md:text-5xl font-light text-white">{title}</h2>
 			</div>
 
@@ -220,7 +252,9 @@
 									alt={image.caption}
 									class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
 								/>
-								<div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300" />
+								<div
+									class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300"
+								/>
 							</div>
 							<p class="text-white text-xs tracking-wider uppercase mt-3 text-center">
 								{image.caption}
@@ -239,7 +273,9 @@
 			{#if floorPlanEnabled && floorPlanLevels.length > 0}
 				<div class="mt-24 animate-on-scroll animate-fade-up">
 					<div class="text-center mb-12">
-						<p class="text-[var(--color-primary)] text-xs tracking-[0.25em] uppercase mb-4">Floor Plan</p>
+						<p class="text-[var(--color-primary)] text-xs tracking-[0.25em] uppercase mb-4">
+							Floor Plan
+						</p>
 						<h3 class="text-3xl md:text-4xl font-light text-white">Explore the Layout</h3>
 					</div>
 					<div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-6">
@@ -250,15 +286,21 @@
 								onclick={() => openFloorPlanModal(index)}
 								type="button"
 							>
-								<div class="border border-[var(--color-border)] p-4 bg-[var(--color-card)] hover:border-[var(--color-primary)] transition-colors duration-300">
+								<div
+									class="border border-[var(--color-border)] p-4 bg-[var(--color-card)] hover:border-[var(--color-primary)] transition-colors duration-300"
+								>
 									<div class="relative overflow-hidden">
 										<img
 											src={level.image}
 											alt={level.title || 'Floor Plan'}
 											class="w-full h-48 object-contain bg-white/5 group-hover:scale-105 transition-transform duration-500"
 										/>
-										<div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
-											<span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-sm tracking-wider uppercase">
+										<div
+											class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center"
+										>
+											<span
+												class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-sm tracking-wider uppercase"
+											>
 												Click to enlarge
 											</span>
 										</div>
@@ -296,7 +338,17 @@
 				class="absolute top-4 right-4 text-white hover:text-[var(--color-primary)] transition-colors z-10"
 				aria-label="Close"
 			>
-				<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="32"
+					height="32"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
 					<line x1="18" y1="6" x2="6" y2="18"></line>
 					<line x1="6" y1="6" x2="18" y2="18"></line>
 				</svg>
@@ -324,7 +376,17 @@
 					class="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-[var(--color-primary)] transition-colors"
 					aria-label="Previous image"
 				>
-					<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="48"
+						height="48"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
 						<polyline points="15 18 9 12 15 6"></polyline>
 					</svg>
 				</button>
@@ -334,7 +396,17 @@
 					class="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-[var(--color-primary)] transition-colors"
 					aria-label="Next image"
 				>
-					<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="48"
+						height="48"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
 						<polyline points="9 18 15 12 9 6"></polyline>
 					</svg>
 				</button>
@@ -360,7 +432,17 @@
 				class="absolute top-4 right-4 text-white hover:text-[var(--color-primary)] transition-colors z-10"
 				aria-label="Close"
 			>
-				<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="32"
+					height="32"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
 					<line x1="18" y1="6" x2="6" y2="18"></line>
 					<line x1="6" y1="6" x2="18" y2="18"></line>
 				</svg>
@@ -401,7 +483,17 @@
 					class="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-[var(--color-primary)] transition-colors"
 					aria-label="Previous floor plan"
 				>
-					<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="48"
+						height="48"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
 						<polyline points="15 18 9 12 15 6"></polyline>
 					</svg>
 				</button>
@@ -411,7 +503,17 @@
 					class="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-[var(--color-primary)] transition-colors"
 					aria-label="Next floor plan"
 				>
-					<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="48"
+						height="48"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
 						<polyline points="9 18 15 12 9 6"></polyline>
 					</svg>
 				</button>

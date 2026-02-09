@@ -13,8 +13,8 @@ icon: palette
 **Edit `src/lib/index.css` and change one line:**
 
 ```css
-@import "tailwindcss";
-@import "statue-ssg/themes/blue.css";  /* Change this line */
+@import 'tailwindcss';
+@import 'statue-ssg/themes/blue.css'; /* Change this line */
 
 @source "../";
 @source "../../node_modules/statue-ssg/src/**/*.{svelte,js,ts}";
@@ -29,15 +29,15 @@ Your entire site now uses the new theme.
 Pick one:
 
 ```css
-@import "statue-ssg/themes/blue.css";        /* Navy + blue (default) */
-@import "statue-ssg/themes/red.css";         /* Dark red + red */
-@import "statue-ssg/themes/orange.css";      /* Brown + orange */
-@import "statue-ssg/themes/green.css";       /* Dark green + emerald */
-@import "statue-ssg/themes/purple.css";      /* Dark purple + purple */
-@import "statue-ssg/themes/cyan.css";        /* Dark cyan + cyan */
-@import "statue-ssg/themes/pink.css";        /* Dark pink + pink */
-@import "statue-ssg/themes/black-white.css"; /* Monochrome */
-@import "statue-ssg/themes/claude-theme.css"; /* Warm dark + coral */
+@import 'statue-ssg/themes/blue.css'; /* Navy + blue (default) */
+@import 'statue-ssg/themes/red.css'; /* Dark red + red */
+@import 'statue-ssg/themes/orange.css'; /* Brown + orange */
+@import 'statue-ssg/themes/green.css'; /* Dark green + emerald */
+@import 'statue-ssg/themes/purple.css'; /* Dark purple + purple */
+@import 'statue-ssg/themes/cyan.css'; /* Dark cyan + cyan */
+@import 'statue-ssg/themes/pink.css'; /* Dark pink + pink */
+@import 'statue-ssg/themes/black-white.css'; /* Monochrome */
+@import 'statue-ssg/themes/claude-theme.css'; /* Warm dark + coral */
 ```
 
 ---
@@ -50,26 +50,26 @@ Pick one:
 
 ```css
 @theme {
-  /* Base colors - backgrounds and text */
-  --color-background: #0a0e1a;
-  --color-card: #131824;
-  --color-border: #1e2535;
-  --color-foreground: #e8eaed;
-  --color-muted: #9ca3af;
+	/* Base colors - backgrounds and text */
+	--color-background: #0a0e1a;
+	--color-card: #131824;
+	--color-border: #1e2535;
+	--color-foreground: #e8eaed;
+	--color-muted: #9ca3af;
 
-  /* Brand colors - your brand colors go here */
-  --color-primary: #00d4ff;
-  --color-secondary: #00a8cc;
-  --color-accent: #0080a0;
+	/* Brand colors - your brand colors go here */
+	--color-primary: #00d4ff;
+	--color-secondary: #00a8cc;
+	--color-accent: #0080a0;
 
-  /* Text on colored backgrounds */
-  --color-on-primary: #ffffff;
-  --color-on-background: #ffffff;
+	/* Text on colored backgrounds */
+	--color-on-primary: #ffffff;
+	--color-on-background: #ffffff;
 
-  /* Hero gradient colors */
-  --color-hero-from: #0a0e1a;
-  --color-hero-via: #131824;
-  --color-hero-to: #0a0e1a;
+	/* Hero gradient colors */
+	--color-hero-from: #0a0e1a;
+	--color-hero-via: #131824;
+	--color-hero-to: #0a0e1a;
 }
 ```
 
@@ -78,8 +78,8 @@ Pick one:
 **Update `src/lib/index.css`:**
 
 ```css
-@import "tailwindcss";
-@import "./themes/my-theme.css";  /* Your custom theme */
+@import 'tailwindcss';
+@import './themes/my-theme.css'; /* Your custom theme */
 
 @source "../";
 @source "../../node_modules/statue-ssg/src/**/*.{svelte,js,ts}";
@@ -99,21 +99,21 @@ Visit your pages to check the colors.
 
 **Your theme must define these CSS variables:**
 
-| Variable | Used For |
-|----------|----------|
-| `--color-background` | Main page background |
-| `--color-card` | Card/section backgrounds |
-| `--color-border` | Borders and dividers |
-| `--color-foreground` | Main text color |
-| `--color-muted` | Secondary text |
-| `--color-primary` | Buttons, links |
-| `--color-secondary` | Secondary buttons |
-| `--color-accent` | Highlights |
-| `--color-on-primary` | Text on primary color |
-| `--color-on-background` | High contrast text |
-| `--color-hero-from` | Hero gradient start |
-| `--color-hero-via` | Hero gradient middle |
-| `--color-hero-to` | Hero gradient end |
+| Variable                | Used For                 |
+| ----------------------- | ------------------------ |
+| `--color-background`    | Main page background     |
+| `--color-card`          | Card/section backgrounds |
+| `--color-border`        | Borders and dividers     |
+| `--color-foreground`    | Main text color          |
+| `--color-muted`         | Secondary text           |
+| `--color-primary`       | Buttons, links           |
+| `--color-secondary`     | Secondary buttons        |
+| `--color-accent`        | Highlights               |
+| `--color-on-primary`    | Text on primary color    |
+| `--color-on-background` | High contrast text       |
+| `--color-hero-from`     | Hero gradient start      |
+| `--color-hero-via`      | Hero gradient middle     |
+| `--color-hero-to`       | Hero gradient end        |
 
 **Why:** Statue components use these variables for styling. Missing variables = broken styling.
 
@@ -125,19 +125,19 @@ Visit your pages to check the colors.
 
 ```svelte
 <div class="my-card">
-  <h2>Hello</h2>
+	<h2>Hello</h2>
 </div>
 
 <style>
-  .my-card {
-    background: var(--color-card);
-    border: 1px solid var(--color-border);
-    color: var(--color-foreground);
-  }
+	.my-card {
+		background: var(--color-card);
+		border: 1px solid var(--color-border);
+		color: var(--color-foreground);
+	}
 
-  h2 {
-    color: var(--color-primary);
-  }
+	h2 {
+		color: var(--color-primary);
+	}
 </style>
 ```
 
@@ -149,8 +149,8 @@ Use theme variables in Tailwind's arbitrary values:
 
 ```svelte
 <div class="bg-[var(--color-card)] border-[var(--color-border)] p-6 rounded-lg">
-  <h2 class="text-[var(--color-primary)] text-2xl mb-4">Title</h2>
-  <p class="text-[var(--color-foreground)]">Content</p>
+	<h2 class="text-[var(--color-primary)] text-2xl mb-4">Title</h2>
+	<p class="text-[var(--color-foreground)]">Content</p>
 </div>
 ```
 
@@ -162,15 +162,16 @@ Use theme variables in Tailwind's arbitrary values:
 
 ```css
 @layer utilities {
-  .glass-card {
-    background: color-mix(in srgb, var(--color-card) 80%, transparent);
-    border: 1px solid var(--color-border);
-    backdrop-filter: blur(10px);
-  }
+	.glass-card {
+		background: color-mix(in srgb, var(--color-card) 80%, transparent);
+		border: 1px solid var(--color-border);
+		backdrop-filter: blur(10px);
+	}
 }
 ```
 
 **Then use them:**
+
 ```svelte
 <div class="glass-card">Glass effect card</div>
 ```
@@ -188,6 +189,7 @@ Use theme variables in Tailwind's arbitrary values:
 ### Theme works in dev but not build
 
 Run `npm run build` to test. If it fails, check:
+
 - Theme file syntax is valid
 - Import path is correct
 - No console errors
@@ -205,6 +207,7 @@ This requires custom JavaScript. See [Tailwind dark mode docs](https://tailwindc
 - **[Get Started](./get-started.md)** - Build your site
 
 **Resources:**
+
 - **[Statue.dev](https://statue.dev)** - Official documentation
 - [CSS Custom Properties (MDN)](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
 - [Tailwind CSS Docs](https://tailwindcss.com/docs)

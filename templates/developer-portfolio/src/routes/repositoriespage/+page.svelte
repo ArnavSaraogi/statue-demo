@@ -33,7 +33,7 @@
 	// --- STATE ---
 	let scrollY = 0;
 	let targetScrollY = 0;
-	let cardSpacing = 160; 
+	let cardSpacing = 160;
 	let viewportHeight = 800;
 	let rafId: number | null = null;
 	let isScrolling = false;
@@ -46,33 +46,34 @@
 	let initialPinchSpacing = 120;
 	let initialPinchIntensity = 1;
 
-    // --- ASCII WAVE ANIMATION ---
-    let asciiFrame = '';
-    let asciiRafId: number | null = null;
-    let frameCount = 0;
+	// --- ASCII WAVE ANIMATION ---
+	let asciiFrame = '';
+	let asciiRafId: number | null = null;
+	let frameCount = 0;
 
-    function animateAscii() {
-        const width = 120; // Increased width
-        const height = 40; // Increased height
-        let output = '';
-        
-        // Characters from dense to light
-        const chars = " .:-=+*#%@";
+	function animateAscii() {
+		const width = 120; // Increased width
+		const height = 40; // Increased height
+		let output = '';
 
-        for (let y = 0; y < height; y++) {
-            for (let x = 0; x < width; x++) {
-                const n = (Math.sin(x * 0.1 + frameCount * 0.05) + Math.cos(y * 0.2 + frameCount * 0.03)) * 2;
-                const index = Math.floor(((n + 4) / 8) * chars.length);
-                const charIndex = Math.max(0, Math.min(chars.length - 1, index));
-                output += chars[charIndex];
-            }
-            output += '\n';
-        }
-        
-        asciiFrame = output;
-        frameCount++;
-        asciiRafId = requestAnimationFrame(animateAscii);
-    }
+		// Characters from dense to light
+		const chars = ' .:-=+*#%@';
+
+		for (let y = 0; y < height; y++) {
+			for (let x = 0; x < width; x++) {
+				const n =
+					(Math.sin(x * 0.1 + frameCount * 0.05) + Math.cos(y * 0.2 + frameCount * 0.03)) * 2;
+				const index = Math.floor(((n + 4) / 8) * chars.length);
+				const charIndex = Math.max(0, Math.min(chars.length - 1, index));
+				output += chars[charIndex];
+			}
+			output += '\n';
+		}
+
+		asciiFrame = output;
+		frameCount++;
+		asciiRafId = requestAnimationFrame(animateAscii);
+	}
 
 	// Handle card click
 	function handleCardClick(repo: Repository) {
@@ -90,7 +91,12 @@
 	}
 
 	// --- STRAIGHT LIST CALCULATIONS ---
-	function getListTransform(index: number, scrollOffset: number, spacing: number, vpHeight: number) {
+	function getListTransform(
+		index: number,
+		scrollOffset: number,
+		spacing: number,
+		vpHeight: number
+	) {
 		const centerY = vpHeight / 2;
 		const startX = 60; // Fixed X position for straight list
 
@@ -150,7 +156,10 @@
 			const deltaY = touchStartY - event.touches[0].clientY;
 			const maxScroll = Math.max(0, (repositories.length - 1) * cardSpacing);
 			targetScrollY = touchStartScrollY + deltaY * 1.5;
-			targetScrollY = Math.max(-viewportHeight * 0.3, Math.min(maxScroll + viewportHeight * 0.3, targetScrollY));
+			targetScrollY = Math.max(
+				-viewportHeight * 0.3,
+				Math.min(maxScroll + viewportHeight * 0.3, targetScrollY)
+			);
 
 			if (!isScrolling) {
 				isScrolling = true;
@@ -171,7 +180,10 @@
 		e.preventDefault();
 		const maxScroll = Math.max(0, (repositories.length - 1) * cardSpacing);
 		targetScrollY += e.deltaY * 0.8;
-		targetScrollY = Math.max(-viewportHeight * 0.3, Math.min(maxScroll + viewportHeight * 0.3, targetScrollY));
+		targetScrollY = Math.max(
+			-viewportHeight * 0.3,
+			Math.min(maxScroll + viewportHeight * 0.3, targetScrollY)
+		);
 
 		if (!isScrolling) {
 			isScrolling = true;
@@ -187,7 +199,7 @@
 		invalidate('data:repositories');
 
 		updateViewport();
-        animateAscii();
+		animateAscii();
 		window.addEventListener('resize', updateViewport);
 		window.addEventListener('wheel', handleWheelEvent, { passive: false });
 		// Start with cards centered
@@ -203,9 +215,9 @@
 		if (rafId !== null) {
 			cancelAnimationFrame(rafId);
 		}
-        if (asciiRafId !== null) {
-            cancelAnimationFrame(asciiRafId);
-        }
+		if (asciiRafId !== null) {
+			cancelAnimationFrame(asciiRafId);
+		}
 		if (typeof window !== 'undefined') {
 			window.removeEventListener('resize', updateViewport);
 			window.removeEventListener('wheel', handleWheelEvent);
@@ -218,10 +230,7 @@
 	<meta name="description" content="Browse {profile.name}'s repositories with live preview" />
 </svelte:head>
 
-<svelte:window
-	on:touchstart={handleTouchStart}
-	on:touchmove={handleTouchMove}
-/>
+<svelte:window on:touchstart={handleTouchStart} on:touchmove={handleTouchMove} />
 
 <div class="helix-container">
 	<!-- List Scene -->
@@ -235,8 +244,8 @@
 						transform: translate({transform.x}px, {transform.y}px) scale({transform.scale});
 					opacity: {transform.opacity};
 				"
-				on:click={() => handleCardClick(repo)}
-			>
+					on:click={() => handleCardClick(repo)}
+				>
 					<div class="card-inner">
 						<RepoCard {repo} />
 					</div>
@@ -255,25 +264,22 @@
 					<button class="mac-btn minimize"></button>
 					<button class="mac-btn maximize"></button>
 				</div>
-                <div class="mac-title">{selectedRepo.name} — {selectedRepo.language}</div>
+				<div class="mac-title">{selectedRepo.name} — {selectedRepo.language}</div>
 			</div>
 			<!-- Content -->
 			<div class="mac-content">
-				<iframe
-					src={getGithub1sUrl(selectedRepo.link)}
-					title={selectedRepo.name}
-					class="mac-iframe"
+				<iframe src={getGithub1sUrl(selectedRepo.link)} title={selectedRepo.name} class="mac-iframe"
 				></iframe>
 			</div>
 		</div>
 	{:else}
-        <div class="empty-state">
-            <div class="ascii-art">
-                <pre>{asciiFrame}</pre>
-            </div>
-            <h2>Select a repository</h2>
-            <p>Click on a repo card on the left to explore the code</p>
-        </div>
+		<div class="empty-state">
+			<div class="ascii-art">
+				<pre>{asciiFrame}</pre>
+			</div>
+			<h2>Select a repository</h2>
+			<p>Click on a repo card on the left to explore the code</p>
+		</div>
 	{/if}
 
 	<!-- Scroll hint -->
@@ -352,43 +358,43 @@
 		animation: windowAppear 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 	}
 
-    .empty-state {
-        position: fixed;
+	.empty-state {
+		position: fixed;
 		top: 80px;
 		right: 40px;
 		width: calc(100% - 460px);
 		height: calc(100vh - 120px);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        color: var(--color-muted);
-        border: 2px dashed var(--color-border);
-        border-radius: 12px;
-        z-index: 5;
-    }
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		color: var(--color-muted);
+		border: 2px dashed var(--color-border);
+		border-radius: 12px;
+		z-index: 5;
+	}
 
-    .ascii-art {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0.15;
-        z-index: -1;
-        overflow: hidden;
-        pointer-events: none;
-    }
+	.ascii-art {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0.15;
+		z-index: -1;
+		overflow: hidden;
+		pointer-events: none;
+	}
 
-    .ascii-art pre {
-        font-family: var(--font-mono, monospace);
-        font-size: 1.5vh;
-        line-height: 1.2;
-        color: var(--color-muted);
-        white-space: pre;
-        text-align: center;
-        margin: 0;
-    }
+	.ascii-art pre {
+		font-family: var(--font-mono, monospace);
+		font-size: 1.5vh;
+		line-height: 1.2;
+		color: var(--color-muted);
+		white-space: pre;
+		text-align: center;
+		margin: 0;
+	}
 
 	@keyframes windowAppear {
 		from {
@@ -408,23 +414,23 @@
 		align-items: center;
 		padding: 0 12px;
 		flex-shrink: 0;
-        position: relative;
+		position: relative;
 	}
 
 	.mac-buttons {
 		display: flex;
 		gap: 8px;
-        z-index: 2;
+		z-index: 2;
 	}
 
-    .mac-title {
-        position: absolute;
-        width: 100%;
-        text-align: center;
-        font-size: 12px;
-        color: var(--color-muted);
-        pointer-events: none;
-    }
+	.mac-title {
+		position: absolute;
+		width: 100%;
+		text-align: center;
+		font-size: 12px;
+		color: var(--color-muted);
+		pointer-events: none;
+	}
 
 	.mac-btn {
 		width: 12px;
@@ -433,13 +439,19 @@
 		border: none;
 		cursor: pointer;
 		padding: 0;
-        background: #4d4d4d;
-        transition: background 0.2s ease;
+		background: #4d4d4d;
+		transition: background 0.2s ease;
 	}
 
-	.mac-titlebar:hover .mac-btn.close { background: #ff5f57; }
-	.mac-titlebar:hover .mac-btn.minimize { background: #febc2e; }
-	.mac-titlebar:hover .mac-btn.maximize { background: #28c840; }
+	.mac-titlebar:hover .mac-btn.close {
+		background: #ff5f57;
+	}
+	.mac-titlebar:hover .mac-btn.minimize {
+		background: #febc2e;
+	}
+	.mac-titlebar:hover .mac-btn.maximize {
+		background: #28c840;
+	}
 
 	.mac-content {
 		flex: 1;
@@ -459,7 +471,7 @@
 		left: 60px;
 		opacity: 0.5;
 		pointer-events: none;
-        z-index: 20;
+		z-index: 20;
 	}
 
 	.hint-text {
@@ -470,16 +482,17 @@
 	}
 
 	@media (max-width: 1024px) {
-		.mac-window, .empty-state {
+		.mac-window,
+		.empty-state {
 			width: calc(100% - 40px);
-            left: 20px;
-            right: 20px;
-            height: 60vh;
-            top: auto;
-            bottom: 20px;
+			left: 20px;
+			right: 20px;
+			height: 60vh;
+			top: auto;
+			bottom: 20px;
 		}
-        .repo-card-wrapper {
-            width: calc(100% - 120px);
-        }
+		.repo-card-wrapper {
+			width: calc(100% - 120px);
+		}
 	}
 </style>

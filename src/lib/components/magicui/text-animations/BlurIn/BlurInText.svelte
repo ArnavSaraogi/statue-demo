@@ -8,46 +8,46 @@ All components in this directory are sourced from the svelte-animations project 
 -->
 
 <script lang="ts">
-  import { Motion } from "svelte-motion";
+	import { Motion } from 'svelte-motion';
 
-  interface Variant {
-    hidden: { filter: string; opacity: number };
-    visible: { filter: string; opacity: number };
-  }
+	interface Variant {
+		hidden: { filter: string; opacity: number };
+		visible: { filter: string; opacity: number };
+	}
 
-  interface Props {
-    word?: string;
-    variant?: Variant;
-    duration?: number;
-  }
+	interface Props {
+		word?: string;
+		variant?: Variant;
+		duration?: number;
+	}
 
-  let {
-    word = "Blur In",
-    variant = {
-      hidden: { filter: "blur(10px)", opacity: 0 },
-      visible: { filter: "blur(0px)", opacity: 1 },
-    },
-    duration = 1
-  }: Props = $props();
+	let {
+		word = 'Blur In',
+		variant = {
+			hidden: { filter: 'blur(10px)', opacity: 0 },
+			visible: { filter: 'blur(0px)', opacity: 1 }
+		},
+		duration = 1
+	}: Props = $props();
 
-  let defaultVariants = {
-    hidden: { filter: "blur(10px)", opacity: 0 },
-    visible: { filter: "blur(0px)", opacity: 1 },
-  };
-  let combinedVariants = variant || defaultVariants;
+	let defaultVariants = {
+		hidden: { filter: 'blur(10px)', opacity: 0 },
+		visible: { filter: 'blur(0px)', opacity: 1 }
+	};
+	let combinedVariants = variant || defaultVariants;
 </script>
 
 <Motion
-  initial="hidden"
-  animate="visible"
-  transition={{ duration }}
-  variants={combinedVariants}
-  let:motion
+	initial="hidden"
+	animate="visible"
+	transition={{ duration }}
+	variants={combinedVariants}
+	let:motion
 >
-  <h1
-    class="font-display text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]"
-    use:motion
-  >
-    {word}
-  </h1>
+	<h1
+		class="font-display text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]"
+		use:motion
+	>
+		{word}
+	</h1>
 </Motion>

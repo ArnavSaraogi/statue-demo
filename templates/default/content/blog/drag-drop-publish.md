@@ -89,9 +89,10 @@ Below the frontmatter, you're just writing Markdown. If you've ever written a Gi
 ```markdown
 ## This is a heading
 
-This is a paragraph. It has **bold text** and *italic text*.
+This is a paragraph. It has **bold text** and _italic text_.
 
 Here's a list:
+
 - First item
 - Second item
 - Third item
@@ -130,14 +131,14 @@ Each file becomes a page. The blog listing page automatically shows all of them,
 
 Here's everything you can put in your frontmatter:
 
-| Field | Required | What It Does |
-|-------|----------|--------------|
-| `title` | Yes | The post title (appears everywhere) |
-| `description` | No | Short preview text for listings |
-| `date` | Yes | Publication date (YYYY-MM-DD) |
-| `author` | No | Who wrote this |
-| `authorAvatar` | No | Path or URL to author's image |
-| `thumbnail` | No | Path or URL to header image |
+| Field          | Required | What It Does                        |
+| -------------- | -------- | ----------------------------------- |
+| `title`        | Yes      | The post title (appears everywhere) |
+| `description`  | No       | Short preview text for listings     |
+| `date`         | Yes      | Publication date (YYYY-MM-DD)       |
+| `author`       | No       | Who wrote this                      |
+| `authorAvatar` | No       | Path or URL to author's image       |
+| `thumbnail`    | No       | Path or URL to header image         |
 
 That's genuinely the whole system. No plugins to install. No taxonomies to configure. No content types to define. Just files in folders with a few lines of metadata.
 
@@ -147,7 +148,7 @@ That's genuinely the whole system. No plugins to install. No taxonomies to confi
 
 We started with a printing press metaphor, so let's close the loop.
 
-The printing press didn't just make books cheaper. It made *authorship* accessible. Suddenly, having something to say mattered more than having access to a scriptorium.
+The printing press didn't just make books cheaper. It made _authorship_ accessible. Suddenly, having something to say mattered more than having access to a scriptorium.
 
 Statue is trying to do something similar for the web. Not by inventing new technology, but by removing the technology that got in the way. Your ideas shouldn't need a computer science degree to reach the internet. They shouldn't require a monthly subscription or a login portal.
 

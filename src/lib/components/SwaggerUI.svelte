@@ -16,52 +16,52 @@
 -->
 
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import 'swagger-ui-dist/swagger-ui.css';
-  import { SwaggerUIBundle } from 'swagger-ui-dist';
+	import { onMount } from 'svelte';
+	import 'swagger-ui-dist/swagger-ui.css';
+	import { SwaggerUIBundle } from 'swagger-ui-dist';
 
-  export interface SwaggerUIProps {
-    url?: string;
-  }
+	export interface SwaggerUIProps {
+		url?: string;
+	}
 
-  let { url = '/openapi-example.json' }: SwaggerUIProps = $props();
+	let { url = '/openapi-example.json' }: SwaggerUIProps = $props();
 
-  let loaded = false;
+	let loaded = false;
 
-  onMount(() => {
-    SwaggerUIBundle({
-      url,
-      dom_id: '#swagger-container',
-      deepLinking: true,
-      docExpansion: 'list',
-      filter: true
-    });
-    loaded = true;
-  });
+	onMount(() => {
+		SwaggerUIBundle({
+			url,
+			dom_id: '#swagger-container',
+			deepLinking: true,
+			docExpansion: 'list',
+			filter: true
+		});
+		loaded = true;
+	});
 </script>
 
 <div class="swagger-wrapper">
-  {#if !loaded}
-    <div class="swagger-loading">Loading API documentation...</div>
-  {/if}
-  <div id="swagger-container"></div>
+	{#if !loaded}
+		<div class="swagger-loading">Loading API documentation...</div>
+	{/if}
+	<div id="swagger-container"></div>
 </div>
 
 <style>
-  .swagger-wrapper {
-    padding-top: 5rem;
-    min-height: 100vh;
-  }
+	.swagger-wrapper {
+		padding-top: 5rem;
+		min-height: 100vh;
+	}
 
-  .swagger-loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 200px;
-    color: #666;
-  }
+	.swagger-loading {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 200px;
+		color: #666;
+	}
 
-  :global(.swagger-ui .topbar) {
-    display: none;
-  }
+	:global(.swagger-ui .topbar) {
+		display: none;
+	}
 </style>

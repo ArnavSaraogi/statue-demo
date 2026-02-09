@@ -28,7 +28,7 @@ module.exports = {
 				// {@html} is intentional for markdown rendering
 				'svelte/no-at-html-tags': 'warn',
 				// Unused exports are fine in components (used externally)
-				'svelte/valid-compile': 'warn',
+				'svelte/valid-compile': 'warn'
 			}
 		},
 		{
@@ -45,12 +45,5 @@ module.exports = {
 			}
 		}
 	],
-	ignorePatterns: [
-		'build/',
-		'.svelte-kit/',
-		'dist/',
-		'node_modules/',
-		'*.cjs',
-		'statue_test_env/'
-	]
+	ignorePatterns: ['build/', '.svelte-kit/', 'dist/', 'node_modules/', '*.cjs', 'statue_test_env/']
 };

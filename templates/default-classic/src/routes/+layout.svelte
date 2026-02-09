@@ -11,7 +11,6 @@
 	let navbarConfig = $derived(data.navbarConfig);
 	let currentPath = $derived(page.url.pathname);
 
-
 	// Enable View Transitions API only for blog pages
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;

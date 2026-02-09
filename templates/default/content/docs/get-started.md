@@ -14,12 +14,14 @@ Statue is a static site generator that transforms markdown files into a fast, mo
 ## What is Statue?
 
 Statue turns this:
+
 ```markdown
 ---
 title: My Blog Post
 ---
 
 # Hello World
+
 This is my first post!
 ```
 
@@ -43,7 +45,7 @@ No database, no CMS - just files.
 Change your entire site's look by switching one line in `src/lib/index.css`:
 
 ```css
-@import "statue-ssg/themes/blue.css";
+@import 'statue-ssg/themes/blue.css';
 ```
 
 Eight built-in themes available. **[Learn more →](./themes.md)**
@@ -66,9 +68,9 @@ One file (`site.config.json`) controls site-wide settings:
 
 ```json
 {
-  "site": { "name": "Your Site", "url": "https://yoursite.com" },
-  "contact": { "email": "hello@yoursite.com" },
-  "social": { "twitter": "https://twitter.com/yourhandle" }
+	"site": { "name": "Your Site", "url": "https://yoursite.com" },
+	"contact": { "email": "hello@yoursite.com" },
+	"social": { "twitter": "https://twitter.com/yourhandle" }
 }
 ```
 
@@ -109,18 +111,23 @@ your-project/
 ## Quick Actions
 
 ### Change the theme
+
 Edit `src/lib/index.css` and change the import line.
 
 ### Add a blog post
+
 Create `content/blog/post-name.md` with frontmatter.
 
 ### Customize the homepage
+
 Edit `src/routes/+page.svelte`.
 
 ### Add a custom page
+
 Create `src/routes/pagename/+page.svelte`.
 
 ### Update site info
+
 Edit `site.config.json`.
 
 ---
@@ -128,9 +135,11 @@ Edit `site.config.json`.
 ## Next Steps
 
 **New to Statue?** Follow the checklist:
+
 - **[New Site Checklist](./new-site-checklist.md)** - Step-by-step customization
 
 **Want to learn more?**
+
 - **[Site Configuration](./site-config.md)** - All config options
 - **[Themes](./themes.md)** - Styling your site
 - **[Components](./components.md)** - Component reference
@@ -138,6 +147,7 @@ Edit `site.config.json`.
 - **[Routing](./routing.md)** - How URLs work
 
 **Need help?**
+
 - **[Statue.dev](https://statue.dev)** - Official documentation site
 - **[GitHub Issues](https://github.com/accretional/statue/issues)** - Report bugs
 - **[Discord](https://discord.gg/accretional)** - Community chat

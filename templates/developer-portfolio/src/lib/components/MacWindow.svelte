@@ -60,8 +60,10 @@
 	<div class="window-header" on:dblclick={() => dispatch('maximize')}>
 		<div class="traffic-lights">
 			<button class="light close" on:click={() => dispatch('close')} aria-label="Close"></button>
-			<button class="light minimize" on:click={() => dispatch('minimize')} aria-label="Minimize"></button>
-			<button class="light maximize" on:click={() => dispatch('maximize')} aria-label="Maximize"></button>
+			<button class="light minimize" on:click={() => dispatch('minimize')} aria-label="Minimize"
+			></button>
+			<button class="light maximize" on:click={() => dispatch('maximize')} aria-label="Maximize"
+			></button>
 		</div>
 		<div class="window-title">{title}</div>
 	</div>
@@ -86,14 +88,14 @@
 		min-width: 300px;
 		min-height: 200px;
 		border: 1px solid rgba(0, 0, 0, 0.1);
-        resize: both; /* Allow simple CSS resizing */
+		resize: both; /* Allow simple CSS resizing */
 	}
 
-    /* Dark mode support logic can be added here if needed, sticking to light/neutral for Mac OS look */
-    :global(.dark) .mac-window {
-        background: #1e1e1e;
-        border-color: #333;
-    }
+	/* Dark mode support logic can be added here if needed, sticking to light/neutral for Mac OS look */
+	:global(.dark) .mac-window {
+		background: #1e1e1e;
+		border-color: #333;
+	}
 
 	.window-header {
 		height: 38px;
@@ -103,16 +105,16 @@
 		align-items: center;
 		padding: 0 16px;
 		user-select: none;
-        cursor: default;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
+		cursor: default;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
 	}
 
-    :global(.dark) .window-header {
-        background: #2d2d2d;
-        border-bottom-color: #000;
-        color: #fff;
-    }
+	:global(.dark) .window-header {
+		background: #2d2d2d;
+		border-bottom-color: #000;
+		color: #fff;
+	}
 
 	.traffic-lights {
 		display: flex;
@@ -126,28 +128,42 @@
 		border-radius: 50%;
 		border: none;
 		padding: 0;
-        cursor: pointer;
+		cursor: pointer;
 	}
 
-	.light.close { background: #ff5f56; border: 1px solid #e0443e; }
-	.light.minimize { background: #ffbd2e; border: 1px solid #dea123; }
-	.light.maximize { background: #27c93f; border: 1px solid #1aab29; }
+	.light.close {
+		background: #ff5f56;
+		border: 1px solid #e0443e;
+	}
+	.light.minimize {
+		background: #ffbd2e;
+		border: 1px solid #dea123;
+	}
+	.light.maximize {
+		background: #27c93f;
+		border: 1px solid #1aab29;
+	}
 
-    /* Hover states for lights (icons could be added) */
-    .light:hover { opacity: 0.8; }
+	/* Hover states for lights (icons could be added) */
+	.light:hover {
+		opacity: 0.8;
+	}
 
 	.window-title {
 		flex: 1;
 		text-align: center;
 		font-size: 13px;
-		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+		font-family:
+			-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 		color: #333;
-        margin-right: 52px; /* Balance the traffic lights */
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+		margin-right: 52px; /* Balance the traffic lights */
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
-    :global(.dark) .window-title { color: #ccc; }
+	:global(.dark) .window-title {
+		color: #ccc;
+	}
 
 	.window-content {
 		flex: 1;

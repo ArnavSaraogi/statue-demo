@@ -37,14 +37,19 @@
 	siteTitle={navbarConfig?.siteTitle ?? null}
 	logo={navbarConfig?.logo ?? null}
 	hiddenFromNav={navbarConfig?.hiddenFromNav ?? []}
-	{...(navbarConfig?.defaultNavItems && { defaultNavItems: navbarConfig.defaultNavItems })}
+	{...navbarConfig?.defaultNavItems && { defaultNavItems: navbarConfig.defaultNavItems }}
 />
 
 <main>
 	{@render children()}
 </main>
 
-<Footer directories={data.globalDirectories} {currentPath} rssEnabled={data.rssEnabled} siteUrl={data.siteUrl} />
+<Footer
+	directories={data.globalDirectories}
+	{currentPath}
+	rssEnabled={data.rssEnabled}
+	siteUrl={data.siteUrl}
+/>
 
 <style>
 	:global(body) {

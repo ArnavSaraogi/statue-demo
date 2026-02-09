@@ -7,7 +7,7 @@ description: Privacy Policy for {{site.name}}
 
 Last updated: {{legal.privacyPolicyLastUpdated}}
 
-This Privacy Policy explains how {{site.name}} ("we", "our", or "company") collects, uses, and shares 
+This Privacy Policy explains how {{site.name}} ("we", "our", or "company") collects, uses, and shares
 your personal information when you use our website and services.
 
 ## Information We Collect
@@ -40,12 +40,12 @@ We do not sell or share your personal information with third parties except in t
 
 ## Cookies and Similar Technologies
 
-We use cookies and similar technologies on our website. These technologies help us understand and improve 
+We use cookies and similar technologies on our website. These technologies help us understand and improve
 your experience on our website.
 
 ## California Residents' Rights
 
-Under the California Consumer Privacy Act (CCPA) and the California Privacy Rights Act (CPRA), 
+Under the California Consumer Privacy Act (CCPA) and the California Privacy Rights Act (CPRA),
 California residents have the following rights:
 
 - The right to know what personal information we collect
@@ -53,7 +53,7 @@ California residents have the following rights:
 - The right to opt-out of the sale or sharing of your personal information
 - The right to non-discrimination when exercising your privacy rights
 
-You can visit our [Do Not Sell My Information](/legal/do-not-sell) 
+You can visit our [Do Not Sell My Information](/legal/do-not-sell)
 page to opt-out of the sale or sharing of your personal information.
 
 ## Contact Us
@@ -61,4 +61,4 @@ page to opt-out of the sale or sharing of your personal information.
 If you have any questions or concerns about this Privacy Policy, please contact us:
 
 - Email: [{{contact.privacyEmail}}](mailto:{{contact.privacyEmail}})
-- Address: {{contact.address.full}} 
+- Address: {{contact.address.full}}

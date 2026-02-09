@@ -143,6 +143,7 @@ git checkout -b feature/my-new-feature
    - Edit files in `templates/` for specific templates
 
 2. **Test locally**
+
    ```bash
    npm run dev    # Start dev server
    npm run build  # Test production build
@@ -165,16 +166,20 @@ git checkout -b feature/my-new-feature
 ### Manual Testing
 
 1. **Test the dev server**
+
    ```bash
    npm run dev
    ```
+
    Browse your changes at `http://localhost:5173`
 
 2. **Test the production build**
+
    ```bash
    npm run build
    npm run preview
    ```
+
    Verify the static build works correctly
 
 3. **Test with a fresh project**
@@ -209,6 +214,7 @@ npm run template:save blog
 If you added or modified components, see **[ADDING_COMPONENTS.md](./ADDING_COMPONENTS.md)** for detailed testing instructions.
 
 Key checks:
+
 - Test component with different props
 - Verify responsive behavior (mobile, tablet, desktop)
 - Check accessibility (keyboard navigation, screen readers)
@@ -219,6 +225,7 @@ Key checks:
 If you created a new theme, see **[ADDING_THEMES.md](./ADDING_THEMES.md)** for detailed testing instructions.
 
 Key checks:
+
 - Verify WCAG AA contrast ratios
 - Test on all page types
 - Check responsive design
@@ -240,19 +247,22 @@ If you modified content processing:
 All contributions are automatically validated before PR creation. The validation checks:
 
 **For Components:**
+
 - ✅ Valid Svelte syntax
-- ✅ Uses CSS variables (var(--color-*))
+- ✅ Uses CSS variables (var(--color-\*))
 - ✅ **Auto-exported in src/lib/index.ts** (via `npm run generate:exports`)
-- ⚠️  Documented in COMPONENTS_README.md (warning only)
-- ⚠️  TypeScript usage (warning only)
-- ⚠️  No hardcoded colors (warning only)
+- ⚠️ Documented in COMPONENTS_README.md (warning only)
+- ⚠️ TypeScript usage (warning only)
+- ⚠️ No hardcoded colors (warning only)
 
 **For Themes:**
+
 - ✅ Uses @theme {} block
 - ✅ Contains all 13 required CSS variables
 - ✅ Follows naming convention (lowercase-with-hyphens.css)
 
 **For Templates:**
+
 - ✅ Has required routes: [...slug] and [directory]
 - ✅ All +page.server.js files have prerender = true
 - ✅ Uses $lib imports (not statue-ssg)
@@ -299,6 +309,7 @@ See [VALIDATION_GUIDE.md](./VALIDATION_GUIDE.md) for common issues and solutions
 ```
 
 **What it does:**
+
 1. Checks/installs GitHub CLI (`gh`)
 2. Authenticates with GitHub
 3. Forks the statue repository (if needed)
@@ -308,12 +319,14 @@ See [VALIDATION_GUIDE.md](./VALIDATION_GUIDE.md) for common issues and solutions
 7. Opens a pull request automatically
 
 **Requirements:**
+
 - GitHub CLI (`gh`) installed or the script will help you install it
 - Files must exist in current directory (components/themes) or current directory must be a Statue site root (templates)
 
 **Note:** The script handles the git workflow. You still need to add documentation manually after the PR is created.
 
 **See detailed guides:**
+
 - [ADDING_COMPONENTS.md](./ADDING_COMPONENTS.md) for component contributions
 - [ADDING_TEMPLATES.md](./ADDING_TEMPLATES.md) for template contributions
 - [ADDING_THEMES.md](./ADDING_THEMES.md) for theme contributions
@@ -336,6 +349,7 @@ If you prefer to submit PRs manually or the automated script doesn't fit your wo
 ### PR Process
 
 1. **Push your branch**
+
    ```bash
    git push origin feature/my-new-feature
    ```
@@ -392,7 +406,7 @@ const contentEntries = scanContentDirectory();
 const directories = getContentDirectories();
 
 // Use arrow functions for callbacks
-items.map(item => item.title);
+items.map((item) => item.title);
 
 // Add JSDoc comments for exported functions
 /**
@@ -401,7 +415,7 @@ items.map(item => item.title);
  * @returns {string} - Processed content with variables replaced
  */
 export function processTemplateVariables(content) {
-  // ...
+	// ...
 }
 ```
 
@@ -409,33 +423,33 @@ export function processTemplateVariables(content) {
 
 ```svelte
 <script>
-  // Props first
-  export let title;
-  export let description = ''; // Optional props with defaults
+	// Props first
+	export let title;
+	export let description = ''; // Optional props with defaults
 
-  // Reactive declarations
-  $: formattedTitle = title.toUpperCase();
+	// Reactive declarations
+	$: formattedTitle = title.toUpperCase();
 
-  // Functions
-  function handleClick() {
-    // ...
-  }
+	// Functions
+	function handleClick() {
+		// ...
+	}
 </script>
 
 <!-- Clear, semantic HTML -->
 <div class="component-name">
-  <h2>{title}</h2>
-  {#if description}
-    <p>{description}</p>
-  {/if}
+	<h2>{title}</h2>
+	{#if description}
+		<p>{description}</p>
+	{/if}
 </div>
 
 <style>
-  /* Scoped styles using theme variables */
-  .component-name {
-    color: var(--color-foreground);
-    background: var(--color-card);
-  }
+	/* Scoped styles using theme variables */
+	.component-name {
+		color: var(--color-foreground);
+		background: var(--color-card);
+	}
 </style>
 ```
 
@@ -449,16 +463,16 @@ export function processTemplateVariables(content) {
 ```css
 /* Good - uses theme variables */
 .card {
-  background: var(--color-card);
-  border: 1px solid var(--color-border);
-  color: var(--color-foreground);
+	background: var(--color-card);
+	border: 1px solid var(--color-border);
+	color: var(--color-foreground);
 }
 
 /* Avoid - hardcoded colors */
 .card {
-  background: #1a1a1a;
-  border: 1px solid #333;
-  color: #fff;
+	background: #1a1a1a;
+	border: 1px solid #333;
+	color: #fff;
 }
 ```
 
@@ -519,6 +533,7 @@ Test that your changes work when installed as a package:
 ```
 
 This script:
+
 1. Packs the library into a `.tgz` file
 2. Creates a fresh SvelteKit project
 3. Installs Statue SSG from the package
@@ -533,20 +548,23 @@ This script:
 ### For Maintainers
 
 1. **Ensure all tests pass**
+
    ```bash
    ./test/test-release.sh
    ```
 
 2. **Update version** in `package.json`
+
    ```json
    {
-     "version": "1.2.3"
+   	"version": "1.2.3"
    }
    ```
 
 3. **Update CHANGELOG.md** with release notes
 
 4. **Commit version bump**
+
    ```bash
    git add package.json CHANGELOG.md
    git commit -m "chore: bump version to 1.2.3"
@@ -554,6 +572,7 @@ This script:
    ```
 
 5. **Publish to npm**
+
    ```bash
    npm publish
    ```
@@ -594,6 +613,7 @@ For security issues, email: hello@accretional.com
 For adding new components, see **[ADDING_COMPONENTS.md](./ADDING_COMPONENTS.md)** for a complete step-by-step guide.
 
 General principles:
+
 - Keep components small and focused
 - Accept props for customization
 - Use CSS variables for theme support
@@ -604,6 +624,7 @@ General principles:
 For creating new themes, see **[ADDING_THEMES.md](./ADDING_THEMES.md)** for a complete step-by-step guide.
 
 General principles:
+
 - Use the full range of CSS variables
 - Test contrast ratios for accessibility
 - Document your theme in themes/README.md
@@ -613,6 +634,7 @@ General principles:
 For creating new templates, see **[ADDING_TEMPLATES.md](./ADDING_TEMPLATES.md)** for a complete step-by-step guide.
 
 General principles:
+
 - Keep templates minimal and focused
 - Include example content
 - Use components from the library, not custom forks
@@ -629,20 +651,22 @@ General principles:
 To add new template variables that users can use in markdown:
 
 1. Add the value to `site.config.json`:
+
 ```json
 {
-  // ... existing config
-  "newSection": {
-    "newValue": "Your new value"
-  }
+	// ... existing config
+	"newSection": {
+		"newValue": "Your new value"
+	}
 }
 ```
 
 2. Register it in `src/lib/cms/content-processor.js`:
+
 ```javascript
 const variables = {
-  // ... existing variables
-  'newSection.newValue': siteConfig.newSection.newValue,
+	// ... existing variables
+	'newSection.newValue': siteConfig.newSection.newValue
 };
 ```
 
@@ -657,6 +681,7 @@ const variables = {
 ### 1. Simplicity First
 
 Statue is designed to be simple. When adding features:
+
 - Is it necessary for most users?
 - Does it add complexity?
 - Can it be done with existing features?
@@ -664,6 +689,7 @@ Statue is designed to be simple. When adding features:
 ### 2. User-Centric
 
 Always consider the end user:
+
 - Is it easy to understand?
 - Is it well-documented?
 - Does it work for non-technical users?
@@ -671,6 +697,7 @@ Always consider the end user:
 ### 3. Static-First
 
 Statue generates static sites:
+
 - No runtime JavaScript for content
 - Build-time processing
 - Prerendered pages
@@ -678,6 +705,7 @@ Statue generates static sites:
 ### 4. Framework Leverage
 
 Use SvelteKit's capabilities:
+
 - File-based routing
 - Server-side data loading
 - Static site generation

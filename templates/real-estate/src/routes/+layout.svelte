@@ -20,7 +20,7 @@
 	siteTitle={navbarConfig?.siteTitle ?? null}
 	logo={navbarConfig?.logo ?? null}
 	hiddenFromNav={navbarConfig?.hiddenFromNav ?? []}
-	{...(navbarConfig?.defaultNavItems && { defaultNavItems: navbarConfig.defaultNavItems })}
+	{...navbarConfig?.defaultNavItems && { defaultNavItems: navbarConfig.defaultNavItems }}
 />
 
 <main>

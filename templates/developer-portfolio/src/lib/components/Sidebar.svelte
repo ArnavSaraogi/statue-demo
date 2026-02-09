@@ -17,12 +17,14 @@
 	};
 
 	// Parse text and convert @mentions to clickable GitHub links
-	function parseTextWithMentions(text: string | undefined): Array<{text: string, url: string | null, suffix?: string}> {
+	function parseTextWithMentions(
+		text: string | undefined
+	): Array<{ text: string; url: string | null; suffix?: string }> {
 		if (!text) return [];
 
 		// Split by spaces but keep punctuation attached
 		const parts = text.split(/(\s+)/);
-		return parts.map(part => {
+		return parts.map((part) => {
 			// Check if this part contains an @mention
 			const mentionMatch = part.match(/^(@[\w-]+)/);
 			if (mentionMatch) {
@@ -49,19 +51,25 @@
 		<!-- Avatar Section -->
 		<div class="avatar-section">
 			<div class="avatar-glow"></div>
-			<img
-				src={profile.avatarUrl}
-				alt={profile.name}
-				class="avatar"
-			/>
+			<img src={profile.avatarUrl} alt={profile.name} class="avatar" />
 		</div>
 
 		<!-- Profile Info -->
 		<div class="profile-info">
 			<h1 class="profile-name">{profile.name}</h1>
-			<a href="https://github.com/{profile.username}" target="_blank" rel="noopener noreferrer" class="profile-username">@{profile.username}</a>
+			<a
+				href="https://github.com/{profile.username}"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="profile-username">@{profile.username}</a
+			>
 			<p class="profile-bio">
-				{#each bioParts as part}{#if part.url}<a href={part.url} target="_blank" rel="noopener noreferrer" class="mention-link">{part.text}</a>{part.suffix || ''}{:else}{part.text}{/if}{/each}
+				{#each bioParts as part}{#if part.url}<a
+							href={part.url}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="mention-link">{part.text}</a
+						>{part.suffix || ''}{:else}{part.text}{/if}{/each}
 			</p>
 
 			<!-- Stats -->
@@ -89,14 +97,25 @@
 					<div class="meta-item">
 						<Building size={14} />
 						<span>
-							{#each companyParts as part}{#if part.url}<a href={part.url} target="_blank" rel="noopener noreferrer" class="org-link">{part.text}</a>{part.suffix || ''}{:else}{part.text}{/if}{/each}
+							{#each companyParts as part}{#if part.url}<a
+										href={part.url}
+										target="_blank"
+										rel="noopener noreferrer"
+										class="org-link">{part.text}</a
+									>{part.suffix || ''}{:else}{part.text}{/if}{/each}
 						</span>
 					</div>
 				{/if}
 				{#if profile.website}
 					<div class="meta-item">
 						<Link size={14} />
-						<a href={profile.website.startsWith('http') ? profile.website : `https://${profile.website}`} target="_blank" rel="noopener noreferrer">
+						<a
+							href={profile.website.startsWith('http')
+								? profile.website
+								: `https://${profile.website}`}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
 							{profile.website.replace(/^https?:\/\//, '')}
 						</a>
 					</div>
@@ -105,17 +124,34 @@
 
 			<!-- Social Links -->
 			<div class="social-links">
-				<a href="https://github.com/{profile.username}" target="_blank" rel="noopener noreferrer" class="social-btn primary">
+				<a
+					href="https://github.com/{profile.username}"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="social-btn primary"
+				>
 					<Github size={16} />
 					GitHub
 				</a>
 				{#if profile.linkedin}
-					<a href={profile.linkedin.startsWith('http') ? profile.linkedin : `https://linkedin.com/in/${profile.linkedin}`} target="_blank" rel="noopener noreferrer" class="social-btn">
+					<a
+						href={profile.linkedin.startsWith('http')
+							? profile.linkedin
+							: `https://linkedin.com/in/${profile.linkedin}`}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="social-btn"
+					>
 						<Linkedin size={16} />
 					</a>
 				{/if}
 				{#if profile.twitter}
-					<a href="https://twitter.com/{profile.twitter}" target="_blank" rel="noopener noreferrer" class="social-btn">
+					<a
+						href="https://twitter.com/{profile.twitter}"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="social-btn"
+					>
 						<Twitter size={16} />
 					</a>
 				{/if}
@@ -165,8 +201,15 @@
 	}
 
 	@keyframes pulse {
-		0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-		50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.05); }
+		0%,
+		100% {
+			opacity: 0.5;
+			transform: translate(-50%, -50%) scale(1);
+		}
+		50% {
+			opacity: 0.7;
+			transform: translate(-50%, -50%) scale(1.05);
+		}
 	}
 
 	.avatar {
@@ -274,12 +317,14 @@
 		color: var(--fg-muted, #8b949e);
 	}
 
-	.meta-item a, .org-link {
+	.meta-item a,
+	.org-link {
 		color: var(--accent-fg);
 		text-decoration: underline;
 	}
 
-	.meta-item a:hover, .org-link:hover {
+	.meta-item a:hover,
+	.org-link:hover {
 		opacity: 0.8;
 	}
 
@@ -322,5 +367,4 @@
 		background: #f0f0f0;
 		box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 	}
-
 </style>

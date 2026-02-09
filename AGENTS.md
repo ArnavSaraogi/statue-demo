@@ -1,9 +1,11 @@
 # AGENTS.md - Statue SSG One-Shot Customization Guide
 
 ## Purpose
+
 This guide provides a systematic approach to transforming a statue-ssg installation into a fully customized website in a single pass. The project is already initialized with all dependencies, ESM support, and required files.
 
 **This guide supports multiple approaches:**
+
 - **Fully Custom Sites** - Complete control over design and layout
 - **Blog/Docs Sites** - Keep default components and markdown content
 - **Hybrid Sites** - Mix custom pages with content-driven sections
@@ -11,6 +13,7 @@ This guide provides a systematic approach to transforming a statue-ssg installat
 **Read the requirements carefully** to determine which approach fits the project, then follow the relevant "Option A/B/C" paths throughout this guide.
 
 ## Key Principles
+
 1. **Choose the right approach** - Fully custom, content-driven, or hybrid
 2. **Design system first** - Define styling patterns before building pages
 3. **Component flexibility** - Mix statue-ssg components with custom components
@@ -21,6 +24,7 @@ This guide provides a systematic approach to transforming a statue-ssg installat
 8. **Content flexibility** - Keep or delete markdown directories based on needs
 
 ## Project Structure (Pre-configured)
+
 - `src/routes/+page.svelte` - Homepage
 - `src/routes/+layout.svelte` - Global layout
 - `src/routes/about/+page.svelte` - About page (exists)
@@ -34,6 +38,7 @@ This guide provides a systematic approach to transforming a statue-ssg installat
 ## Phase 1: Static Assets
 
 Place images and media files in `static/assets/`:
+
 ```bash
 mkdir -p static/assets
 # Download or copy images to static/assets/
@@ -46,11 +51,13 @@ Files in `static/` are served at the root and copied to build output.
 ## Phase 2: Creating Custom Components
 
 ### 2.0 Component Architecture
+
 statue-ssg includes default components, but you can create custom components for complete design control.
 
 **Location:** All custom components should be stored in `src/lib/components/`
 
 **Best Practices for Custom Components:**
+
 1. **Use Svelte 4 syntax** - statue-ssg is built on Svelte 4
 2. **Make components flexible** - Export props for all configurable options
 3. **Use theme variables** - Never hardcode colors; use CSS custom properties
@@ -59,29 +66,31 @@ statue-ssg includes default components, but you can create custom components for
 6. **Add prop validation** - Set sensible defaults for all props
 
 **Example Component Structure:**
+
 ```svelte
 <script>
-  // Export all configurable props with defaults
-  export let backgroundColor = 'var(--theme-bg)';
-  export let textColor = 'var(--theme-text)';
-  export let padding = '2rem';
-  export let showIcon = true;
-  // ... more props
+	// Export all configurable props with defaults
+	export let backgroundColor = 'var(--theme-bg)';
+	export let textColor = 'var(--theme-text)';
+	export let padding = '2rem';
+	export let showIcon = true;
+	// ... more props
 </script>
 
 <div style="background-color: {backgroundColor}; color: {textColor}; padding: {padding};">
-  {#if showIcon}
-    <svg><!-- inline SVG --></svg>
-  {/if}
-  <slot />
+	{#if showIcon}
+		<svg><!-- inline SVG --></svg>
+	{/if}
+	<slot />
 </div>
 
 <style>
-  /* Component-scoped styles using theme variables */
+	/* Component-scoped styles using theme variables */
 </style>
 ```
 
 **Component Types to Consider:**
+
 - **Gallery** - Image grids with hover effects and captions
 - **Footer** - Global footer with contact info and links
 - **Navigation** - Custom nav bars with active states
@@ -89,6 +98,7 @@ statue-ssg includes default components, but you can create custom components for
 - **Buttons** - Reusable button components with variants
 
 **Importing Custom Components:**
+
 ```svelte
 import ComponentName from '$lib/components/ComponentName.svelte';
 ```
@@ -100,35 +110,37 @@ import ComponentName from '$lib/components/ComponentName.svelte';
 Update `site.config.json` with your site's information:
 
 **Required sections to customize:**
+
 - `site.*` - Site name, description, URL, author
 - `contact.*` - All contact information and addresses
 - `social.*` - Social media links (can be empty strings)
 - `seo.*` - SEO defaults, title templates, keywords, OG images
 
 **Example:**
+
 ```json
 {
-  "site": {
-    "name": "Your Site Name",
-    "description": "Your site description",
-    "url": "https://yoursite.com",
-    "author": "Your Name"
-  },
-  "seo": {
-    "defaultTitle": "Your Site Title",
-    "titleTemplate": "%s | Your Site",
-    "defaultDescription": "Your site description",
-    "keywords": ["keyword1", "keyword2"],
-    "ogImage": "/assets/your-image.jpg",
-    "twitterCard": "summary_large_image"
-  }
+	"site": {
+		"name": "Your Site Name",
+		"description": "Your site description",
+		"url": "https://yoursite.com",
+		"author": "Your Name"
+	},
+	"seo": {
+		"defaultTitle": "Your Site Title",
+		"titleTemplate": "%s | Your Site",
+		"defaultDescription": "Your site description",
+		"keywords": ["keyword1", "keyword2"],
+		"ogImage": "/assets/your-image.jpg",
+		"twitterCard": "summary_large_image"
+	}
 }
 ```
 
 You can access config values in pages with:
+
 ```svelte
-import siteConfig from '../../site.config.json';
-// Use: {siteConfig.site.name}
+import siteConfig from '../../site.config.json'; // Use: {siteConfig.site.name}
 ```
 
 ---
@@ -138,7 +150,9 @@ import siteConfig from '../../site.config.json';
 **Decide your content approach:**
 
 ### Option A: Fully Custom Static Site (No Markdown Content)
+
 If building a portfolio, landing page, or fully custom site:
+
 ```bash
 rm content/example.md
 rm -rf content/docs
@@ -147,14 +161,18 @@ rm -rf content/legal
 ```
 
 ### Option B: Blog or Documentation Site (Keep Markdown Content)
+
 If building a blog, docs site, or content-driven site:
+
 - **Keep** `content/blog/` or `content/docs/` directories
 - **Delete** placeholder files: `rm content/blog/*.md` or `rm content/docs/*.md`
 - **Create** your own markdown files with proper frontmatter
 - **Keep** the dynamic routes `[directory]` and `[...slug]` pages (they handle markdown rendering)
 
 ### Option C: Hybrid Approach
+
 Mix custom pages with markdown content:
+
 - Keep directories you need (e.g., `content/blog/` for blog posts)
 - Delete directories you don't need (e.g., `content/docs/` if no documentation)
 - Create custom pages for marketing/landing content
@@ -165,100 +183,112 @@ Mix custom pages with markdown content:
 ## Phase 5: Global Footer
 
 ### 5.1 Create Footer Component
+
 Create a custom footer component for consistent site-wide branding.
 
 **File:** `src/lib/components/Footer.svelte`
+
 ```svelte
 <footer class="site-footer">
-  <div class="footer-content">
-    <!-- Your footer content here -->
-    <!-- Include contact info, links, copyright, etc. -->
-  </div>
+	<div class="footer-content">
+		<!-- Your footer content here -->
+		<!-- Include contact info, links, copyright, etc. -->
+	</div>
 </footer>
 
 <style>
-  /* Your footer styles */
+	/* Your footer styles */
 </style>
 ```
 
 ### 5.2 Update Layout
+
 **File:** `src/routes/+layout.svelte`
 
 **Choose your navigation and footer approach:**
 
 #### Option A: Custom Footer + Custom Navigation (Per-Page)
+
 Best for fully custom designs where navigation differs per page:
+
 ```svelte
 <script>
-  import Footer from '$lib/components/Footer.svelte';
-  import { page } from '$app/stores';
-  import { onNavigate } from '$app/navigation';
-  import '$lib/index.css';
+	import Footer from '$lib/components/Footer.svelte';
+	import { page } from '$app/stores';
+	import { onNavigate } from '$app/navigation';
+	import '$lib/index.css';
 
-  export let data;
-  // Keep existing onNavigate logic if present
+	export let data;
+	// Keep existing onNavigate logic if present
 </script>
 
 <main>
-  <slot />
+	<slot />
 </main>
 
 <Footer />
 
 <style>
-  :global(body) {
-    /* Your global styles */
-  }
+	:global(body) {
+		/* Your global styles */
+	}
 </style>
 ```
+
 - **Remove** the NavigationBar import and component from layout
 - **Add** navigation to each individual page
 - **Add** custom footer to layout only
 
 #### Option B: Default NavigationBar + Custom Footer
+
 Best for blog/docs sites where default navbar works well:
+
 ```svelte
 <script>
-  import { NavigationBar } from 'statue-ssg';
-  import Footer from '$lib/components/Footer.svelte';
-  import { page } from '$app/stores';
-  import { onNavigate } from '$app/navigation';
-  import '$lib/index.css';
+	import { NavigationBar } from 'statue-ssg';
+	import Footer from '$lib/components/Footer.svelte';
+	import { page } from '$app/stores';
+	import { onNavigate } from '$app/navigation';
+	import '$lib/index.css';
 
-  export let data;
+	export let data;
 
-  $: globalDirectories = data.globalDirectories;
-  $: searchConfig = data.searchConfig;
-  $: currentPath = $page.url.pathname;
+	$: globalDirectories = data.globalDirectories;
+	$: searchConfig = data.searchConfig;
+	$: currentPath = $page.url.pathname;
 </script>
 
 <NavigationBar
-  navbarItems={globalDirectories}
-  showSearch={searchConfig?.enabled ?? false}
-  searchPlaceholder={searchConfig?.placeholder ?? "Search..."}
+	navbarItems={globalDirectories}
+	showSearch={searchConfig?.enabled ?? false}
+	searchPlaceholder={searchConfig?.placeholder ?? 'Search...'}
 />
 
 <main>
-  <slot />
+	<slot />
 </main>
 
 <Footer />
 ```
+
 - **Keep** the default NavigationBar component
 - **Replace** only the Footer import with your custom footer
 
 #### Option C: All Default Components
+
 Keep both default NavigationBar and Footer:
+
 ```svelte
 <script>
-  import { NavigationBar, Footer } from 'statue-ssg';
-  // ... keep existing setup
+	import { NavigationBar, Footer } from 'statue-ssg';
+	// ... keep existing setup
 </script>
 
 <NavigationBar ... />
 <main><slot /></main>
 <Footer ... />
 ```
+
 - Use when the default components meet your needs
 - Customize through their props and CSS
 
@@ -273,83 +303,89 @@ Keep both default NavigationBar and Footer:
 ### 6.1 Homepage (src/routes/+page.svelte)
 
 #### Option A: Fully Custom Homepage
+
 Best for portfolios, landing pages, and unique designs:
 
 **Remove all statue-ssg component imports:**
+
 ```svelte
 <script>
-  import siteConfig from '../../site.config.json';
-  export let data;
+	import siteConfig from '../../site.config.json';
+	export let data;
 </script>
 
 <svelte:head>
-  <title>{siteConfig.seo.defaultTitle}</title>
-  <meta name="description" content={siteConfig.seo.defaultDescription} />
+	<title>{siteConfig.seo.defaultTitle}</title>
+	<meta name="description" content={siteConfig.seo.defaultDescription} />
 </svelte:head>
 
 <div class="page-container">
-  <!-- Add custom navigation if not in layout -->
-  <nav class="nav-bar">
-    <div class="nav-content">
-      <a href="/" class="nav-logo">{siteConfig.site.name}</a>
-      <div class="nav-links">
-        <a href="/" class="nav-link active">Home</a>
-        <a href="/about" class="nav-link">About</a>
-      </div>
-    </div>
-  </nav>
+	<!-- Add custom navigation if not in layout -->
+	<nav class="nav-bar">
+		<div class="nav-content">
+			<a href="/" class="nav-logo">{siteConfig.site.name}</a>
+			<div class="nav-links">
+				<a href="/" class="nav-link active">Home</a>
+				<a href="/about" class="nav-link">About</a>
+			</div>
+		</div>
+	</nav>
 
-  <section class="hero">
-    <!-- Your hero content -->
-  </section>
+	<section class="hero">
+		<!-- Your hero content -->
+	</section>
 
-  <section class="main-content">
-    <!-- Your content sections -->
-  </section>
+	<section class="main-content">
+		<!-- Your content sections -->
+	</section>
 </div>
 
 <style>
-  /* Your custom styles */
+	/* Your custom styles */
 </style>
 ```
 
 #### Option B: Use Default Components with Custom Content
+
 Best for blogs, docs, and content-driven sites:
 
 **Keep or modify statue-ssg components:**
+
 ```svelte
 <script>
-  import { Hero, Stats, Categories, LatestContent } from 'statue-ssg';
-  import siteConfig from '../../site.config.json';
+	import { Hero, Stats, Categories, LatestContent } from 'statue-ssg';
+	import siteConfig from '../../site.config.json';
 
-  export let data;
-  $: directories = data.directories;
-  $: rootContent = data.rootContent;
+	export let data;
+	$: directories = data.directories;
+	$: rootContent = data.rootContent;
 </script>
 
 <svelte:head>
-  <title>{siteConfig.seo.defaultTitle}</title>
-  <meta name="description" content={siteConfig.seo.defaultDescription} />
+	<title>{siteConfig.seo.defaultTitle}</title>
+	<meta name="description" content={siteConfig.seo.defaultDescription} />
 </svelte:head>
 
 <div class="page-container">
-  <!-- Keep default components or replace with custom -->
-  <Hero />
-  <Stats />
-  <Categories {directories} />
-  <LatestContent {rootContent} />
+	<!-- Keep default components or replace with custom -->
+	<Hero />
+	<Stats />
+	<Categories {directories} />
+	<LatestContent {rootContent} />
 </div>
 ```
 
 #### Option C: Mix Default and Custom Components
+
 Combine statue-ssg components with your own:
+
 ```svelte
 <script>
-  import { Hero } from 'statue-ssg';
-  import CustomGallery from '$lib/components/CustomGallery.svelte';
-  import siteConfig from '../../site.config.json';
+	import { Hero } from 'statue-ssg';
+	import CustomGallery from '$lib/components/CustomGallery.svelte';
+	import siteConfig from '../../site.config.json';
 
-  export let data;
+	export let data;
 </script>
 
 <!-- Use Hero from statue-ssg -->
@@ -360,51 +396,51 @@ Combine statue-ssg components with your own:
 
 <!-- Add custom sections -->
 <section class="custom-section">
-  <!-- Your content -->
+	<!-- Your content -->
 </section>
 ```
 
 ### 6.2 About Page (src/routes/about/+page.svelte)
 
 #### Option A: Fully Custom About Page
+
 ```svelte
 <script>
-  import siteConfig from '../../../site.config.json';
-  export let data;
+	import siteConfig from '../../../site.config.json';
+	export let data;
 </script>
 
 <div class="page-container">
-  <!-- Add navigation if not in layout -->
-  <nav class="nav-bar">
-    <!-- Copy same structure from homepage -->
-  </nav>
+	<!-- Add navigation if not in layout -->
+	<nav class="nav-bar">
+		<!-- Copy same structure from homepage -->
+	</nav>
 
-  <section class="content">
-    <!-- Your about content -->
-  </section>
+	<section class="content">
+		<!-- Your about content -->
+	</section>
 </div>
 
 <style>
-  /* Match homepage theme */
+	/* Match homepage theme */
 </style>
 ```
 
 #### Option B: Use Default Components
+
 ```svelte
 <script>
-  import { PageHero, Mission, Team } from 'statue-ssg';
-  export let data;
+	import { PageHero, Mission, Team } from 'statue-ssg';
+	export let data;
 </script>
 
-<PageHero
-  title="About Us"
-  description="Your description"
-/>
+<PageHero title="About Us" description="Your description" />
 <Mission />
 <Team />
 ```
 
 **Navigation Consistency:**
+
 - If using **custom navigation per-page**: Copy exact same structure to all pages
 - If using **NavigationBar in layout**: No navigation needed on individual pages
 - If using **default components**: They handle their own navigation context
@@ -415,12 +451,14 @@ To create new pages like `/history` or `/contact`:
 
 1. Create directory: `src/routes/pagename/`
 2. Create `+page.server.js`:
+
 ```javascript
 export async function load({ parent }) {
-  const parentData = await parent();
-  return { ...parentData };
+	const parentData = await parent();
+	return { ...parentData };
 }
 ```
+
 3. Create `+page.svelte` matching your chosen approach (fully custom, default components, or hybrid)
 4. Add route to `svelte.config.js` prerender entries (see Phase 8)
 
@@ -431,41 +469,43 @@ export async function load({ parent }) {
 The dynamic routes `[directory]/+page.svelte` and `[...slug]/+page.svelte` already exist to handle markdown content.
 
 **Options:**
+
 1. **Keep default rendering** - The existing pages handle markdown automatically
 2. **Customize listing page** - Edit `src/routes/[directory]/+page.svelte` to change how content lists appear
 3. **Customize article page** - Edit `src/routes/[...slug]/+page.svelte` to change how individual posts render
 
 **Data access patterns:**
+
 ```svelte
 <!-- In [directory]/+page.svelte for listings -->
 <script>
-  export let data;
-  $: directoryContent = data.directoryContent;
-  $: currentDirectory = data.currentDirectory;
+	export let data;
+	$: directoryContent = data.directoryContent;
+	$: currentDirectory = data.currentDirectory;
 </script>
 
 {#each directoryContent as item}
-  <a href={item.url}>
-    <h2>{item.metadata?.title || item.title || 'Untitled'}</h2>
-    {#if item.metadata?.description || item.description}
-      <p>{item.metadata?.description || item.description}</p>
-    {/if}
-  </a>
+	<a href={item.url}>
+		<h2>{item.metadata?.title || item.title || 'Untitled'}</h2>
+		{#if item.metadata?.description || item.description}
+			<p>{item.metadata?.description || item.description}</p>
+		{/if}
+	</a>
 {/each}
 ```
 
 ```svelte
 <!-- In [...slug]/+page.svelte for individual posts -->
 <script>
-  export let data;
-  $: content = data.content;
+	export let data;
+	$: content = data.content;
 </script>
 
 {#if content}
-  <article>
-    <h1>{content.metadata.title}</h1>
-    <div class="content">{@html content.content}</div>
-  </article>
+	<article>
+		<h1>{content.metadata.title}</h1>
+		<div class="content">{@html content.content}</div>
+	</article>
 {/if}
 ```
 
@@ -476,21 +516,23 @@ The dynamic routes `[directory]/+page.svelte` and `[...slug]/+page.svelte` alrea
 Define your design system in the layout's `<style>` block and duplicate styles across pages.
 
 **Key Design Elements:**
+
 - **Colors:** Primary, background, text, accent (use specific hex values)
 - **Typography:** Font families, sizes, weights, line heights, letter spacing
 - **Spacing:** Consistent padding, margins, and gaps
 - **Components:** Navigation bar (exact same on every page)
 
 **Navigation Pattern - Use IDENTICAL structure on ALL pages:**
+
 ```svelte
 <nav class="nav-bar">
-  <div class="nav-content">
-    <a href="/" class="nav-logo">{siteConfig.site.name}</a>
-    <div class="nav-links">
-      <a href="/" class="nav-link active">Home</a>
-      <a href="/about" class="nav-link">About</a>
-    </div>
-  </div>
+	<div class="nav-content">
+		<a href="/" class="nav-logo">{siteConfig.site.name}</a>
+		<div class="nav-links">
+			<a href="/" class="nav-link active">Home</a>
+			<a href="/about" class="nav-link">About</a>
+		</div>
+	</div>
 </nav>
 ```
 
@@ -523,6 +565,7 @@ prerender: {
 ## Phase 9: Build and Deploy
 
 ### Build the Site
+
 ```bash
 npm run build
 ```
@@ -530,11 +573,13 @@ npm run build
 Build warnings about unused export properties (`export let data`) or CSS optimization can be ignored. Address errors related to missing files or syntax issues.
 
 ### Preview Locally
+
 ```bash
 npm run preview
 ```
 
 The preview server will output a URL (typically http://localhost:XXXX). Verify:
+
 - All pages load correctly
 - Navigation works
 - Images display
@@ -542,7 +587,9 @@ The preview server will output a URL (typically http://localhost:XXXX). Verify:
 - No console errors
 
 ### Deploy
+
 The `build/` directory contains your complete static site. Deploy to any static host:
+
 - GitHub Pages
 - Netlify
 - Vercel
@@ -555,22 +602,26 @@ The `build/` directory contains your complete static site. Deploy to any static 
 ### Decision Tree
 
 **1. What type of site are you building?**
+
 - **Portfolio/Landing Page/Gallery** → Fully custom approach (Option A everywhere)
 - **Blog/Documentation** → Keep markdown content and default components (Option B/C)
 - **Mixed** → Hybrid approach (custom pages + markdown content)
 
 **2. Navigation approach?**
+
 - **Unique per page** → Custom navigation on each page (no NavigationBar in layout)
 - **Site-wide navigation** → Keep NavigationBar in layout OR use custom nav in layout
 - **Using default components** → Keep NavigationBar in layout
 
 **3. Content approach?**
+
 - **No markdown content** → Delete all `content/` directories
 - **Blog only** → Keep `content/blog/`, delete others
 - **Docs only** → Keep `content/docs/`, delete others
 - **Both** → Keep both directories
 
 ### Essential Workflow (Fully Custom Site):
+
 1. **Assets** - Download images to `static/assets/`
 2. **Config** - Update `site.config.json` and `svelte.config.js`
 3. **Content** - Delete unwanted content directories
@@ -583,6 +634,7 @@ The `build/` directory contains your complete static site. Deploy to any static 
 10. **Preview** - Test with `npm run preview`
 
 ### Essential Workflow (Blog/Docs Site):
+
 1. **Assets** - Add images to `static/assets/`
 2. **Config** - Update `site.config.json` with your info
 3. **Content** - Delete placeholder markdown, add your own content
@@ -595,6 +647,7 @@ The `build/` directory contains your complete static site. Deploy to any static 
 10. **Preview** - Test with `npm run preview`
 
 ### Critical Patterns:
+
 - **Footer:** Only in `+layout.svelte`, never in individual pages
 - **Navigation (custom):** Exact same structure on all pages if not in layout
 - **Navigation (default):** Keep NavigationBar in layout, don't add nav to individual pages
@@ -605,6 +658,7 @@ The `build/` directory contains your complete static site. Deploy to any static 
 - **Markdown Content:** Use dual access pattern: `item.metadata?.title || item.title`
 
 ### Common Issues:
+
 - **Build fails with "handleUnseenRoutes" error:** Add `handleUnseenRoutes: 'ignore'` to `svelte.config.js`
 - **Page not found after build:** Add route to `prerender.entries` in `svelte.config.js`
 - **Footer appears multiple times:** Remove footer from individual pages, keep only in layout
@@ -620,6 +674,7 @@ The `build/` directory contains your complete static site. Deploy to any static 
 A successful statue-ssg customization requires understanding your project type and choosing the right approach:
 
 ### For Fully Custom Sites (Portfolio/Landing/Gallery):
+
 1. **Assets first** - Place images in `static/assets/`
 2. **Config early** - Update `site.config.json` and add `handleUnseenRoutes: 'ignore'` to `svelte.config.js`
 3. **Delete content** - Remove unwanted `content/` directories
@@ -630,6 +685,7 @@ A successful statue-ssg customization requires understanding your project type a
 8. **Build config** - Add all routes to `prerender.entries` array
 
 ### For Blog/Docs Sites (Content-Driven):
+
 1. **Assets** - Add images to `static/assets/`
 2. **Config** - Update `site.config.json` with your info
 3. **Content** - Replace placeholder markdown with your content
@@ -640,6 +696,7 @@ A successful statue-ssg customization requires understanding your project type a
 8. **Build** - Run `npm run build`
 
 ### Universal Principles:
+
 - **Footer location:** Only in `+layout.svelte`, never in individual pages
 - **Navigation consistency:** Either in layout (default) or identical on all pages (custom)
 - **Build config:** Always add `handleUnseenRoutes: 'ignore'` to `svelte.config.js`

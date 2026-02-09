@@ -1,9 +1,3 @@
-export const excludeRoutes = [
-  '/blog/[slug]',
-  '/docs/[slug]'
-];
+export const excludeRoutes = ['/blog/[slug]', '/docs/[slug]'];
 
-
-export const includeRoutes = [
-  '/'
-]; 
+export const includeRoutes = ['/'];

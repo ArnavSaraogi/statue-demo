@@ -30,6 +30,7 @@ Replace hardcoded colors with CSS variables:
 ```
 
 **Available CSS variables:**
+
 - `--color-background` - Page background
 - `--color-card` - Card backgrounds
 - `--color-border` - Borders
@@ -85,6 +86,7 @@ Add to `src/lib/components/COMPONENTS_README.md`:
 Brief description of what this component does.
 
 \`\`\`svelte
+
 <script>
   import { YourComponent } from 'statue-ssg';
 </script>
@@ -96,11 +98,13 @@ Brief description of what this component does.
 \`\`\`
 
 **Props:**
+
 - `title` (string, required) - The title text
 - `description` (string, optional) - Optional description text
 ```
 
 **Key points:**
+
 - Start with `### ComponentName` heading
 - Include a brief description
 - Show import and usage example
@@ -183,21 +187,21 @@ Wrap all CSS variables in an `@theme` block:
 ```css
 /* ❌ Bad */
 :root {
-  --color-background: #000000;
-  --color-card: #1a1a1a;
+	--color-background: #000000;
+	--color-card: #1a1a1a;
 }
 
 /* ✅ Good */
 @theme {
-  --color-background: #000000;
-  --color-card: #1a1a1a;
-  /* ... other variables */
+	--color-background: #000000;
+	--color-card: #1a1a1a;
+	/* ... other variables */
 }
 ```
 
 ---
 
-### Error: "Missing required variable: --color-*"
+### Error: "Missing required variable: --color-\*"
 
 **Problem:** Theme is missing one or more of the 13 required CSS variables.
 
@@ -207,26 +211,26 @@ Ensure your theme has ALL of these variables:
 
 ```css
 @theme {
-  /* Core palette (5 variables) */
-  --color-background: #000000;
-  --color-card: #1a1a1a;
-  --color-border: #333333;
-  --color-foreground: #ffffff;
-  --color-muted: #999999;
+	/* Core palette (5 variables) */
+	--color-background: #000000;
+	--color-card: #1a1a1a;
+	--color-border: #333333;
+	--color-foreground: #ffffff;
+	--color-muted: #999999;
 
-  /* Brand colors (3 variables) */
-  --color-primary: #ffffff;
-  --color-secondary: #cccccc;
-  --color-accent: #666666;
+	/* Brand colors (3 variables) */
+	--color-primary: #ffffff;
+	--color-secondary: #cccccc;
+	--color-accent: #666666;
 
-  /* Surface colors (2 variables) */
-  --color-on-primary: #000000;
-  --color-on-background: #ffffff;
+	/* Surface colors (2 variables) */
+	--color-on-primary: #000000;
+	--color-on-background: #ffffff;
 
-  /* Hero gradients (3 variables) */
-  --color-hero-from: #000000;
-  --color-hero-via: #1a1a1a;
-  --color-hero-to: #000000;
+	/* Hero gradients (3 variables) */
+	--color-hero-from: #000000;
+	--color-hero-via: #1a1a1a;
+	--color-hero-to: #000000;
 }
 ```
 
@@ -271,19 +275,16 @@ Create the `[...slug]` route files:
 
 ```svelte
 <script>
-  import { ContentHeader, ContentBody } from '$lib';
-  export let data;
-  $: content = data.content;
+	import { ContentHeader, ContentBody } from '$lib';
+	export let data;
+	$: content = data.content;
 </script>
 
 <svelte:head>
-  <title>{content.metadata.title}</title>
+	<title>{content.metadata.title}</title>
 </svelte:head>
 
-<ContentHeader
-  title={content.metadata.title}
-  description={content.metadata.description}
-/>
+<ContentHeader title={content.metadata.title} description={content.metadata.description} />
 <ContentBody content={content.content} />
 ```
 
@@ -295,9 +296,9 @@ import { getContentBySlug } from '$lib/cms/content-processor';
 export const prerender = true;
 
 export async function load({ params }) {
-  const slug = params.slug || 'index';
-  const content = await getContentBySlug(slug);
-  return { content };
+	const slug = params.slug || 'index';
+	const content = await getContentBySlug(slug);
+	return { content };
 }
 ```
 
@@ -315,17 +316,17 @@ Create the `[directory]` route files:
 
 ```svelte
 <script>
-  import { DirectoryHeader, DirectoryContent } from '$lib';
-  export let data;
+	import { DirectoryHeader, DirectoryContent } from '$lib';
+	export let data;
 </script>
 
 <svelte:head>
-  <title>{data.currentDirectory.title}</title>
+	<title>{data.currentDirectory.title}</title>
 </svelte:head>
 
 <DirectoryHeader
-  title={data.currentDirectory.title}
-  description={data.currentDirectory.description}
+	title={data.currentDirectory.title}
+	description={data.currentDirectory.description}
 />
 <DirectoryContent content={data.directoryContent} />
 ```
@@ -338,9 +339,9 @@ import { getDirectoryContent } from '$lib/cms/content-processor';
 export const prerender = true;
 
 export async function load({ params }) {
-  const directory = params.directory;
-  const content = await getDirectoryContent(directory);
-  return content;
+	const directory = params.directory;
+	const content = await getDirectoryContent(directory);
+	return content;
 }
 ```
 
@@ -369,7 +370,7 @@ import { getContentBySlug } from '$lib/cms/content-processor';
 export const prerender = true;
 
 export async function load({ params }) {
-  // ... load logic
+	// ... load logic
 }
 ```
 
@@ -446,7 +447,7 @@ If you're stuck:
 If you believe the validation is incorrectly flagging your contribution:
 
 1. Double-check this guide for solutions
-2. Review the relevant ADDING_*.md guide
+2. Review the relevant ADDING\_\*.md guide
 3. Look at similar existing contributions that pass validation
 4. If still stuck, open a GitHub Discussion explaining why you think the validation is incorrect
 

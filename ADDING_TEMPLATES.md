@@ -23,6 +23,7 @@ This guide shows you how to add a new template to the Statue static site generat
 - **Audience**: Who is this template for?
 
 **Examples:**
+
 - Blog template: Minimal, content-focused, for writers
 - Portfolio template: Project showcase, for designers/developers
 - Docs template: Documentation-focused, for technical writers
@@ -39,11 +40,13 @@ mkdir -p templates/your-template/content
 ```
 
 **Your template must have:**
+
 - `src/routes/` - Route files that define page layouts
 - `content/` - Example markdown content
 - `site.config.json` - Default configuration for this template
 
 **Optional:**
+
 - `static/` - Custom assets (favicon, images)
 
 ---
@@ -58,20 +61,17 @@ mkdir -p templates/your-template/content
 
 ```svelte
 <script>
-  import { ContentHeader, ContentBody } from '$lib';
-  export let data;
+	import { ContentHeader, ContentBody } from '$lib';
+	export let data;
 
-  $: content = data.content;
+	$: content = data.content;
 </script>
 
 <svelte:head>
-  <title>{content.metadata.title}</title>
+	<title>{content.metadata.title}</title>
 </svelte:head>
 
-<ContentHeader
-  title={content.metadata.title}
-  description={content.metadata.description}
-/>
+<ContentHeader title={content.metadata.title} description={content.metadata.description} />
 
 <ContentBody content={content.content} />
 ```
@@ -84,9 +84,9 @@ import { getContentBySlug } from '$lib/cms/content-processor';
 export const prerender = true;
 
 export async function load({ params }) {
-  const slug = params.slug || 'index';
-  const content = await getContentBySlug(slug);
-  return { content };
+	const slug = params.slug || 'index';
+	const content = await getContentBySlug(slug);
+	return { content };
 }
 ```
 
@@ -96,17 +96,17 @@ export async function load({ params }) {
 
 ```svelte
 <script>
-  import { DirectoryHeader, DirectoryContent } from '$lib';
-  export let data;
+	import { DirectoryHeader, DirectoryContent } from '$lib';
+	export let data;
 </script>
 
 <svelte:head>
-  <title>{data.currentDirectory.title}</title>
+	<title>{data.currentDirectory.title}</title>
 </svelte:head>
 
 <DirectoryHeader
-  title={data.currentDirectory.title}
-  description={data.currentDirectory.description}
+	title={data.currentDirectory.title}
+	description={data.currentDirectory.description}
 />
 
 <DirectoryContent content={data.directoryContent} />
@@ -120,9 +120,9 @@ import { getDirectoryContent } from '$lib/cms/content-processor';
 export const prerender = true;
 
 export async function load({ params }) {
-  const directory = params.directory;
-  const content = await getDirectoryContent(directory);
-  return content;
+	const directory = params.directory;
+	const content = await getDirectoryContent(directory);
+	return content;
 }
 ```
 
@@ -132,19 +132,16 @@ export async function load({ params }) {
 
 ```svelte
 <script>
-  // Your homepage design
-  import { Hero, Categories } from '$lib';
+	// Your homepage design
+	import { Hero, Categories } from '$lib';
 </script>
 
 <svelte:head>
-  <title>Home</title>
+	<title>Home</title>
 </svelte:head>
 
 <!-- Customize your homepage layout -->
-<Hero
-  title="Your Template Title"
-  subtitle="Brief description of what this template is for"
-/>
+<Hero title="Your Template Title" subtitle="Brief description of what this template is for" />
 
 <!-- Add other components as needed -->
 ```
@@ -155,20 +152,18 @@ export async function load({ params }) {
 
 ```svelte
 <script>
-  import { NavigationBar, Footer } from '$lib';
-  import '$lib/index.css';
+	import { NavigationBar, Footer } from '$lib';
+	import '$lib/index.css';
 </script>
 
 <div class="min-h-screen bg-[var(--color-background)] text-[var(--color-foreground)]">
-  <NavigationBar />
+	<NavigationBar />
 
-  <main class="max-w-6xl mx-auto px-4 py-8">
-    <slot />
-  </main>
+	<main class="max-w-6xl mx-auto px-4 py-8">
+		<slot />
+	</main>
 
-  <Footer
-    copyrightText="Your Template © 2024"
-  />
+	<Footer copyrightText="Your Template © 2024" />
 </div>
 ```
 
@@ -199,6 +194,7 @@ Add more example content to demonstrate features.
 ```
 
 **Best practices:**
+
 - Create 2-3 example posts per content directory
 - Use realistic content that demonstrates the template's strengths
 - Include all frontmatter fields the template supports
@@ -212,23 +208,23 @@ Add more example content to demonstrate features.
 
 ```json
 {
-  "site": {
-    "name": "My Template Site",
-    "description": "A brief description for this template",
-    "url": "https://example.com",
-    "author": "Template Author"
-  },
-  "contact": {
-    "email": "hello@example.com",
-    "address": {}
-  },
-  "social": {
-    "github": "https://github.com/username",
-    "twitter": "https://twitter.com/username"
-  },
-  "legal": {
-    "doNotSell": {}
-  }
+	"site": {
+		"name": "My Template Site",
+		"description": "A brief description for this template",
+		"url": "https://example.com",
+		"author": "Template Author"
+	},
+	"contact": {
+		"email": "hello@example.com",
+		"address": {}
+	},
+	"social": {
+		"github": "https://github.com/username",
+		"twitter": "https://twitter.com/username"
+	},
+	"legal": {
+		"doNotSell": {}
+	}
 }
 ```
 
@@ -251,6 +247,7 @@ npm run dev
 ```
 
 **Test checklist:**
+
 - [ ] Homepage renders correctly
 - [ ] Individual content pages work (`/blog/example-post`)
 - [ ] Directory listing pages work (`/blog`)
@@ -285,6 +282,7 @@ npx statue init --template your-template
 \`\`\`
 
 **Includes:**
+
 - List key features
 - Notable pages or layouts
 - Special functionality
@@ -327,6 +325,7 @@ List any example sites using this template (if available).
 #### post-setup.sh (Template-Specific Setup)
 
 Some templates need additional setup steps after initialization. For example:
+
 - Fetching data from external APIs (GitHub profile, RSS feeds)
 - Running database migrations or seed scripts
 - Generating initial configuration from user input
@@ -335,6 +334,7 @@ Some templates need additional setup steps after initialization. For example:
 **How it works:**
 
 When a user runs `npx statue init --template your-template`, the CLI automatically:
+
 1. Copies template files to the user's project
 2. Looks for `templates/your-template/post-setup.sh`
 3. If found, executes it with `PROJECT_DIR` environment variable set to user's project directory
@@ -380,8 +380,8 @@ echo ""
 
 **Environment Variables Available:**
 
-| Variable | Description |
-|----------|-------------|
+| Variable      | Description                                       |
+| ------------- | ------------------------------------------------- |
 | `PROJECT_DIR` | Absolute path to the user's newly created project |
 
 **Real-world example: developer-portfolio template**
@@ -415,6 +415,7 @@ This way, users just run `npx statue init --template developer-portfolio` and th
 ### 9. Submit Your PR
 
 **Before submitting:**
+
 - [ ] Template loads without errors
 - [ ] All routes use `export const prerender = true`
 - [ ] Example content is meaningful and realistic
@@ -426,27 +427,32 @@ This way, users just run `npx statue init --template developer-portfolio` and th
 - [ ] Tested with `npm run build`
 
 **PR Title:**
+
 ```
 feat: add [template-name] template
 ```
 
 **PR Description:**
+
 ```markdown
 ## New Template: Your Template Name
 
 Brief description of what this template is for and who will use it.
 
 ### Key Features
+
 - Feature 1
 - Feature 2
 - Feature 3
 
 ### Example Usage
+
 \`\`\`bash
 npx statue init --template your-template
 \`\`\`
 
 ### Testing Done
+
 - [x] Tested locally with dev server
 - [x] Tested build process
 - [x] Tested with multiple themes
@@ -494,10 +500,10 @@ Import components from `$lib`, not `statue-ssg`:
 
 ```svelte
 <!-- ✅ Good (in template files) -->
-import { Hero, Categories } from '$lib';
+import {(Hero, Categories)} from '$lib';
 
 <!-- ❌ Bad -->
-import { Hero, Categories } from 'statue-ssg';
+import {(Hero, Categories)} from 'statue-ssg';
 ```
 
 **Why:** The init script automatically transforms `$lib` to `statue-ssg` when users initialize.
@@ -524,11 +530,15 @@ Provide realistic example content:
 
 ```markdown
 <!-- ✅ Good -->
+
 # Getting Started with Web Development
+
 Learn the fundamentals of building modern websites...
 
 <!-- ❌ Bad -->
+
 # Test Post
+
 Lorem ipsum dolor sit amet...
 ```
 
@@ -539,16 +549,19 @@ Lorem ipsum dolor sit amet...
 ### Template Structure Best Practices
 
 **Keep it simple:**
+
 - Don't over-engineer
 - Focus on the template's core purpose
 - Fewer routes are better than too many
 
 **Make it flexible:**
+
 - Use Statue components where possible
 - Allow easy customization
 - Don't lock users into specific content structures
 
 **Show, don't tell:**
+
 - Demonstrate features with example content
 - Include comments in route files
 - Make patterns obvious
@@ -564,7 +577,7 @@ Templates should use Statue's built-in components. If you need custom components
 ### ✅ Do: Use Built-in Components
 
 ```svelte
-import { Hero, Categories, ContentBody } from '$lib';
+import {(Hero, Categories, ContentBody)} from '$lib';
 ```
 
 ---
@@ -633,6 +646,7 @@ Use the automated PR script from the root of your Statue site:
 ### Template Mode
 
 **What it does:**
+
 1. Looks for `src/routes/`, `content/`, `site.config.json`, `static/` in current directory
 2. Forks the statue repository (if needed)
 3. Creates a new branch
@@ -643,6 +657,7 @@ Use the automated PR script from the root of your Statue site:
 ### All Mode (Template + Custom Components + Themes)
 
 **What it does:**
+
 1. Everything from template mode, PLUS:
 2. Bundles `src/lib/index.ts` (component exports) → `templates/portfolio/src/lib/index.ts`
 3. Bundles `src/lib/index.css` (styles/theme imports) → `templates/portfolio/src/lib/index.css`
@@ -651,15 +666,18 @@ Use the automated PR script from the root of your Statue site:
 6. Preserves directory structure (e.g., `src/lib/components/forms/Input.svelte` keeps its path)
 
 **When to use `all` mode:**
+
 - You've built a complete Statue site with custom components and themes
 - You want to contribute the entire package as a template
 - Your custom components/themes are specific to this template
 
 **When to use `template` mode:**
+
 - Your site only uses built-in Statue components
 - Your custom components should be contributed separately (not template-specific)
 
 **Requirements:**
+
 - GitHub CLI (`gh`) installed and authenticated
 - Run from the root of your Statue site
 - Must have `src/routes/` directory (required)
@@ -682,6 +700,7 @@ The process is straightforward:
    - `site.config.json` - Your config (sanitize personal info first!)
 
 2. **Copy to template directory:**
+
    ```bash
    mkdir -p templates/your-template/src
    cp -r src/routes templates/your-template/src/
@@ -695,6 +714,7 @@ The process is straightforward:
    - Ensure all imports use `$lib` (not `statue-ssg`)
 
 4. **Test it:**
+
    ```bash
    npm run template:load your-template --force
    npm run dev

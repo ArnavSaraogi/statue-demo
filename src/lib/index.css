@@ -1,7 +1,7 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 /* Theme - Available: black-white, black-red, blue, charcoal, cyan, green, orange, pink, purple, red
    Custom: copy node_modules/statue-ssg/src/lib/themes/custom-theme.template.css here, rename & import */
-@import "statue-ssg/themes/black-white.css";
+@import 'statue-ssg/themes/black-white.css';
 
 @import '@fontsource/fraunces/200.css';
 @import '@fontsource/fraunces/200-italic.css';
@@ -99,4 +99,6 @@ h6 {
 	animation-duration: 200ms;
 	animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
-:root { color-scheme: dark; }
+:root {
+	color-scheme: dark;
+}

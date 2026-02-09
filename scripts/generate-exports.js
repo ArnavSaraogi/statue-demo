@@ -73,16 +73,26 @@ async function generateExports() {
 		// First, add all root-level components
 		if (componentsByDir['.']) {
 			componentsByDir['.'].sort((a, b) => a.componentName.localeCompare(b.componentName));
-			exports.push(...componentsByDir['.'].map((c) => `export { default as ${c.componentName} } from '${c.importPath}';`));
+			exports.push(
+				...componentsByDir['.'].map(
+					(c) => `export { default as ${c.componentName} } from '${c.importPath}';`
+				)
+			);
 		}
 
 		// Then subdirectories (remove '.' from keys first)
-		const subdirs = Object.keys(componentsByDir).filter((d) => d !== '.').sort();
+		const subdirs = Object.keys(componentsByDir)
+			.filter((d) => d !== '.')
+			.sort();
 		for (const dir of subdirs) {
 			const dirLabel = dir.replace(/\//g, ' - ');
 			exports.push(`\n// ${dirLabel}`);
 			componentsByDir[dir].sort((a, b) => a.componentName.localeCompare(b.componentName));
-			exports.push(...componentsByDir[dir].map((c) => `export { default as ${c.componentName} } from '${c.importPath}';`));
+			exports.push(
+				...componentsByDir[dir].map(
+					(c) => `export { default as ${c.componentName} } from '${c.importPath}';`
+				)
+			);
 		}
 
 		// Generate new content with generated file warning
@@ -108,4 +118,3 @@ async function generateExports() {
 }
 
 generateExports();
-

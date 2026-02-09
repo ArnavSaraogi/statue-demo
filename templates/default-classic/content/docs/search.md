@@ -16,11 +16,11 @@ Edit your `site.config.json`:
 
 ```js
 export const siteConfig = {
-  // ... other config
+	// ... other config
 
-  search: {
-    enabled: true
-  }
+	search: {
+		enabled: true
+	}
 };
 ```
 
@@ -34,14 +34,11 @@ The NavigationBar automatically shows search when `search.enabled` is true in yo
 
 ```svelte
 <script>
-  import { NavigationBar } from 'statue-ssg';
-  export let data;
+	import { NavigationBar } from 'statue-ssg';
+	export let data;
 </script>
 
-<NavigationBar
-  navbarItems={data.directories}
-  activePath={data.activePath}
-/>
+<NavigationBar navbarItems={data.directories} activePath={data.activePath} />
 ```
 
 **Optional:** You can override the config setting on specific pages:
@@ -57,15 +54,15 @@ Place the Search component anywhere in your layout:
 
 ```svelte
 <script>
-  import { Search, NavigationBar } from 'statue-ssg';
-  export let data;
+	import { Search, NavigationBar } from 'statue-ssg';
+	export let data;
 </script>
 
 <header>
-  <NavigationBar navbarItems={data.directories} activePath={data.activePath} />
-  <div class="search-wrapper">
-    <Search />
-  </div>
+	<NavigationBar navbarItems={data.directories} activePath={data.activePath} />
+	<div class="search-wrapper">
+		<Search />
+	</div>
 </header>
 ```
 
@@ -91,25 +88,25 @@ Configure search behavior in `site.config.json`:
 
 ```js
 export const siteConfig = {
-  search: {
-    // Enable/disable search
-    enabled: true,
+	search: {
+		// Enable/disable search
+		enabled: true,
 
-    // UI options
-    placeholder: 'Search...',
-    noResultsText: 'No results found',
+		// UI options
+		placeholder: 'Search...',
+		noResultsText: 'No results found',
 
-    // Search behavior
-    debounceMs: 300,        // Delay before search executes (ms)
-    minQueryLength: 2,      // Minimum characters to trigger search
-    maxResults: 10,         // Maximum results to display
+		// Search behavior
+		debounceMs: 300, // Delay before search executes (ms)
+		minQueryLength: 2, // Minimum characters to trigger search
+		maxResults: 10, // Maximum results to display
 
-    // Result display
-    showCategories: true,   // Show category badges
-    showDates: true,        // Show dates in results
-    showExcerpts: true,     // Show content excerpts
-    excerptLength: 30       // Words in excerpt
-  }
+		// Result display
+		showCategories: true, // Show category badges
+		showDates: true, // Show dates in results
+		showExcerpts: true, // Show content excerpts
+		excerptLength: 30 // Words in excerpt
+	}
 };
 ```
 
@@ -119,33 +116,33 @@ Customize the Search component with props:
 
 ```svelte
 <Search
-  placeholder="Search documentation..."
-  debounceMs={200}
-  minQueryLength={3}
-  maxResults={15}
-  showCategories={true}
-  showDates={false}
-  showExcerpts={true}
-  containerClass="custom-search"
-  inputClass="custom-input"
-  resultsClass="custom-results"
+	placeholder="Search documentation..."
+	debounceMs={200}
+	minQueryLength={3}
+	maxResults={15}
+	showCategories={true}
+	showDates={false}
+	showExcerpts={true}
+	containerClass="custom-search"
+	inputClass="custom-input"
+	resultsClass="custom-results"
 />
 ```
 
 #### Available Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `placeholder` | `string` | `'Search...'` | Input placeholder text |
-| `debounceMs` | `number` | `300` | Search delay in milliseconds |
-| `minQueryLength` | `number` | `2` | Minimum query length to trigger search |
-| `maxResults` | `number` | `10` | Maximum results to display |
-| `showCategories` | `boolean` | `true` | Show category badges in results |
-| `showDates` | `boolean` | `true` | Show dates in results |
-| `showExcerpts` | `boolean` | `true` | Show content excerpts in results |
-| `containerClass` | `string` | `''` | Additional container CSS classes |
-| `inputClass` | `string` | `''` | Additional input CSS classes |
-| `resultsClass` | `string` | `''` | Additional results dropdown CSS classes |
+| Prop             | Type      | Default       | Description                             |
+| ---------------- | --------- | ------------- | --------------------------------------- |
+| `placeholder`    | `string`  | `'Search...'` | Input placeholder text                  |
+| `debounceMs`     | `number`  | `300`         | Search delay in milliseconds            |
+| `minQueryLength` | `number`  | `2`           | Minimum query length to trigger search  |
+| `maxResults`     | `number`  | `10`          | Maximum results to display              |
+| `showCategories` | `boolean` | `true`        | Show category badges in results         |
+| `showDates`      | `boolean` | `true`        | Show dates in results                   |
+| `showExcerpts`   | `boolean` | `true`        | Show content excerpts in results        |
+| `containerClass` | `string`  | `''`          | Additional container CSS classes        |
+| `inputClass`     | `string`  | `''`          | Additional input CSS classes            |
+| `resultsClass`   | `string`  | `''`          | Additional results dropdown CSS classes |
 
 ## Usage Tips
 
@@ -163,14 +160,10 @@ To exclude specific content from being indexed, add the `no-search` class or use
 
 ```html
 <!-- Exclude entire section -->
-<div class="no-search">
-  This content won't be indexed by search
-</div>
+<div class="no-search">This content won't be indexed by search</div>
 
 <!-- Or use Pagefind's data attribute -->
-<div data-pagefind-ignore>
-  This also won't be indexed
-</div>
+<div data-pagefind-ignore>This also won't be indexed</div>
 ```
 
 You can configure excluded selectors in `pagefind.config.js` (optional):
@@ -178,20 +171,15 @@ You can configure excluded selectors in `pagefind.config.js` (optional):
 ```js
 // pagefind.config.js
 export default {
-  site: 'build',
-  exclude_selectors: [
-    'header',
-    'footer',
-    'nav',
-    '.no-search',
-    '#comments'
-  ]
+	site: 'build',
+	exclude_selectors: ['header', 'footer', 'nav', '.no-search', '#comments']
 };
 ```
 
 ### Customizing Search Results
 
 Search automatically indexes:
+
 - Page titles
 - Content text
 - Meta descriptions
@@ -222,12 +210,12 @@ The Search component uses Statue's CSS variables for theming:
 ```css
 /* Customize search appearance */
 .search-container {
-  --color-primary: #your-color;
-  --color-foreground: #your-color;
-  --color-background: #your-color;
-  --color-card: #your-color;
-  --color-border: #your-color;
-  --color-muted: #your-color;
+	--color-primary: #your-color;
+	--color-foreground: #your-color;
+	--color-background: #your-color;
+	--color-card: #your-color;
+	--color-border: #your-color;
+	--color-muted: #your-color;
 }
 ```
 
@@ -237,9 +225,9 @@ Add custom classes via props:
 
 ```svelte
 <Search
-  containerClass="my-custom-search"
-  inputClass="my-search-input"
-  resultsClass="my-search-results"
+	containerClass="my-custom-search"
+	inputClass="my-search-input"
+	resultsClass="my-search-results"
 />
 ```
 
@@ -247,17 +235,17 @@ Then style in your CSS:
 
 ```css
 .my-custom-search {
-  max-width: 600px;
-  margin: 0 auto;
+	max-width: 600px;
+	margin: 0 auto;
 }
 
 .my-search-input {
-  font-size: 1.1rem;
-  padding: 0.75rem 1rem;
+	font-size: 1.1rem;
+	padding: 0.75rem 1rem;
 }
 
 .my-search-results {
-  max-height: 500px;
+	max-height: 500px;
 }
 ```
 
@@ -277,6 +265,7 @@ In development mode (`npm run dev`), the search index doesn't exist yet.
 ### "Failed to load Pagefind" error
 
 This error occurs if:
+
 1. You haven't run `npm run build` yet
 2. The `pagefind` directory is missing from your build output
 3. Pagefind wasn't installed: `npm install -D pagefind`
@@ -284,12 +273,14 @@ This error occurs if:
 ### Search results not updating
 
 After adding new content:
+
 1. Rebuild your site: `npm run build`
 2. The search index regenerates automatically
 
 ### No results for certain pages
 
 Check that:
+
 1. Pages are being built (check `build/` directory)
 2. Content isn't in excluded sections (header, footer, nav)
 3. Pages have actual text content to index
@@ -302,18 +293,13 @@ Create `pagefind.config.js` in your project root:
 
 ```js
 export default {
-  site: 'build',
-  output_path: 'pagefind',
-  bundle_dir: '_pagefind',
-  glob: '**/*.{html}',
-  exclude_selectors: [
-    'header',
-    'footer',
-    'nav',
-    '.no-search'
-  ],
-  force_language: 'en',
-  verbose: false
+	site: 'build',
+	output_path: 'pagefind',
+	bundle_dir: '_pagefind',
+	glob: '**/*.{html}',
+	exclude_selectors: ['header', 'footer', 'nav', '.no-search'],
+	force_language: 'en',
+	verbose: false
 };
 ```
 
@@ -323,8 +309,8 @@ Pagefind supports multiple languages. Set in `pagefind.config.js`:
 
 ```js
 export default {
-  site: 'build',
-  force_language: 'en', // or 'es', 'fr', 'de', etc.
+	site: 'build',
+	force_language: 'en' // or 'es', 'fr', 'de', etc.
 };
 ```
 
@@ -334,14 +320,14 @@ Track search queries by adding an event listener:
 
 ```svelte
 <script>
-  import { Search } from 'statue-ssg';
-  import { browser } from '$app/environment';
+	import { Search } from 'statue-ssg';
+	import { browser } from '$app/environment';
 
-  function handleSearch(query) {
-    if (browser && window.analytics) {
-      window.analytics.track('search', { query });
-    }
-  }
+	function handleSearch(query) {
+		if (browser && window.analytics) {
+			window.analytics.track('search', { query });
+		}
+	}
 </script>
 
 <Search on:search={handleSearch} />
@@ -354,18 +340,14 @@ Track search queries by adding an event listener:
 ```svelte
 <!-- src/routes/+layout.svelte -->
 <script>
-  import { NavigationBar, Footer, Search } from 'statue-ssg';
-  export let data;
+	import { NavigationBar, Footer, Search } from 'statue-ssg';
+	export let data;
 </script>
 
-<NavigationBar
-  navbarItems={data.directories}
-  activePath={data.currentPath}
-  showSearch={true}
-/>
+<NavigationBar navbarItems={data.directories} activePath={data.currentPath} showSearch={true} />
 
 <main>
-  <slot />
+	<slot />
 </main>
 
 <Footer directories={data.directories} currentPath={data.currentPath} />
@@ -376,24 +358,17 @@ Track search queries by adding an event listener:
 ```svelte
 <!-- src/routes/docs/+layout.svelte -->
 <script>
-  import { DocsLayout, Search } from 'statue-ssg';
-  export let data;
+	import { DocsLayout, Search } from 'statue-ssg';
+	export let data;
 </script>
 
-<DocsLayout
-  sidebarItems={data.sidebarItems}
-  activePath={data.activePath}
->
-  <!-- Search at top of docs -->
-  <div slot="before-content" class="mb-8">
-    <Search
-      placeholder="Search documentation..."
-      showDates={false}
-      showCategories={false}
-    />
-  </div>
+<DocsLayout sidebarItems={data.sidebarItems} activePath={data.activePath}>
+	<!-- Search at top of docs -->
+	<div slot="before-content" class="mb-8">
+		<Search placeholder="Search documentation..." showDates={false} showCategories={false} />
+	</div>
 
-  <slot />
+	<slot />
 </DocsLayout>
 ```
 

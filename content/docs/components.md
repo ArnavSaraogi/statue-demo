@@ -17,7 +17,7 @@ Import components from the `statue-ssg` package:
 
 ```svelte
 <script>
-  import { Hero, Categories, Footer, NavigationBar } from 'statue-ssg';
+	import { Hero, Categories, Footer, NavigationBar } from 'statue-ssg';
 </script>
 ```
 
@@ -29,18 +29,19 @@ Top navigation with logo, links, and mobile menu.
 
 ```svelte
 <script>
-  import { NavigationBar } from 'statue-ssg';
+	import { NavigationBar } from 'statue-ssg';
 
-  const navbarItems = [
-    { name: 'blog', title: 'Blog', url: '/blog' },
-    { name: 'docs', title: 'Docs', url: '/docs' }
-  ];
+	const navbarItems = [
+		{ name: 'blog', title: 'Blog', url: '/blog' },
+		{ name: 'docs', title: 'Docs', url: '/docs' }
+	];
 </script>
 
-<NavigationBar navbarItems={navbarItems} activePath="/blog" />
+<NavigationBar {navbarItems} activePath="/blog" />
 ```
 
 **Props:**
+
 - `navbarItems` (array) - Navigation links
   - `name` (string) - Unique identifier
   - `title` (string) - Display text
@@ -55,7 +56,7 @@ Landing page hero section with title and description.
 
 ```svelte
 <script>
-  import { Hero } from 'statue-ssg';
+	import { Hero } from 'statue-ssg';
 </script>
 
 <Hero />
@@ -71,18 +72,19 @@ Display content directories as cards.
 
 ```svelte
 <script>
-  import { Categories } from 'statue-ssg';
+	import { Categories } from 'statue-ssg';
 
-  const directories = [
-    { title: 'Blog', url: '/blog', name: 'blog' },
-    { title: 'Docs', url: '/docs', name: 'docs' }
-  ];
+	const directories = [
+		{ title: 'Blog', url: '/blog', name: 'blog' },
+		{ title: 'Docs', url: '/docs', name: 'docs' }
+	];
 </script>
 
 <Categories {directories} />
 ```
 
 **Props:**
+
 - `directories` (array) - Directory list
   - `title` (string) - Display name
   - `url` (string) - Directory URL
@@ -96,24 +98,25 @@ Shows recent content as cards.
 
 ```svelte
 <script>
-  import { LatestContent } from 'statue-ssg';
+	import { LatestContent } from 'statue-ssg';
 
-  const content = [
-    {
-      url: '/blog/my-post',
-      metadata: {
-        title: 'My Post',
-        description: 'Post description',
-        date: '2025-01-15'
-      }
-    }
-  ];
+	const content = [
+		{
+			url: '/blog/my-post',
+			metadata: {
+				title: 'My Post',
+				description: 'Post description',
+				date: '2025-01-15'
+			}
+		}
+	];
 </script>
 
 <LatestContent rootContent={content} />
 ```
 
 **Props:**
+
 - `rootContent` (array) - Content items
   - `url` (string) - Content URL
   - `metadata` (object)
@@ -129,21 +132,16 @@ Site footer with sitemap and social links.
 
 ```svelte
 <script>
-  import { Footer } from 'statue-ssg';
+	import { Footer } from 'statue-ssg';
 
-  const directories = [
-    { name: 'docs', title: 'Docs', url: '/docs' }
-  ];
+	const directories = [{ name: 'docs', title: 'Docs', url: '/docs' }];
 </script>
 
-<Footer
-  {directories}
-  currentPath="/docs"
-  copyrightText="© 2025 Your Site"
-/>
+<Footer {directories} currentPath="/docs" copyrightText="© 2025 Your Site" />
 ```
 
 **Props (all optional):**
+
 - `directories` (array) - Site directories for sitemap
 - `currentPath` (string) - Current page path
 - `copyrightText` (string) - Copyright notice
@@ -160,16 +158,14 @@ Page title section for internal pages.
 
 ```svelte
 <script>
-  import { PageHero } from 'statue-ssg';
+	import { PageHero } from 'statue-ssg';
 </script>
 
-<PageHero
-  title="Documentation"
-  description="Everything you need to know"
-/>
+<PageHero title="Documentation" description="Everything you need to know" />
 ```
 
 **Props:**
+
 - `title` (string, required) - Page title
 - `description` (string, optional) - Subtitle
 
@@ -181,19 +177,20 @@ Title and metadata for content pages.
 
 ```svelte
 <script>
-  import { ContentHeader } from 'statue-ssg';
+	import { ContentHeader } from 'statue-ssg';
 </script>
 
 <ContentHeader
-  title="My Blog Post"
-  date="2025-01-15"
-  author="John Doe"
-  backLink="/blog"
-  backLinkText="Blog"
+	title="My Blog Post"
+	date="2025-01-15"
+	author="John Doe"
+	backLink="/blog"
+	backLinkText="Blog"
 />
 ```
 
 **Props:**
+
 - `title` (string, required) - Page title
 - `date` (string, optional) - Publication date
 - `author` (string, optional) - Author name
@@ -208,15 +205,16 @@ Renders HTML content from markdown.
 
 ```svelte
 <script>
-  import { ContentBody } from 'statue-ssg';
+	import { ContentBody } from 'statue-ssg';
 
-  const html = '<h1>Title</h1><p>Content</p>';
+	const html = '<h1>Title</h1><p>Content</p>';
 </script>
 
 <ContentBody content={html} />
 ```
 
 **Props:**
+
 - `content` (string, required) - HTML string to render
 
 ---
@@ -229,13 +227,14 @@ Header for directory listing pages.
 
 ```svelte
 <script>
-  import { DirectoryHeader } from 'statue-ssg';
+	import { DirectoryHeader } from 'statue-ssg';
 </script>
 
 <DirectoryHeader title="Blog Posts" />
 ```
 
 **Props:**
+
 - `title` (string, required) - Directory name
 
 ---
@@ -246,17 +245,16 @@ Grid of subdirectory cards.
 
 ```svelte
 <script>
-  import { SubDirectories } from 'statue-ssg';
+	import { SubDirectories } from 'statue-ssg';
 
-  const subdirs = [
-    { title: 'Tutorials', url: '/docs/tutorials' }
-  ];
+	const subdirs = [{ title: 'Tutorials', url: '/docs/tutorials' }];
 </script>
 
 <SubDirectories subDirectories={subdirs} />
 ```
 
 **Props:**
+
 - `subDirectories` (array) - Subdirectory list
   - `title` (string) - Display name
   - `url` (string) - Subdirectory URL
@@ -269,20 +267,21 @@ Content cards for directory pages.
 
 ```svelte
 <script>
-  import { DirectoryContent } from 'statue-ssg';
+	import { DirectoryContent } from 'statue-ssg';
 
-  const content = [
-    {
-      url: '/docs/guide',
-      metadata: { title: 'Guide', description: 'Getting started' }
-    }
-  ];
+	const content = [
+		{
+			url: '/docs/guide',
+			metadata: { title: 'Guide', description: 'Getting started' }
+		}
+	];
 </script>
 
 <DirectoryContent {content} />
 ```
 
 **Props:**
+
 - `content` (array) - Content items
 - `showDirectory` (boolean, optional) - Show directory badges
 - `emptyMessage` (string, optional) - Message when no content
@@ -295,21 +294,22 @@ Responsive grid container for image galleries and content.
 
 ```svelte
 <script>
-  import { ContentGrid, ImageGridElement, CaptionedGridElement } from 'statue-ssg';
+	import { ContentGrid, ImageGridElement, CaptionedGridElement } from 'statue-ssg';
 </script>
 
 <ContentGrid title="Photo Gallery" columns={3} gap="24px">
-  <ImageGridElement src="/image1.jpg" alt="Image 1" />
-  <CaptionedGridElement
-    src="/image2.jpg"
-    alt="Image 2"
-    title="Featured Photo"
-    caption="A beautiful landscape"
-  />
+	<ImageGridElement src="/image1.jpg" alt="Image 1" />
+	<CaptionedGridElement
+		src="/image2.jpg"
+		alt="Image 2"
+		title="Featured Photo"
+		caption="A beautiful landscape"
+	/>
 </ContentGrid>
 ```
 
 **Props:**
+
 - `title` (string, optional) - Grid section title
 - `columns` (number, optional) - Column count (default: 3)
 - `gap` (string, optional) - Spacing between items (default: '24px')
@@ -322,17 +322,14 @@ Simple image for grids with lightbox.
 
 ```svelte
 <script>
-  import { ImageGridElement } from 'statue-ssg';
+	import { ImageGridElement } from 'statue-ssg';
 </script>
 
-<ImageGridElement
-  src="/photo.jpg"
-  alt="Photo description"
-  aspectRatio="16 / 9"
-/>
+<ImageGridElement src="/photo.jpg" alt="Photo description" aspectRatio="16 / 9" />
 ```
 
 **Props:**
+
 - `src` (string, required) - Image URL
 - `alt` (string, required) - Alt text
 - `aspectRatio` (string, optional) - Aspect ratio (default: '1 / 1')
@@ -346,18 +343,19 @@ Image with title and caption.
 
 ```svelte
 <script>
-  import { CaptionedGridElement } from 'statue-ssg';
+	import { CaptionedGridElement } from 'statue-ssg';
 </script>
 
 <CaptionedGridElement
-  src="/photo.jpg"
-  alt="Mountain vista"
-  title="Mountain View"
-  caption="A breathtaking landscape"
+	src="/photo.jpg"
+	alt="Mountain vista"
+	title="Mountain View"
+	caption="A breathtaking landscape"
 />
 ```
 
 **Props:**
+
 - `src` (string, required) - Image URL
 - `alt` (string, required) - Alt text
 - `title` (string, optional) - Title text
@@ -375,19 +373,20 @@ Info/warning/error callout box.
 
 ```svelte
 <script>
-  import { Warning } from 'statue-ssg';
+	import { Warning } from 'statue-ssg';
 
-  const warning = {
-    type: 'info',
-    title: 'Note',
-    message: 'This is important information.'
-  };
+	const warning = {
+		type: 'info',
+		title: 'Note',
+		message: 'This is important information.'
+	};
 </script>
 
 <Warning {warning} />
 ```
 
 **Props:**
+
 - `warning` (object)
   - `type` (string) - `'info'`, `'warning'`, `'error'`, or `'success'`
   - `title` (string, optional) - Heading
@@ -401,7 +400,7 @@ Three-column statistics display.
 
 ```svelte
 <script>
-  import { Stats } from 'statue-ssg';
+	import { Stats } from 'statue-ssg';
 </script>
 
 <Stats />
@@ -417,20 +416,21 @@ Call-to-action section with buttons.
 
 ```svelte
 <script>
-  import { CTA } from 'statue-ssg';
+	import { CTA } from 'statue-ssg';
 </script>
 
 <CTA
-  title="Ready to start?"
-  description="Join us today"
-  primaryButtonText="Get Started"
-  primaryButtonLink="/docs"
-  secondaryButtonText="View on GitHub"
-  secondaryButtonLink="https://github.com/accretional/statue"
+	title="Ready to start?"
+	description="Join us today"
+	primaryButtonText="Get Started"
+	primaryButtonLink="/docs"
+	secondaryButtonText="View on GitHub"
+	secondaryButtonLink="https://github.com/accretional/statue"
 />
 ```
 
 **Props:**
+
 - `title` (string) - CTA heading
 - `description` (string) - CTA text
 - `primaryButtonText` (string) - Primary button label
@@ -448,7 +448,7 @@ Mission statement section.
 
 ```svelte
 <script>
-  import { Mission } from 'statue-ssg';
+	import { Mission } from 'statue-ssg';
 </script>
 
 <Mission />
@@ -464,17 +464,16 @@ Team members grid.
 
 ```svelte
 <script>
-  import { Team } from 'statue-ssg';
+	import { Team } from 'statue-ssg';
 
-  const team = [
-    { name: 'John Doe', role: 'Founder', initials: 'JD' }
-  ];
+	const team = [{ name: 'John Doe', role: 'Founder', initials: 'JD' }];
 </script>
 
 <Team teamMembers={team} />
 ```
 
 **Props:**
+
 - `teamMembers` (array)
   - `name` (string) - Person's name
   - `role` (string) - Job title
@@ -488,17 +487,16 @@ Features/benefits grid.
 
 ```svelte
 <script>
-  import { WhyChooseUs } from 'statue-ssg';
+	import { WhyChooseUs } from 'statue-ssg';
 
-  const features = [
-    { title: 'Fast', description: 'Lightning quick sites' }
-  ];
+	const features = [{ title: 'Fast', description: 'Lightning quick sites' }];
 </script>
 
 <WhyChooseUs {features} />
 ```
 
 **Props:**
+
 - `features` (array)
   - `title` (string) - Feature name
   - `description` (string) - Feature description
@@ -513,13 +511,14 @@ Features/benefits grid.
 
 ```svelte
 <script>
-  import { BuiltBy } from 'statue-ssg';
+	import { BuiltBy } from 'statue-ssg';
 </script>
 
 <BuiltBy />
 ```
 
 **Props (all optional):**
+
 - `builtByText`, `builtByLinkText`, `builtByLinkUrl`
 - `builtInText`, `builtInLinkText`, `builtInLinkUrl`
 - `builtForText`, `communityLinkText`, `communityLinkUrl`
@@ -532,24 +531,23 @@ Recursive tree view for nested data.
 
 ```svelte
 <script>
-  import { CollapsibleTree } from 'statue-ssg';
+	import { CollapsibleTree } from 'statue-ssg';
 
-  const items = [
-    {
-      id: '1',
-      label: 'Parent',
-      badge: 'completed',
-      children: [
-        { id: '1.1', label: 'Child' }
-      ]
-    }
-  ];
+	const items = [
+		{
+			id: '1',
+			label: 'Parent',
+			badge: 'completed',
+			children: [{ id: '1.1', label: 'Child' }]
+		}
+	];
 </script>
 
 <CollapsibleTree {items} title="Structure" />
 ```
 
 **Props:**
+
 - `items` (array) - Tree structure
   - `id` (string) - Unique identifier
   - `label` (string) - Display text
@@ -566,24 +564,24 @@ Create your own components in `src/lib/components/`:
 ```svelte
 <!-- src/lib/components/MyComponent.svelte -->
 <script>
-  export let title;
-  export let content = '';
+	export let title;
+	export let content = '';
 </script>
 
 <div class="my-component">
-  <h2 class="text-[var(--color-primary)]">{title}</h2>
-  {#if content}
-    <p class="text-[var(--color-foreground)]">{content}</p>
-  {/if}
+	<h2 class="text-[var(--color-primary)]">{title}</h2>
+	{#if content}
+		<p class="text-[var(--color-foreground)]">{content}</p>
+	{/if}
 </div>
 
 <style>
-  .my-component {
-    padding: 2rem;
-    background: var(--color-card);
-    border: 1px solid var(--color-border);
-    border-radius: 0.5rem;
-  }
+	.my-component {
+		padding: 2rem;
+		background: var(--color-card);
+		border: 1px solid var(--color-border);
+		border-radius: 0.5rem;
+	}
 </style>
 ```
 
@@ -591,7 +589,7 @@ Then use it:
 
 ```svelte
 <script>
-  import MyComponent from '$lib/components/MyComponent.svelte';
+	import MyComponent from '$lib/components/MyComponent.svelte';
 </script>
 
 <MyComponent title="Hello" content="World" />
@@ -605,10 +603,10 @@ Always use CSS custom properties for colors:
 
 ```svelte
 <style>
-  .my-element {
-    color: var(--color-foreground);  /* Good */
-    background: #ffffff;              /* Bad - won't adapt to theme */
-  }
+	.my-element {
+		color: var(--color-foreground); /* Good */
+		background: #ffffff; /* Bad - won't adapt to theme */
+	}
 </style>
 ```
 
@@ -618,15 +616,15 @@ Test on mobile, tablet, and desktop:
 
 ```svelte
 <style>
-  .container {
-    padding: 1rem;
-  }
+	.container {
+		padding: 1rem;
+	}
 
-  @media (min-width: 768px) {
-    .container {
-      padding: 2rem;
-    }
-  }
+	@media (min-width: 768px) {
+		.container {
+			padding: 2rem;
+		}
+	}
 </style>
 ```
 
@@ -636,8 +634,8 @@ Make optional props have good defaults:
 
 ```svelte
 <script>
-  export let title = 'Untitled';
-  export let showImage = true;
+	export let title = 'Untitled';
+	export let showImage = true;
 </script>
 ```
 
@@ -647,17 +645,17 @@ Add JSDoc comments for custom components:
 
 ```svelte
 <script>
-  /**
-   * The title text
-   * @type {string}
-   */
-  export let title;
+	/**
+	 * The title text
+	 * @type {string}
+	 */
+	export let title;
 
-  /**
-   * Optional description text
-   * @type {string}
-   */
-  export let description = '';
+	/**
+	 * Optional description text
+	 * @type {string}
+	 */
+	export let description = '';
 </script>
 ```
 
@@ -674,4 +672,5 @@ For complete component documentation with all props and examples:
 - **[Site Config](./site-config.md)** - Configure component data sources
 
 **Resources:**
+
 - **[Statue.dev](https://statue.dev)** - Official documentation

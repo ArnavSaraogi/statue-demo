@@ -88,6 +88,7 @@ Follow this checklist to replace placeholder content and make the site your own.
 - [ ] Create any additional content directories
 
 Example structure:
+
 ```
 content/
 ├── blog/my-first-post.md
@@ -105,7 +106,7 @@ content/
 
 - [ ] Change the `@import` line to your chosen theme:
   ```css
-  @import "statue-ssg/themes/blue.css";
+  @import 'statue-ssg/themes/blue.css';
   ```
 
 Available: `blue`, `red`, `orange`, `green`, `purple`, `cyan`, `pink`, `black-white`
@@ -187,6 +188,7 @@ npx wrangler pages deploy build --project-name=your-project
 - **[Components](./components.md)** - Component reference
 
 **Community:**
+
 - [Statue.dev](https://statue.dev) - Official project site
 - [GitHub Issues](https://github.com/accretional/statue/issues)
 - [Discord](https://discord.gg/accretional)

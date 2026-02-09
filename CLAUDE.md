@@ -7,6 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Statue is a static site generator based on SvelteKit, Markdown, Tailwind CSS, and Pagefind search. It's designed as a **template-based system** where users create `.md` files in the `content/` directory, and the site is automatically generated with zero configuration.
 
 **Key Architecture Principles:**
+
 - **Markdown-First**: Content is written in `.md` files and processed server-side
 - **Template-Based**: Core logic in `src/lib/`, templates in `templates/` and default in `src/routes/`
 - **Static Generation**: All pages are pre-rendered at build time
@@ -15,6 +16,7 @@ Statue is a static site generator based on SvelteKit, Markdown, Tailwind CSS, an
 ## Common Commands
 
 ### Development
+
 ```bash
 npm run dev                    # Start dev server at localhost:3000
 npm run build                  # Build static site to build/ directory
@@ -23,6 +25,7 @@ npm i && npm run build && npm run preview  # Full rebuild and preview
 ```
 
 ### Code Quality
+
 ```bash
 npm run lint                   # Run ESLint and Prettier checks
 npm run lint:check             # ESLint only
@@ -31,6 +34,7 @@ npm run format:check           # Check formatting without fixing
 ```
 
 ### Testing
+
 ```bash
 npm test                       # Run all tests (Vitest)
 npm run test:watch             # Watch mode for tests
@@ -40,6 +44,7 @@ npm run docker:test            # Run hermetic Docker tests
 ```
 
 ### Template Management
+
 **Warning**: `template:load` overwrites `src/routes/`, `content/`, and `site.config.json` in the root. Commit changes first!
 
 ```bash
@@ -50,6 +55,7 @@ git checkout src/routes content site.config.json  # Restore default template
 ```
 
 ### Build Scripts (Internal)
+
 ```bash
 npm run generate:exports       # Auto-generate src/lib/index.ts from components
 npm run prebuild               # Runs generate:exports + orval
@@ -57,6 +63,7 @@ npm run postbuild              # Generate SEO, Pagefind index, RSS feed
 ```
 
 ### Publishing (Maintainers Only)
+
 ```bash
 npm run release                # Build and publish to npm
 npm publish                    # Publish (runs prepublishOnly hook)
@@ -88,6 +95,7 @@ npm publish                    # Publish (runs prepublishOnly hook)
 **File**: `src/lib/cms/content-processor.js`
 
 The CMS scans the `content/` directory and:
+
 1. Reads all `.md` and `.mdx` files recursively
 2. Parses frontmatter (metadata) using `gray-matter`
 3. Pre-processes custom styling directives (callouts, colored sections, inline styling)
@@ -97,6 +105,7 @@ The CMS scans the `content/` directory and:
 7. Caches content in production (refreshes in dev mode)
 
 **Key Functions:**
+
 - `scanContentDirectory()` - Recursively scans content folder
 - `getAllContent()` - Returns all content with caching
 - `getContentByUrl(url)` - Finds content by URL path
@@ -139,15 +148,15 @@ Themes are CSS files in `src/lib/themes/` using the `@theme {}` block pattern. R
 
 ```css
 @theme {
-  --color-background: #000000;
-  --color-foreground: #ffffff;
-  --color-primary: #3b82f6;
-  --color-secondary: #8b5cf6;
-  --color-accent: #f59e0b;
-  --color-card: #1a1a1a;
-  --color-border: #333333;
-  --color-muted: #666666;
-  /* ...13 total variables */
+	--color-background: #000000;
+	--color-foreground: #ffffff;
+	--color-primary: #3b82f6;
+	--color-secondary: #8b5cf6;
+	--color-accent: #f59e0b;
+	--color-card: #1a1a1a;
+	--color-border: #333333;
+	--color-muted: #666666;
+	/* ...13 total variables */
 }
 ```
 
@@ -160,21 +169,25 @@ Switch themes by editing `src/lib/index.css` imports.
 Statue includes a custom styling system that transforms directive syntax into styled HTML:
 
 **Container directives** (:::type ... :::):
+
 - Callouts: `:::info`, `:::warning`, `:::error`, `:::success`, `:::note`, `:::tip`
 - Colored sections: `:::colored-section{color="primary"}`
 - Supports attributes: `{title="Custom Title" icon=false .custom-class}`
 
 **Text directives** (:type[text]):
+
 - Highlights: `:highlight[text]`
 - Badges: `:badge[New]`
 - Colored text: `:text-primary[text]`, `:text-secondary[text]`, `:text-accent[text]`
 - Underlines: `:underline[text]`, `:underline-primary[text]`
 
 **Leaf directives** (::type):
+
 - Dividers: `::divider`, `::divider{color="primary"}`
 - Spacers: `::spacer{height="3rem"}`
 
 **Implementation:**
+
 - Directives are preprocessed BEFORE mdsvex parses markdown
 - `transformContainerDirectives()`, `transformTextDirectives()`, `transformLeafDirectives()` convert directive syntax to HTML
 - CSS styling in `BlogPostContent.svelte` uses theme CSS variables
@@ -188,12 +201,14 @@ Statue includes a custom styling system that transforms directive syntax into st
 Users can use `{{variable.name}}` in markdown and frontmatter. Variables are defined in `site.config.json` and processed by `processTemplateVariables()`.
 
 **Available variables:**
+
 - `{{site.name}}`, `{{site.url}}`, etc.
 - `{{contact.email}}`, `{{contact.phone}}`, etc.
 - `{{social.github}}`, `{{social.twitter}}`, etc.
 - `{{date.year}}`, `{{date.now}}` (dynamic dates)
 
 To add new template variables:
+
 1. Add to `site.config.json`
 2. Register in `content-processor.js` variables object
 3. Document in `content/docs/site-config.md`
@@ -219,6 +234,7 @@ To add new template variables:
 **Command**: `npx statue <command>`
 
 Main commands:
+
 - `statue init [--template <name>]` - Initialize Statue in a SvelteKit project
 - Copies files from `templates/<name>/` or default template
 - Runs template-specific post-setup scripts
@@ -248,6 +264,7 @@ Implementation: `scripts/statue-cli.js` (uses `commander` package)
 The CMS is in `src/lib/cms/content-processor.js` and runs **server-side only**. It uses Node.js APIs and will fail if imported client-side.
 
 When editing:
+
 - Content is cached in production but refreshed in dev mode
 - Check console logs in `[...slug]/+page.server.js` for debug info
 - Test with various markdown syntax, nested directories, edge cases
@@ -265,29 +282,34 @@ When editing:
 ## Important Constraints
 
 ### Component Development
+
 - Use CSS variables (`var(--color-*)`) for colors, not hardcoded values
 - Keep components simple and reusable
 - Accept props for customization
 - Components are automatically exported (don't edit `index.ts`)
 
 ### Content Processing
+
 - Never import `content-processor.js` on client side
 - Handle missing files gracefully (warn, don't error)
 - Cache in production, refresh in dev
 - All URLs must be normalized (no trailing slashes)
 
 ### Routing
+
 - All routes must have `export const prerender = true`
 - Routes are static - no server-side rendering at request time
 - Use `$lib` imports in templates, not `statue-ssg`
 
 ### Git Operations
+
 - **Never commit version bumps** (maintainers only)
 - Don't commit `src/lib/index.ts` edits (auto-generated)
 - Template changes go in `templates/` not root
 - Don't commit `build/`, `.svelte-kit/`, `node_modules/`
 
 ### File Structure
+
 - Components: `PascalCase.svelte`
 - Utilities: `kebab-case.js`
 - Themes: `kebab-case.css`
@@ -296,21 +318,26 @@ When editing:
 ## Special Considerations
 
 ### MDX Support
+
 Files with `.mdx` extension are flagged with `isMdx: true` and rendered as Svelte components, not HTML. This enables interactive components within markdown.
 
 ### Path Aliases
+
 - `$lib` → `src/lib`
 - `$content` → `content`
 - `$components` → `src/lib/components`
 - `$cms` → `src/lib/cms`
 
 ### Development vs Production
+
 - Dev mode: Content cache disabled, hot reload enabled
 - Production: Content cached, all pages pre-rendered
 - Use `process.env.NODE_ENV` or `import.meta.env.DEV` to detect mode
 
 ### Package Distribution
+
 Statue is published as an npm package. The `files` field in `package.json` controls what's published:
+
 - Includes: `src/`, `content/`, `templates/`, `scripts/`, `resources/`, configs
 - Excludes: `node_modules/`, `build/`, `.svelte-kit/`, test files
 

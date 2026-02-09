@@ -1,72 +1,68 @@
 <script lang="ts">
-  // AuthorAvatar component - Shows author profile image or initials
+	// AuthorAvatar component - Shows author profile image or initials
 
-  export interface AuthorAvatarProps {
-    author: string;
-    avatar?: string;
-    size?: number;
-  }
+	export interface AuthorAvatarProps {
+		author: string;
+		avatar?: string;
+		size?: number;
+	}
 
-  let {
-    author = '',
-    avatar = '',
-    size = 24,
-  }: AuthorAvatarProps = $props();
+	let { author = '', avatar = '', size = 24 }: AuthorAvatarProps = $props();
 
-  // Get initial from author name (first letter only)
-  let initial = $derived(getInitial(author));
+	// Get initial from author name (first letter only)
+	let initial = $derived(getInitial(author));
 
-  function getInitial(name) {
-    if (!name) return '?';
-    return name.trim().charAt(0).toUpperCase();
-  }
+	function getInitial(name) {
+		if (!name) return '?';
+		return name.trim().charAt(0).toUpperCase();
+	}
 </script>
 
 <div
-  class="author-avatar"
-  style={size ? `width: ${size}px; height: ${size}px; font-size: ${size * 0.45}px;` : ''}
-  class:full-size={!size}
+	class="author-avatar"
+	style={size ? `width: ${size}px; height: ${size}px; font-size: ${size * 0.45}px;` : ''}
+	class:full-size={!size}
 >
-  {#if avatar}
-    <img src={avatar} alt={author} class="avatar-image" />
-  {:else}
-    <div class="avatar-initials">
-      {initial}
-    </div>
-  {/if}
+	{#if avatar}
+		<img src={avatar} alt={author} class="avatar-image" />
+	{:else}
+		<div class="avatar-initials">
+			{initial}
+		</div>
+	{/if}
 </div>
 
 <style>
-  .author-avatar {
-    flex-shrink: 0;
-    border-radius: 50%;
-    overflow: hidden;
-  }
+	.author-avatar {
+		flex-shrink: 0;
+		border-radius: 50%;
+		overflow: hidden;
+	}
 
-  .author-avatar.full-size {
-    width: 100%;
-    height: 100%;
-    font-size: 1em;
-  }
+	.author-avatar.full-size {
+		width: 100%;
+		height: 100%;
+		font-size: 1em;
+	}
 
-  .avatar-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+	.avatar-image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
 
-  .avatar-initials {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--color-secondary);
-    color: white;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    box-sizing: border-box;
-    border: 1px solid var(--color-border);
-    border-radius: 50%;
-  }
+	.avatar-initials {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: var(--color-secondary);
+		color: white;
+		font-weight: 500;
+		letter-spacing: -0.02em;
+		box-sizing: border-box;
+		border: 1px solid var(--color-border);
+		border-radius: 50%;
+	}
 </style>

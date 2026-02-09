@@ -18,22 +18,23 @@
 	$: transitionName = `repo-${repo.name.replace(/[^a-zA-Z0-9]/g, '-')}`;
 </script>
 
-<div class="flex flex-col justify-between p-4 border border-border-default rounded-md bg-canvas-default hover:border-fg-muted transition-colors" style="view-transition-name: {transitionName};">
+<div
+	class="flex flex-col justify-between p-4 border border-border-default rounded-md bg-canvas-default hover:border-fg-muted transition-colors"
+	style="view-transition-name: {transitionName};"
+>
 	<div>
 		<div class="flex items-center justify-between mb-2">
 			<div class="flex items-center gap-2">
 				<a href={repo.link} class="font-semibold text-accent-fg hover:underline break-all">
 					{repo.name}
 				</a>
-				<span class="px-2 py-[2px] text-xs text-fg-muted border border-border-default rounded-full font-medium">
+				<span
+					class="px-2 py-[2px] text-xs text-fg-muted border border-border-default rounded-full font-medium"
+				>
 					{repo.isPublic ? 'Public' : 'Private'}
 				</span>
 			</div>
-			<a
-				href="/github1s/{repoPath}"
-				class="view-code-link"
-				title="Open in VS Code"
-			>
+			<a href="/github1s/{repoPath}" class="view-code-link" title="Open in VS Code">
 				&lt;View Code&gt;
 			</a>
 		</div>

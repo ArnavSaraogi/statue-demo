@@ -68,4 +68,4 @@ when posted on our website.
 If you have any questions or concerns about these Terms of Use, please contact us:
 
 - Email: [{{contact.email}}](mailto:{{contact.email}})
-- Address: {{contact.address.full}} 
+- Address: {{contact.address.full}}

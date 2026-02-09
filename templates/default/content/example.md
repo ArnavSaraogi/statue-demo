@@ -40,7 +40,7 @@ Markdown is a simple markup language used to format your text content. Here are 
 
 ```javascript
 function hello() {
-  console.log("Hello Statue SSG!");
+	console.log('Hello Statue SSG!');
 }
 ```
 
@@ -52,4 +52,4 @@ function hello() {
 
 ---
 
-Statue SSG makes content creation very easy! 
+Statue SSG makes content creation very easy!

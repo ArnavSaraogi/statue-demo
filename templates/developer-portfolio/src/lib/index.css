@@ -1,6 +1,6 @@
-@import "tailwindcss";
-@import "./theme-light.css";
-@import "statue-ssg/themes/green.css";
+@import 'tailwindcss';
+@import './theme-light.css';
+@import 'statue-ssg/themes/green.css';
 
 /* GitHub Dark Theme (default) */
 
@@ -18,12 +18,26 @@
 @source "../../node_modules/statue-ssg/src/**/*.{svelte,js,ts}";
 
 @layer utilities {
-  /* Dynamic utilities that respond to the current theme */
-  .bg-canvas-default { background-color: var(--color-background); }
-  .bg-canvas-subtle { background-color: var(--color-card); }
-  .text-fg-default { color: var(--color-foreground); }
-  .text-fg-muted { color: var(--color-muted); }
-  .border-border-default { border-color: var(--color-border); }
-  .text-accent-fg { color: var(--color-primary); }
-  .bg-accent-fg { background-color: var(--color-primary); }
+	/* Dynamic utilities that respond to the current theme */
+	.bg-canvas-default {
+		background-color: var(--color-background);
+	}
+	.bg-canvas-subtle {
+		background-color: var(--color-card);
+	}
+	.text-fg-default {
+		color: var(--color-foreground);
+	}
+	.text-fg-muted {
+		color: var(--color-muted);
+	}
+	.border-border-default {
+		border-color: var(--color-border);
+	}
+	.text-accent-fg {
+		color: var(--color-primary);
+	}
+	.bg-accent-fg {
+		background-color: var(--color-primary);
+	}
 }

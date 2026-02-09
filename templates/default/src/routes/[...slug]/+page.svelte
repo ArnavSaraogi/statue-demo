@@ -107,7 +107,9 @@
 			</div>
 		</div>
 	{:else}
-		<div class="min-h-screen text-white bg-linear-to-b from-(--color-hero-from) via-(--color-hero-via) to-(--color-hero-to)">
+		<div
+			class="min-h-screen text-white bg-linear-to-b from-(--color-hero-from) via-(--color-hero-via) to-(--color-hero-to)"
+		>
 			<div class="container mx-auto px-4 py-16">
 				<div class="max-w-6xl mx-auto prose prose-invert">
 					{@render mdxComponent?.()}

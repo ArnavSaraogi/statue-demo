@@ -39,8 +39,18 @@
 			{ name: 'Route 59 Station', type: 'rail', distance: '13 min drive', duration: '6.0 mi' },
 			{ name: 'Naperville Station', type: 'rail', distance: '17 min drive', duration: '8.5 mi' },
 			{ name: 'Aurora Station', type: 'rail', distance: '18 min drive', duration: '9.8 mi' },
-			{ name: 'Chicago Midway International', type: 'airport', distance: '45 min drive', duration: '30.4 mi' },
-			{ name: "Chicago O'Hare International", type: 'airport', distance: '54 min drive', duration: '36.0 mi' }
+			{
+				name: 'Chicago Midway International',
+				type: 'airport',
+				distance: '45 min drive',
+				duration: '30.4 mi'
+			},
+			{
+				name: "Chicago O'Hare International",
+				type: 'airport',
+				distance: '54 min drive',
+				duration: '36.0 mi'
+			}
 		],
 		amenitiesEnabled = true,
 		amenitiesTitle = 'Nearby Amenities',
@@ -50,7 +60,12 @@
 				icon: 'restaurant',
 				places: [
 					{ name: "Jet's Pizza", category: 'Fast Food', priceLevel: '$', distance: '3 min walk' },
-					{ name: 'Wild Tuna Contemporary Sushi', category: 'Sushi', priceLevel: '$$$', distance: '3 min walk' },
+					{
+						name: 'Wild Tuna Contemporary Sushi',
+						category: 'Sushi',
+						priceLevel: '$$$',
+						distance: '3 min walk'
+					},
 					{ name: "Portillo's", category: 'American', priceLevel: '$$', distance: '5 min walk' }
 				]
 			},
@@ -112,7 +127,9 @@
 					<h3 class="text-2xl font-light text-white mb-8">{transportationTitle}</h3>
 					<div class="space-y-1">
 						{#each transportation as option}
-							<div class="flex items-center justify-between py-4 border-b border-[var(--color-border)] hover:bg-[var(--color-card)] transition-colors px-2 -mx-2">
+							<div
+								class="flex items-center justify-between py-4 border-b border-[var(--color-border)] hover:bg-[var(--color-card)] transition-colors px-2 -mx-2"
+							>
 								<div class="flex items-center gap-4">
 									<span class="w-2 h-2 rounded-full {getTypeColor(option.type)}"></span>
 									<span class="text-gray-300">{option.name}</span>
@@ -134,7 +151,9 @@
 					<div class="space-y-8">
 						{#each amenities as category}
 							<div>
-								<h4 class="text-[var(--color-primary)] text-sm tracking-wider uppercase mb-4 flex items-center gap-2">
+								<h4
+									class="text-[var(--color-primary)] text-sm tracking-wider uppercase mb-4 flex items-center gap-2"
+								>
 									<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										{@html getAmenityIcon(category.icon)}
 									</svg>
@@ -142,12 +161,16 @@
 								</h4>
 								<div class="space-y-1">
 									{#each category.places as place}
-										<div class="flex items-center justify-between py-3 border-b border-[var(--color-border)] hover:bg-[var(--color-card)] transition-colors px-2 -mx-2">
+										<div
+											class="flex items-center justify-between py-3 border-b border-[var(--color-border)] hover:bg-[var(--color-card)] transition-colors px-2 -mx-2"
+										>
 											<div>
 												<span class="text-gray-300">{place.name}</span>
 												<span class="text-gray-500 text-sm ml-2">{place.category}</span>
 												{#if place.priceLevel}
-													<span class="text-[var(--color-primary)] text-sm ml-2">{place.priceLevel}</span>
+													<span class="text-[var(--color-primary)] text-sm ml-2"
+														>{place.priceLevel}</span
+													>
 												{/if}
 											</div>
 											<span class="text-gray-500 text-sm">{place.distance}</span>

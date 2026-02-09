@@ -19,11 +19,16 @@
 
 	function getLevelColor(level: number): string {
 		switch (level) {
-			case 1: return 'bg-contribution-1';
-			case 2: return 'bg-contribution-2';
-			case 3: return 'bg-contribution-3';
-			case 4: return 'bg-contribution-4';
-			default: return 'bg-contribution-0';
+			case 1:
+				return 'bg-contribution-1';
+			case 2:
+				return 'bg-contribution-2';
+			case 3:
+				return 'bg-contribution-3';
+			case 4:
+				return 'bg-contribution-4';
+			default:
+				return 'bg-contribution-0';
 		}
 	}
 
@@ -57,8 +62,8 @@
 	$: weeks = (() => {
 		if (!data.days || data.days.length === 0) return [];
 
-		const result: Array<Array<typeof data.days[0] | null>> = [];
-		let currentWeek: Array<typeof data.days[0] | null> = [];
+		const result: Array<Array<(typeof data.days)[0] | null>> = [];
+		let currentWeek: Array<(typeof data.days)[0] | null> = [];
 
 		// Align start day
 		const startDay = new Date(data.days[0].date).getDay(); // 0 is Sunday
@@ -84,10 +89,7 @@
 
 <!-- Custom Tooltip -->
 {#if tooltipVisible}
-	<div
-		class="custom-tooltip"
-		style="left: {tooltipX}px; top: {tooltipY}px;"
-	>
+	<div class="custom-tooltip" style="left: {tooltipX}px; top: {tooltipY}px;">
 		{tooltipText}
 	</div>
 {/if}
@@ -181,11 +183,21 @@
 	}
 
 	/* Contribution level colors - fallback values */
-	:global(.bg-contribution-0) { background-color: var(--contribution-0, #161b22); }
-	:global(.bg-contribution-1) { background-color: var(--contribution-1, #0e4429); }
-	:global(.bg-contribution-2) { background-color: var(--contribution-2, #006d32); }
-	:global(.bg-contribution-3) { background-color: var(--contribution-3, #26a641); }
-	:global(.bg-contribution-4) { background-color: var(--contribution-4, #39d353); }
+	:global(.bg-contribution-0) {
+		background-color: var(--contribution-0, #161b22);
+	}
+	:global(.bg-contribution-1) {
+		background-color: var(--contribution-1, #0e4429);
+	}
+	:global(.bg-contribution-2) {
+		background-color: var(--contribution-2, #006d32);
+	}
+	:global(.bg-contribution-3) {
+		background-color: var(--contribution-3, #26a641);
+	}
+	:global(.bg-contribution-4) {
+		background-color: var(--contribution-4, #39d353);
+	}
 
 	.contribution-footer {
 		margin-top: 0.5rem;

@@ -203,7 +203,8 @@
 			</p>
 			<p class="text-gray-500 text-sm mb-6">{footer.tagline ?? site.description}</p>
 			<p class="text-gray-600 text-xs">
-				© {year} {footer.brand ?? site.name}. {footer.copyrightText}
+				© {year}
+				{footer.brand ?? site.name}. {footer.copyrightText}
 			</p>
 		</div>
 	</footer>

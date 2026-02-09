@@ -18,11 +18,21 @@ The `site.config.json` file is your site's central configuration. It stores info
 
 ```javascript
 export const siteConfig = {
-  site: { /* Site info */ },
-  contact: { /* Contact details */ },
-  social: { /* Social media */ },
-  legal: { /* Legal pages */ },
-  seo: { /* SEO settings */ }
+	site: {
+		/* Site info */
+	},
+	contact: {
+		/* Contact details */
+	},
+	social: {
+		/* Social media */
+	},
+	legal: {
+		/* Legal pages */
+	},
+	seo: {
+		/* SEO settings */
+	}
 };
 
 export default siteConfig;
@@ -42,11 +52,13 @@ site: {
 ```
 
 **Usage:**
+
 - `{{site.name}}` in markdown
 - `{data.siteConfig.site.name}` in components
 - SEO meta tags
 
 **When to update:**
+
 - When you first set up your site
 - When you rebrand
 - When you change domains
@@ -67,6 +79,7 @@ contact: {
 ```
 
 **Usage:**
+
 - `{{contact.email}}` in markdown
 - Legal pages (privacy policy, terms)
 - Contact forms
@@ -89,6 +102,7 @@ contact: {
 ```
 
 **Usage:**
+
 - `{{contact.address.street}}` - Individual fields
 - `{{contact.address.full}}` - Auto-formatted full address
 - Legal pages (business address requirements)
@@ -116,6 +130,7 @@ social: {
 ```
 
 **Usage:**
+
 - `{{social.twitter}}` in markdown
 - Footer social links
 - Share buttons
@@ -141,11 +156,13 @@ legal: {
 ```
 
 **Usage:**
+
 - `{{legal.privacyPolicyLastUpdated}}` - Shows update date
 - Privacy policy requirements
 - CCPA/CPRA compliance
 
 **When to update:**
+
 - When you modify your privacy policy
 - When you modify your terms of service
 - When you update data handling practices
@@ -172,29 +189,35 @@ seo: {
 ### SEO Fields
 
 **`defaultTitle`**
+
 - Fallback title when no title is specified
 - Used on homepage if no custom title set
 
 **`titleTemplate`**
+
 - Template for page titles
 - `%s` is replaced with the page title
 - Example: "Blog Post | Your Site"
 
 **`defaultDescription`**
+
 - Fallback meta description
 - Used when pages don't specify description
 - Shows in search results
 
 **`keywords`**
+
 - Array of site-wide keywords
 - Less important for modern SEO but still useful
 
 **`ogImage`**
+
 - Image URL for social sharing (Open Graph)
 - Shows when links are shared on social media
 - Should be 1200×630px
 
 **`twitterCard`**
+
 - Twitter card type
 - Options: `summary`, `summary_large_image`, `player`
 
@@ -231,12 +254,14 @@ Follow us on [Twitter]({{social.twitter}})
 #### Available Variables
 
 **Site Information:**
+
 - `{{site.name}}` - Site name
 - `{{site.description}}` - Site description
 - `{{site.url}}` - Site URL
 - `{{site.author}}` - Site author
 
 **Contact Information:**
+
 - `{{contact.email}}` - Main email
 - `{{contact.privacyEmail}}` - Privacy email
 - `{{contact.supportEmail}}` - Support email
@@ -249,6 +274,7 @@ Follow us on [Twitter]({{social.twitter}})
 - `{{contact.address.full}}` - Full formatted address
 
 **Social Media:**
+
 - `{{social.twitter}}` - Twitter URL
 - `{{social.github}}` - GitHub URL
 - `{{social.linkedin}}` - LinkedIn URL
@@ -259,11 +285,13 @@ Follow us on [Twitter]({{social.twitter}})
 - `{{social.reddit}}` - Reddit URL
 
 **Legal:**
+
 - `{{legal.privacyPolicyLastUpdated}}` - Privacy policy date
 - `{{legal.termsLastUpdated}}` - Terms of service date
 - `{{legal.doNotSell.processingTime}}` - Processing time
 
 **Date Variables:**
+
 - `{{date.now}}` - Today's date (e.g., "12/7/2025")
 - `{{date.year}}` - Current year (e.g., "2025")
 - `{{date.month}}` - Current month name (e.g., "December")
@@ -283,25 +311,30 @@ description: {{site.name}}'s privacy policy, last updated {{legal.privacyPolicyL
 #### Template Variable Examples
 
 **Email links:**
+
 ```markdown
 Contact us: [{{contact.email}}](mailto:{{contact.email}})
 Privacy: [{{contact.privacyEmail}}](mailto:{{contact.privacyEmail}})
 ```
 
 **Social media:**
+
 ```markdown
 Follow us:
+
 - [Twitter]({{social.twitter}})
 - [GitHub]({{social.github}})
 - [Discord]({{social.discord}})
 ```
 
 **Copyright notices:**
+
 ```markdown
 © {{date.year}} {{site.name}}. All rights reserved.
 ```
 
 **Dynamic dates:**
+
 ```markdown
 Last updated: {{date.now}}
 ```
@@ -321,10 +354,10 @@ Access config in Svelte components:
 
 ```svelte
 <script>
-  import siteConfig from '/site.config.json';
+	import siteConfig from '/site.config.json';
 
-  const siteName = siteConfig.site.name;
-  const email = siteConfig.contact.email;
+	const siteName = siteConfig.site.name;
+	const email = siteConfig.contact.email;
 </script>
 
 <h1>Welcome to {siteName}</h1>
@@ -343,22 +376,23 @@ Handle different URLs for development and production:
 let siteUrl;
 
 if (typeof import.meta !== 'undefined' && import.meta.env) {
-  siteUrl = import.meta.env.VITE_SITEURL;
+	siteUrl = import.meta.env.VITE_SITEURL;
 } else {
-  siteUrl = process.env.VITE_SITEURL;
+	siteUrl = process.env.VITE_SITEURL;
 }
 
 siteUrl = siteUrl ?? 'https://yoursite.com'; // Fallback
 
 export const siteConfig = {
-  site: {
-    url: siteUrl,
-    // ... other config
-  }
+	site: {
+		url: siteUrl
+		// ... other config
+	}
 };
 ```
 
 Set via environment variable:
+
 ```bash
 VITE_SITEURL=https://staging.yoursite.com npm run dev
 ```
@@ -370,25 +404,26 @@ VITE_SITEURL=https://staging.yoursite.com npm run dev
 ### 1. Update Immediately
 
 Change placeholder values when you first set up:
+
 ```javascript
-email: "your-email@example.com"  // ❌ Don't leave this
-email: "hello@yoursite.com"      // ✅ Change to your email
+email: 'your-email@example.com'; // ❌ Don't leave this
+email: 'hello@yoursite.com'; // ✅ Change to your email
 ```
 
 ### 2. Keep Legal Dates Current
 
 ```javascript
-privacyPolicyLastUpdated: "2025-01-15"  // Update when you change policy
+privacyPolicyLastUpdated: '2025-01-15'; // Update when you change policy
 ```
 
 ### 3. Remove Unused Socials
 
 ```javascript
 // ❌ Don't leave fake links
-facebook: "https://facebook.com/statuessg"
+facebook: 'https://facebook.com/statuessg';
 
 // ✅ Remove or use your actual link
-facebook: "https://facebook.com/yourpage"
+facebook: 'https://facebook.com/yourpage';
 // Or remove the line entirely
 ```
 
@@ -396,21 +431,22 @@ facebook: "https://facebook.com/yourpage"
 
 ```javascript
 // ✅ Good - consistent URL formats
-twitter: "https://twitter.com/handle"
-github: "https://github.com/user"
+twitter: 'https://twitter.com/handle';
+github: 'https://github.com/user';
 
 // ❌ Bad - inconsistent
-twitter: "twitter.com/handle"  // Missing protocol
-github: "https://github.com/user"
+twitter: 'twitter.com/handle'; // Missing protocol
+github: 'https://github.com/user';
 ```
 
 ### 5. Validate Email Addresses
 
 Ensure emails are valid:
+
 ```javascript
-email: "hello@yoursite.com"      // ✅ Valid
-email: "hello @ yoursite.com"    // ❌ Invalid (spaces)
-email: "hello"                    // ❌ Invalid (no domain)
+email: 'hello@yoursite.com'; // ✅ Valid
+email: 'hello @ yoursite.com'; // ❌ Invalid (spaces)
+email: 'hello'; // ❌ Invalid (no domain)
 ```
 
 ---
@@ -421,20 +457,20 @@ email: "hello"                    // ❌ Invalid (no domain)
 
 ```javascript
 export const siteConfig = {
-  site: {
-    name: "YourApp",
-    description: "The best app for X",
-    url: "https://yourapp.com",
-    author: "YourApp Team"
-  },
-  contact: {
-    email: "hello@yourapp.com",
-    supportEmail: "support@yourapp.com"
-  },
-  social: {
-    twitter: "https://twitter.com/yourapp",
-    github: "https://github.com/yourorg"
-  }
+	site: {
+		name: 'YourApp',
+		description: 'The best app for X',
+		url: 'https://yourapp.com',
+		author: 'YourApp Team'
+	},
+	contact: {
+		email: 'hello@yourapp.com',
+		supportEmail: 'support@yourapp.com'
+	},
+	social: {
+		twitter: 'https://twitter.com/yourapp',
+		github: 'https://github.com/yourorg'
+	}
 };
 ```
 
@@ -442,19 +478,19 @@ export const siteConfig = {
 
 ```javascript
 export const siteConfig = {
-  site: {
-    name: "John's Blog",
-    description: "Thoughts on code and life",
-    url: "https://johnblog.com",
-    author: "John Doe"
-  },
-  contact: {
-    email: "john@johnblog.com"
-  },
-  social: {
-    twitter: "https://twitter.com/johndoe",
-    github: "https://github.com/johndoe"
-  }
+	site: {
+		name: "John's Blog",
+		description: 'Thoughts on code and life',
+		url: 'https://johnblog.com',
+		author: 'John Doe'
+	},
+	contact: {
+		email: 'john@johnblog.com'
+	},
+	social: {
+		twitter: 'https://twitter.com/johndoe',
+		github: 'https://github.com/johndoe'
+	}
 };
 ```
 
@@ -462,19 +498,19 @@ export const siteConfig = {
 
 ```javascript
 export const siteConfig = {
-  site: {
-    name: "ProjectDocs",
-    description: "Official documentation for Project",
-    url: "https://docs.project.com",
-    author: "Project Team"
-  },
-  contact: {
-    email: "docs@project.com"
-  },
-  social: {
-    github: "https://github.com/project/project",
-    discord: "https://discord.gg/project"
-  }
+	site: {
+		name: 'ProjectDocs',
+		description: 'Official documentation for Project',
+		url: 'https://docs.project.com',
+		author: 'Project Team'
+	},
+	contact: {
+		email: 'docs@project.com'
+	},
+	social: {
+		github: 'https://github.com/project/project',
+		discord: 'https://discord.gg/project'
+	}
 };
 ```
 
@@ -485,11 +521,13 @@ export const siteConfig = {
 ### Variables not showing in markdown
 
 **Check:**
+
 1. Is the variable name correct?
 2. Did you restart the dev server?
 3. Is the value defined in `site.config.json`?
 
 **Fix:**
+
 ```bash
 # Restart dev server
 npm run dev
@@ -498,6 +536,7 @@ npm run dev
 ### Config changes not applying
 
 **Build cache issue.** Clear build artifacts:
+
 ```bash
 rm -rf .svelte-kit build
 npm run dev
@@ -506,16 +545,17 @@ npm run dev
 ### TypeScript errors with config
 
 Create a type definition file (optional):
+
 ```typescript
 // site.config.d.ts
 export interface SiteConfig {
-  site: {
-    name: string;
-    description: string;
-    url: string;
-    author: string;
-  };
-  // ... other types
+	site: {
+		name: string;
+		description: string;
+		url: string;
+		author: string;
+	};
+	// ... other types
 }
 ```
 

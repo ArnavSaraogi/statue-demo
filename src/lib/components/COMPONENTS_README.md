@@ -5,7 +5,7 @@ This folder contains ready-to-use UI components for Statue SSG (built with Svelt
 ### How to import
 
 - From a local project consuming the package:
-    - Import directly from the package entry (recommended):
+  - Import directly from the package entry (recommended):
 
 ```svelte
 <script>
@@ -49,8 +49,8 @@ Components use CSS variables like `--color-primary`, `--color-secondary`, `--col
 ### Components
 
 - **NavigationBar**: Top navigation with responsive mobile menu.
-    - Props: `navbarItems: { name: string; title: string; url: string; }[]`, `activePath: string`.
-    - Example:
+  - Props: `navbarItems: { name: string; title: string; url: string; }[]`, `activePath: string`.
+  - Example:
 
 ```svelte
 <script>
@@ -63,7 +63,7 @@ Components use CSS variables like `--color-primary`, `--color-secondary`, `--col
 ```
 
 - **Hero**: Landing hero section.
-    - Example:
+  - Example:
 
 ```svelte
 <script>
@@ -74,7 +74,7 @@ Components use CSS variables like `--color-primary`, `--color-secondary`, `--col
 ```
 
 - **Stats**: Three-card stats display.
-    - Example:
+  - Example:
 
 ```svelte
 <script>
@@ -85,8 +85,8 @@ Components use CSS variables like `--color-primary`, `--color-secondary`, `--col
 ```
 
 - **Categories**: Lists top-level content directories.
-    - Props: `directories: { title: string; url: string; name?: string; subpages?: { title: string; url: string }[] }[]`.
-    - Example:
+  - Props: `directories: { title: string; url: string; name?: string; subpages?: { title: string; url: string }[] }[]`.
+  - Example:
 
 ```svelte
 <script>
@@ -103,8 +103,8 @@ Components use CSS variables like `--color-primary`, `--color-secondary`, `--col
 ```
 
 - **LatestContent**: Shows recent content cards.
-    - Props: `rootContent: { url: string; directory?: string; metadata: { title: string; description?: string; date?: string } }[]`.
-    - Example:
+  - Props: `rootContent: { url: string; directory?: string; metadata: { title: string; description?: string; date?: string } }[]`.
+  - Example:
 
 ```svelte
 <script>
@@ -118,8 +118,8 @@ Components use CSS variables like `--color-primary`, `--color-secondary`, `--col
 ```
 
 - **PageHero**: Page title and subtitle section for docs/about pages.
-    - Props: `title: string`, `description?: string`.
-    - Example:
+  - Props: `title: string`, `description?: string`.
+  - Example:
 
 ```svelte
 <script>
@@ -130,11 +130,11 @@ Components use CSS variables like `--color-primary`, `--color-secondary`, `--col
 ```
 
 - **Mission**: Static mission copy block.
-    - Example: `<Mission />`
+  - Example: `<Mission />`
 
 - **Team**: Team members grid.
-    - Props: `teamMembers: { name: string; role: string; initials: string }[]`.
-    - Example:
+  - Props: `teamMembers: { name: string; role: string; initials: string }[]`.
+  - Example:
 
 ```svelte
 <script>
@@ -146,8 +146,8 @@ Components use CSS variables like `--color-primary`, `--color-secondary`, `--col
 ```
 
 - **WhyChooseUs**: Feature highlights grid.
-    - Props: `features: { title: string; description: string }[]`
-    - Example:
+  - Props: `features: { title: string; description: string }[]`
+  - Example:
 
 ```svelte
 <script>
@@ -159,8 +159,8 @@ Components use CSS variables like `--color-primary`, `--color-secondary`, `--col
 ```
 
 - **CTA**: Call-to-action with primary and secondary buttons.
-    - Props: `title: string`, `description: string`, `primaryButtonText: string`, `primaryButtonLink: string`, `secondaryButtonText: string`, `secondaryButtonLink: string`.
-    - Example:
+  - Props: `title: string`, `description: string`, `primaryButtonText: string`, `primaryButtonLink: string`, `secondaryButtonText: string`, `secondaryButtonLink: string`.
+  - Example:
 
 ```svelte
 <script>
@@ -178,16 +178,16 @@ Components use CSS variables like `--color-primary`, `--color-secondary`, `--col
 ```
 
 - **DirectoryHeader**: Directory title header.
-    - Props: `title: string`.
-    - Example: `<DirectoryHeader title="Docs" />`
+  - Props: `title: string`.
+  - Example: `<DirectoryHeader title="Docs" />`
 
 - **SubDirectories**: Grid of subdirectories.
-    - Props: `subDirectories: { title: string; url: string }[]`, `title: string`.
-    - Example: `<SubDirectories subDirectories={[{ title: 'Guides', url: '/docs/guides' }]} title="Subcategories" />`
+  - Props: `subDirectories: { title: string; url: string }[]`, `title: string`.
+  - Example: `<SubDirectories subDirectories={[{ title: 'Guides', url: '/docs/guides' }]} title="Subcategories" />`
 
 - **DirectoryContent**: Cards for directory content.
-    - Props: `content: { url: string; directory?: string; metadata: { title: string; description?: string; date?: string } }[]`, `showDirectory?: boolean`, `emptyMessage?: string`.
-    - Example:
+  - Props: `content: { url: string; directory?: string; metadata: { title: string; description?: string; date?: string } }[]`, `showDirectory?: boolean`, `emptyMessage?: string`.
+  - Example:
 
 ```svelte
 <script>
@@ -206,59 +206,62 @@ Components use CSS variables like `--color-primary`, `--color-secondary`, `--col
 - **ContentGrid**: Responsive grid container for displaying image galleries and content grids with automatic layout adaptation.
   - Props: `title?: string`, `columns?: number` (default: 3), `gap?: string` (default: '24px').
   - Example:
+
 ```svelte
 <script>
-  import { ContentGrid, ImageGridElement, CaptionedGridElement } from 'statue-ssg';
+	import { ContentGrid, ImageGridElement, CaptionedGridElement } from 'statue-ssg';
 </script>
 
 <ContentGrid title="Photo Gallery" columns={3} gap="24px">
-  <ImageGridElement src="/image1.jpg" alt="Image 1" />
-  <CaptionedGridElement
-    src="/image2.jpg"
-    alt="Image 2"
-    title="Featured"
-    caption="A beautiful landscape"
-  />
+	<ImageGridElement src="/image1.jpg" alt="Image 1" />
+	<CaptionedGridElement
+		src="/image2.jpg"
+		alt="Image 2"
+		title="Featured"
+		caption="A beautiful landscape"
+	/>
 </ContentGrid>
 ```
 
 - **ImageGridElement**: Simple image element for grids with click-to-expand lightbox functionality.
   - Props: `src: string` (required), `alt: string` (required), `aspectRatio?: string` (default: '1 / 1'), `expandable?: boolean` (default: true).
   - Example:
+
 ```svelte
 <script>
-  import { ImageGridElement } from 'statue-ssg';
+	import { ImageGridElement } from 'statue-ssg';
 </script>
 
 <ImageGridElement
-  src="/photo.jpg"
-  alt="Descriptive alt text"
-  aspectRatio="16 / 9"
-  expandable={true}
+	src="/photo.jpg"
+	alt="Descriptive alt text"
+	aspectRatio="16 / 9"
+	expandable={true}
 />
 ```
 
 - **CaptionedGridElement**: Image element with title and caption text, includes click-to-expand lightbox.
   - Props: `src: string` (required), `alt: string` (required), `title?: string`, `caption?: string`, `aspectRatio?: string` (default: '1 / 1'), `expandable?: boolean` (default: true).
   - Example:
+
 ```svelte
 <script>
-  import { CaptionedGridElement } from 'statue-ssg';
+	import { CaptionedGridElement } from 'statue-ssg';
 </script>
 
 <CaptionedGridElement
-  src="/photo.jpg"
-  alt="Mountain vista"
-  title="Mountain View"
-  caption="A breathtaking mountain landscape during golden hour."
-  aspectRatio="3 / 2"
-  expandable={true}
+	src="/photo.jpg"
+	alt="Mountain vista"
+	title="Mountain View"
+	caption="A breathtaking mountain landscape during golden hour."
+	aspectRatio="3 / 2"
+	expandable={true}
 />
 ```
 
 - **ContentHeader**: Title, date and author block for a content page.
-    - Props: `title: string`, `date?: string | Date`, `author?: string`, `backLink?: string`, `backLinkText?: string`.
-    - Example:
+  - Props: `title: string`, `date?: string | Date`, `author?: string`, `backLink?: string`, `backLinkText?: string`.
+  - Example:
 
 ```svelte
 <script>
@@ -275,19 +278,19 @@ Components use CSS variables like `--color-primary`, `--color-secondary`, `--col
 ```
 
 - **ContentBody**: Renders preprocessed HTML content.
-    - Props: `content: string` (HTML string).
-    - Example: `<ContentBody content={html} />`
+  - Props: `content: string` (HTML string).
+  - Example: `<ContentBody content={html} />`
 
 - **Footer**: Footer with sitemap and links.
-    - Props:
-        - `directories: Directory[]`
-        - `currentPath: string`
-        - `mainPagesTitle: string`
-        - `homePageText: string`
-        - `copyrightText: string`
-        - `legalLinks: { title: string; url: string }[]`
-        - `socialLinks: { name: string; url: string; iconPath: string }[]`
-    - Example:
+  - Props:
+    - `directories: Directory[]`
+    - `currentPath: string`
+    - `mainPagesTitle: string`
+    - `homePageText: string`
+    - `copyrightText: string`
+    - `legalLinks: { title: string; url: string }[]`
+    - `socialLinks: { name: string; url: string; iconPath: string }[]`
+  - Example:
 
 ```svelte
 <script lang="ts">
@@ -315,11 +318,11 @@ Components use CSS variables like `--color-primary`, `--color-secondary`, `--col
 ```
 
 - **Sitemap**: Compact sitemap component similar to Footer categories.
-    - Props: `directories: Directory[]`, `currentPath: string`.
+  - Props: `directories: Directory[]`, `currentPath: string`.
 
 - **Warning**: Inline callout for info/warning/error/success.
-    - Props: `warning: { type?: 'info' | 'warning' | 'error' | 'success'; title?: string; message?: string }`.
-    - Example:
+  - Props: `warning: { type?: 'info' | 'warning' | 'error' | 'success'; title?: string; message?: string }`.
+  - Example:
 
 ```svelte
 <script>
@@ -331,9 +334,9 @@ Components use CSS variables like `--color-primary`, `--color-secondary`, `--col
 ```
 
 - **CollapsibleTree**: Recursive collapsible tree for nested data structures.
-    - Props: `items: Array<{ id: string; label: string; badge?: string; children?: Array }>`, `title?: string`.
-    - All items expanded by default, click chevron to collapse/expand.
-    - Example:
+  - Props: `items: Array<{ id: string; label: string; badge?: string; children?: Array }>`, `title?: string`.
+  - All items expanded by default, click chevron to collapse/expand.
+  - Example:
 
 ```svelte
 <script>
@@ -353,17 +356,17 @@ Components use CSS variables like `--color-primary`, `--color-secondary`, `--col
 ```
 
 - **BuiltBy**: "Built by" credit component.
-    - Props:
-        - `builtByText`, `builtByLinkText`, `builtByLinkUrl`, `builtByIcon`
-        - `builtInText`, `builtInLinkText`, `builtInLinkUrl`, `builtInIcon`
-        - `builtForText`, `communityLinkText`, `communityLinkUrl`
-    - Example: `<BuiltBy />`
+  - Props:
+    - `builtByText`, `builtByLinkText`, `builtByLinkUrl`, `builtByIcon`
+    - `builtInText`, `builtInLinkText`, `builtInLinkUrl`, `builtInIcon`
+    - `builtForText`, `communityLinkText`, `communityLinkUrl`
+  - Example: `<BuiltBy />`
 
 - **Playground**: Interactive code playground with a modern UI.
-    - Features:
-        - Native local execution with JavaScript.
-        - Remote execution for Python, Ruby, Java, C, and more via Piston API.
-    - Example:
+  - Features:
+    - Native local execution with JavaScript.
+    - Remote execution for Python, Ruby, Java, C, and more via Piston API.
+  - Example:
 
 ```svelte
 <script>
@@ -374,26 +377,26 @@ Components use CSS variables like `--color-primary`, `--color-secondary`, `--col
 ```
 
 - **Search**: Client-side search with dropdown results powered by Pagefind.
-    - Props:
-        - `placeholder?: string` - Input placeholder text (default: 'Search...')
-        - `debounceMs?: number` - Search delay in milliseconds (default: 300)
-        - `minQueryLength?: number` - Minimum characters to trigger search (default: 2)
-        - `maxResults?: number` - Maximum results to display (default: 10)
-        - `showCategories?: boolean` - Show category badges (default: true)
-        - `showDates?: boolean` - Show dates in results (default: true)
-        - `showExcerpts?: boolean` - Show content excerpts (default: true)
-        - `containerClass?: string` - Additional container classes
-        - `inputClass?: string` - Additional input classes
-        - `resultsClass?: string` - Additional results dropdown classes
-    - Features:
-        - Lazy-loaded Pagefind for optimal performance
-        - Debounced search input
-        - Keyboard navigation (Arrow keys, Enter, Escape)
-        - Click-outside to close
-        - Loading and empty states
-        - Mobile responsive
-        - Accessible (ARIA labels, focus management)
-    - Example:
+  - Props:
+    - `placeholder?: string` - Input placeholder text (default: 'Search...')
+    - `debounceMs?: number` - Search delay in milliseconds (default: 300)
+    - `minQueryLength?: number` - Minimum characters to trigger search (default: 2)
+    - `maxResults?: number` - Maximum results to display (default: 10)
+    - `showCategories?: boolean` - Show category badges (default: true)
+    - `showDates?: boolean` - Show dates in results (default: true)
+    - `showExcerpts?: boolean` - Show content excerpts (default: true)
+    - `containerClass?: string` - Additional container classes
+    - `inputClass?: string` - Additional input classes
+    - `resultsClass?: string` - Additional results dropdown classes
+  - Features:
+    - Lazy-loaded Pagefind for optimal performance
+    - Debounced search input
+    - Keyboard navigation (Arrow keys, Enter, Escape)
+    - Click-outside to close
+    - Loading and empty states
+    - Mobile responsive
+    - Accessible (ARIA labels, focus management)
+  - Example:
 
 ```svelte
 <script>
@@ -408,9 +411,9 @@ Components use CSS variables like `--color-primary`, `--color-secondary`, `--col
 ```
 
 - **Integration with NavigationBar**:
-    - NavigationBar automatically shows search when `search.enabled` is true in `site.config.json`
-    - No need to set `showSearch` prop unless you want to override the config
-    - Example:
+  - NavigationBar automatically shows search when `search.enabled` is true in `site.config.json`
+  - No need to set `showSearch` prop unless you want to override the config
+  - Example:
 
 ```svelte
 <script>

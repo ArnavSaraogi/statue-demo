@@ -20,6 +20,7 @@ test/hermetic/
 ## Architecture Concept
 
 ### Single-Build Container Approach
+
 - **Docker Image**: Built once, contains all necessary tools and scripts
 - **Docker Container**: Created fresh for each test, uses mounted package files
 - **Hermetic Testing**: Each test runs in a clean, isolated environment
@@ -27,18 +28,21 @@ test/hermetic/
 ## Core Components
 
 ### 1. `test/hermetic/Dockerfile`
+
 - Single-stage build with Node.js 18 Alpine
 - Includes `install_statue.sh` script
 - Pre-configured with all necessary dependencies
 - **Built once, reused multiple times**
 
 ### 2. `test/hermetic/install_statue.sh` (Container Script)
+
 - Creates fresh SvelteKit project
 - Installs mounted `.tgz` package
 - Runs `statue init` and builds project
 - Starts preview server on port 3000
 
 ### 3. `test/hermetic/docker_test.sh` (Host Script)
+
 - Navigates to project root directory
 - Cleans up previous `.tgz` files
 - Creates new npm package with `npm pack`
@@ -49,12 +53,14 @@ test/hermetic/
 ## Commands
 
 ### One-Time Setup
+
 ```bash
 # Build the Docker image (only needed once)
 npm run docker:build
 ```
 
 ### Testing Workflow
+
 ```bash
 # Run complete Docker test cycle after code changes
 npm run docker:test
@@ -64,6 +70,7 @@ npm run test:local
 ```
 
 ### Combined Setup + Test
+
 ```bash
 # Build image and run test in one command
 npm run docker:test
@@ -120,4 +127,4 @@ npm run docker:test 2>&1 | tee test-output.log
 - **Test Method**: HTTP GET request to root path
 - **Working Directory**: Script automatically navigates to project root
 
-This architecture provides rapid feedback loops for development while ensuring tests run in production-like conditions. 
+This architecture provides rapid feedback loops for development while ensuring tests run in production-like conditions.

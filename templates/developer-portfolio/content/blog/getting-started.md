@@ -19,6 +19,7 @@ Run the sync script to automatically pull your GitHub data:
 ```
 
 This will:
+
 - Download your avatar to `static/avatar.jpg`
 - Fetch your repositories to `static/repositories.json`
 - Fetch your contribution graph to `static/contributions.json`
@@ -30,11 +31,11 @@ Edit `site.config.json` to fine-tune your profile:
 
 ```json
 {
-  "profile": {
-    "name": "Your Name",
-    "username": "your-github-username",
-    "bio": "Your custom bio"
-  }
+	"profile": {
+		"name": "Your Name",
+		"username": "your-github-username",
+		"bio": "Your custom bio"
+	}
 }
 ```
 
@@ -58,7 +59,7 @@ Your content here...
 The sync script randomly selects a theme. To change it manually, edit `src/lib/index.css`:
 
 ```css
-@import "statue-ssg/themes/purple.css";
+@import 'statue-ssg/themes/purple.css';
 ```
 
 Available themes: `black-red`, `black-white`, `blue`, `charcoal`, `cyan`, `green`, `orange`, `pink`, `purple`, `red`.
@@ -77,4 +78,4 @@ Visit [statue.dev](https://statue.dev) for documentation and support.
 
 ---
 
-*Feel free to delete this post once you've set everything up!*
+_Feel free to delete this post once you've set everything up!_

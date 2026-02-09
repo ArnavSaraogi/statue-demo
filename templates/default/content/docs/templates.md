@@ -13,6 +13,7 @@ Templates provide pre-configured starting points for different types of sites. T
 ## What Are Templates?
 
 A template is a complete set of:
+
 - Route files (`src/routes/`)
 - Example content (`content/`)
 - Site configuration (`site.config.json`)
@@ -26,11 +27,13 @@ When you run `npx statue init`, these files are copied into your project.
 The standard template with a homepage, blog, docs, and about page.
 
 **Initialize:**
+
 ```bash
 npx statue init
 ```
 
 **Includes:**
+
 - Full-featured homepage with hero, stats, and content categories
 - Blog directory setup
 - Documentation directory
@@ -44,11 +47,13 @@ npx statue init
 A simplified template focused on blogging.
 
 **Initialize:**
+
 ```bash
 npx statue init --template blog
 ```
 
 **Includes:**
+
 - Minimal homepage focused on latest posts
 - Blog directory with example posts
 - Streamlined navigation
@@ -58,12 +63,14 @@ npx statue init --template blog
 ## Choosing a Template
 
 ### When to use the default template:
+
 - You want a full-featured site
 - You need multiple content sections (blog + docs)
 - You want an about page and company info
 - You're building a business/product site
 
 ### When to use the blog template:
+
 - You're primarily writing blog posts
 - You want a simpler, focused structure
 - You don't need multiple content categories
@@ -107,6 +114,7 @@ your-project/
 **You can't switch templates after initialization.** Templates only run during `npx statue init`.
 
 If you want to change templates:
+
 1. Manually copy route files from another template
 2. Update your content structure
 3. Modify `site.config.json`
@@ -118,15 +126,19 @@ Or start a new project with a different template.
 After initialization, the template files are yours to modify:
 
 ### Modify Routes
+
 Edit files in `src/routes/` to change page layouts:
+
 - `+page.svelte` - Homepage
 - `[directory]/+page.svelte` - Directory listing pages
 - `[...slug]/+page.svelte` - Content pages
 
 ### Update Content
+
 Replace example content in `content/` with your own markdown files.
 
 ### Configure Settings
+
 Edit `site.config.json` to set your site information.
 
 ## Creating Custom Templates

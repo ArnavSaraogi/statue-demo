@@ -14,6 +14,7 @@ This guide shows you how to add a new built-in theme to the Statue component lib
 ## What is a Theme?
 
 A theme is a CSS file that defines color values for all required CSS variables. Themes control:
+
 - Background and text colors
 - Brand/accent colors
 - Border and card colors
@@ -35,6 +36,7 @@ A theme is a CSS file that defines color values for all required CSS variables. 
 - **Target use case**: Corporate sites, creative portfolios, technical docs?
 
 **Examples of good theme concepts:**
+
 - "Midnight Blue" - Deep blue backgrounds for professional sites
 - "Forest Green" - Nature-inspired green tones
 - "Sunset Orange" - Warm orange and yellow tones
@@ -48,32 +50,33 @@ A theme is a CSS file that defines color values for all required CSS variables. 
 ```css
 /* Your Theme Name */
 @theme {
-  /* Core palette - Base colors */
-  --color-background: #0a0e1a;  /* Main background */
-  --color-card: #131824;        /* Card/section background */
-  --color-border: #1e2535;      /* Border color */
-  --color-foreground: #e8eaed;  /* Main text */
-  --color-muted: #9ca3af;       /* Secondary text */
+	/* Core palette - Base colors */
+	--color-background: #0a0e1a; /* Main background */
+	--color-card: #131824; /* Card/section background */
+	--color-border: #1e2535; /* Border color */
+	--color-foreground: #e8eaed; /* Main text */
+	--color-muted: #9ca3af; /* Secondary text */
 
-  /* Brand colors - Your theme's accent colors */
-  --color-primary: #00d4ff;     /* Primary accent (buttons, links) */
-  --color-secondary: #00a8cc;   /* Secondary accent */
-  --color-accent: #0080a0;      /* Tertiary accent */
+	/* Brand colors - Your theme's accent colors */
+	--color-primary: #00d4ff; /* Primary accent (buttons, links) */
+	--color-secondary: #00a8cc; /* Secondary accent */
+	--color-accent: #0080a0; /* Tertiary accent */
 
-  /* Text colors for different surfaces */
-  --color-on-primary: #ffffff;    /* Text on primary buttons */
-  --color-on-background: #ffffff; /* High contrast text */
+	/* Text colors for different surfaces */
+	--color-on-primary: #ffffff; /* Text on primary buttons */
+	--color-on-background: #ffffff; /* High contrast text */
 
-  /* Hero gradients - Used in hero sections */
-  --color-hero-from: #0a0e1a;   /* Gradient start */
-  --color-hero-via: #131824;    /* Gradient middle */
-  --color-hero-to: #0a0e1a;     /* Gradient end */
+	/* Hero gradients - Used in hero sections */
+	--color-hero-from: #0a0e1a; /* Gradient start */
+	--color-hero-via: #131824; /* Gradient middle */
+	--color-hero-to: #0a0e1a; /* Gradient end */
 }
 ```
 
 **Required: All variables must be defined.** Missing variables will break components.
 
 **Naming convention:**
+
 - Use lowercase names
 - Use hyphens, not underscores
 - Name should describe the primary color (e.g., `teal.css`, `brown.css`)
@@ -91,15 +94,18 @@ Your theme must meet WCAG AA standards for accessibility:
 - **Interactive elements**: Easily distinguishable
 
 **Use a contrast checker:**
+
 - [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
 - [Coolors Contrast Checker](https://coolors.co/contrast-checker)
 
 **Check these combinations:**
+
 - `--color-foreground` on `--color-background`
 - `--color-on-primary` on `--color-primary`
 - `--color-muted` on `--color-background`
 
 **Example:**
+
 ```
 Foreground: #e8eaed on Background: #0a0e1a
 Contrast ratio: 13.5:1 ✅ (passes WCAG AA)
@@ -112,8 +118,8 @@ Contrast ratio: 13.5:1 ✅ (passes WCAG AA)
 **Import your theme in `src/lib/index.css`:**
 
 ```css
-@import "tailwindcss";
-@import "./themes/your-theme.css";  /* Your new theme */
+@import 'tailwindcss';
+@import './themes/your-theme.css'; /* Your new theme */
 
 @source "../";
 @source "../../node_modules/statue-ssg/src/**/*.{svelte,js,ts}";
@@ -126,6 +132,7 @@ npm run dev
 ```
 
 **Test checklist:**
+
 - [ ] Homepage displays correctly
 - [ ] All text is readable (good contrast)
 - [ ] Buttons and links are clearly visible
@@ -138,6 +145,7 @@ npm run dev
 - [ ] No visual glitches or inconsistencies
 
 **Test on multiple pages:**
+
 - Homepage (`/`)
 - Blog post (`/blog/hello-world`)
 - Blog listing (`/blog`)
@@ -145,6 +153,7 @@ npm run dev
 - About page (`/about`)
 
 **Test responsive design:**
+
 - Mobile (375px width)
 - Tablet (768px width)
 - Desktop (1920px width)
@@ -166,7 +175,7 @@ Add your theme to the "Available Themes" table:
 Add your theme to the "Built-in Themes" list:
 
 ```markdown
-@import "statue-ssg/themes/your-theme.css";  /* Description */
+@import "statue-ssg/themes/your-theme.css"; /_ Description _/
 ```
 
 ---
@@ -184,6 +193,7 @@ Add your theme to the "Built-in Themes" list:
 ### 7. Submit Your PR
 
 **Before submitting:**
+
 - [ ] All required CSS variables defined
 - [ ] Passes WCAG AA contrast requirements
 - [ ] Tested on all major pages
@@ -194,27 +204,32 @@ Add your theme to the "Built-in Themes" list:
 - [ ] Tested with `npm run build`
 
 **PR Title:**
+
 ```
 feat: add [theme-name] theme
 ```
 
 **PR Description:**
+
 ```markdown
 ## New Theme: Your Theme Name
 
 Brief description of the theme's color palette and intended use case.
 
 ### Color Palette
+
 - Primary: #00d4ff (Bright cyan)
 - Background: #0a0e1a (Dark navy)
 - Foreground: #e8eaed (Light gray)
 
 ### Contrast Ratios
+
 - Foreground/Background: 13.5:1 ✅
 - Primary/Background: 8.2:1 ✅
 - Muted/Background: 4.8:1 ✅
 
 ### Testing Done
+
 - [x] Tested on all pages
 - [x] Responsive design verified
 - [x] Accessibility checked
@@ -222,6 +237,7 @@ Brief description of the theme's color palette and intended use case.
 - [x] Documentation updated
 
 ### Screenshots
+
 [Add screenshots if available]
 ```
 
@@ -233,21 +249,21 @@ Brief description of the theme's color palette and intended use case.
 
 **Every theme must define these CSS variables:**
 
-| Variable | Purpose |
-|----------|---------|
-| `--color-background` | Main page background |
-| `--color-card` | Card/section backgrounds |
-| `--color-border` | Borders and dividers |
-| `--color-foreground` | Main text color |
-| `--color-muted` | Secondary/muted text |
-| `--color-primary` | Primary accent (buttons, links) |
-| `--color-secondary` | Secondary accent |
-| `--color-accent` | Tertiary accent |
-| `--color-on-primary` | Text on primary buttons |
-| `--color-on-background` | High contrast text |
-| `--color-hero-from` | Hero gradient start |
-| `--color-hero-via` | Hero gradient middle |
-| `--color-hero-to` | Hero gradient end |
+| Variable                | Purpose                         |
+| ----------------------- | ------------------------------- |
+| `--color-background`    | Main page background            |
+| `--color-card`          | Card/section backgrounds        |
+| `--color-border`        | Borders and dividers            |
+| `--color-foreground`    | Main text color                 |
+| `--color-muted`         | Secondary/muted text            |
+| `--color-primary`       | Primary accent (buttons, links) |
+| `--color-secondary`     | Secondary accent                |
+| `--color-accent`        | Tertiary accent                 |
+| `--color-on-primary`    | Text on primary buttons         |
+| `--color-on-background` | High contrast text              |
+| `--color-hero-from`     | Hero gradient start             |
+| `--color-hero-via`      | Hero gradient middle            |
+| `--color-hero-to`       | Hero gradient end               |
 
 **Missing variables = broken styling.**
 
@@ -260,7 +276,7 @@ Brief description of the theme's color palette and intended use case.
 Choose your main brand color first:
 
 ```css
---color-primary: #3b82f6;  /* Bright blue */
+--color-primary: #3b82f6; /* Bright blue */
 ```
 
 **2. Create variations**
@@ -268,8 +284,8 @@ Choose your main brand color first:
 Generate lighter and darker versions:
 
 ```css
---color-secondary: #60a5fa;  /* Lighter blue */
---color-accent: #2563eb;     /* Darker blue */
+--color-secondary: #60a5fa; /* Lighter blue */
+--color-accent: #2563eb; /* Darker blue */
 ```
 
 **3. Choose complementary backgrounds**
@@ -277,9 +293,9 @@ Generate lighter and darker versions:
 Dark themes need dark backgrounds:
 
 ```css
---color-background: #0b1220;  /* Very dark navy */
---color-card: #0f172a;        /* Slightly lighter */
---color-border: #1e3a5f;      /* Visible but subtle */
+--color-background: #0b1220; /* Very dark navy */
+--color-card: #0f172a; /* Slightly lighter */
+--color-border: #1e3a5f; /* Visible but subtle */
 ```
 
 **4. Ensure readability**
@@ -287,8 +303,8 @@ Dark themes need dark backgrounds:
 Text must be clearly readable:
 
 ```css
---color-foreground: #e5e7eb;  /* Light gray, not pure white */
---color-muted: #94a3b8;       /* Dimmer but still readable */
+--color-foreground: #e5e7eb; /* Light gray, not pure white */
+--color-muted: #94a3b8; /* Dimmer but still readable */
 ```
 
 **5. Create smooth gradients**
@@ -296,9 +312,9 @@ Text must be clearly readable:
 Hero gradients should be subtle:
 
 ```css
---color-hero-from: #0b1220;   /* Same as background */
---color-hero-via: #0f172a;    /* Card color */
---color-hero-to: #0b1220;     /* Back to background */
+--color-hero-from: #0b1220; /* Same as background */
+--color-hero-via: #0f172a; /* Card color */
+--color-hero-to: #0b1220; /* Back to background */
 ```
 
 ---
@@ -324,12 +340,12 @@ Hero gradients should be subtle:
 
 ```css
 /* ✅ Good - all cool tones */
---color-background: #0b1220;  /* Cool blue-navy */
---color-primary: #3b82f6;     /* Cool blue */
+--color-background: #0b1220; /* Cool blue-navy */
+--color-primary: #3b82f6; /* Cool blue */
 
 /* ❌ Bad - mixed temperatures */
---color-background: #0b1220;  /* Cool blue-navy */
---color-primary: #f97316;     /* Warm orange */
+--color-background: #0b1220; /* Cool blue-navy */
+--color-primary: #f97316; /* Warm orange */
 ```
 
 **Why:** Consistent temperature creates visual harmony.
@@ -339,6 +355,7 @@ Hero gradients should be subtle:
 **Test in different lighting:**
 
 View your theme in:
+
 - Bright daylight
 - Dim indoor lighting
 - Dark room
@@ -350,6 +367,7 @@ View your theme in:
 **Consider color blindness:**
 
 Test with color blindness simulators:
+
 - [Coblis](https://www.color-blindness.com/coblis-color-blindness-simulator/)
 - [Chrome DevTools](https://developer.chrome.com/blog/cvd/)
 
@@ -363,16 +381,17 @@ Some themes define additional variables:
 
 ```css
 @theme {
-  /* Standard variables above... */
+	/* Standard variables above... */
 
-  /* Optional: Prose overrides for better code blocks */
-  --color-prose-link: #8DA2C8;
-  --color-prose-code-bg: #333333;
-  --color-prose-pre-bg: #333333;
+	/* Optional: Prose overrides for better code blocks */
+	--color-prose-link: #8da2c8;
+	--color-prose-code-bg: #333333;
+	--color-prose-pre-bg: #333333;
 }
 ```
 
 **When to use:**
+
 - Black & white themes need distinct code block colors
 - Special link colors for better visibility
 - Custom styling for markdown content
@@ -398,7 +417,7 @@ Some themes define additional variables:
 ### ❌ Don't: Low Contrast
 
 ```css
---color-foreground: #555555;  /* On dark background */
+--color-foreground: #555555; /* On dark background */
 --color-background: #000000;
 /* Contrast: 2.8:1 - Fails WCAG AA */
 ```
@@ -406,7 +425,7 @@ Some themes define additional variables:
 ### ✅ Do: High Contrast
 
 ```css
---color-foreground: #e5e7eb;  /* On dark background */
+--color-foreground: #e5e7eb; /* On dark background */
 --color-background: #0b1220;
 /* Contrast: 13.2:1 - Passes WCAG AA */
 ```
@@ -417,14 +436,14 @@ Some themes define additional variables:
 
 ```css
 /* my-teal-theme.css */
---color-primary: #ec4899;  /* This is pink, not teal! */
+--color-primary: #ec4899; /* This is pink, not teal! */
 ```
 
 ### ✅ Do: Accurate Naming
 
 ```css
 /* teal.css */
---color-primary: #14b8a6;  /* Actually teal */
+--color-primary: #14b8a6; /* Actually teal */
 ```
 
 ---
@@ -433,7 +452,7 @@ Some themes define additional variables:
 
 ```css
 --color-hero-from: #000000;
---color-hero-via: #ff0000;  /* Jarring transition */
+--color-hero-via: #ff0000; /* Jarring transition */
 --color-hero-to: #000000;
 ```
 
@@ -441,7 +460,7 @@ Some themes define additional variables:
 
 ```css
 --color-hero-from: #0a0e1a;
---color-hero-via: #131824;  /* Smooth transition */
+--color-hero-via: #131824; /* Smooth transition */
 --color-hero-to: #0a0e1a;
 ```
 
@@ -452,8 +471,8 @@ Some themes define additional variables:
 ### Dark Themes (Most Common)
 
 ```css
---color-background: #0a0e1a;  /* Very dark */
---color-foreground: #e8eaed;  /* Very light */
+--color-background: #0a0e1a; /* Very dark */
+--color-foreground: #e8eaed; /* Very light */
 ```
 
 **Best for:** Technical content, modern designs, reducing eye strain
@@ -463,8 +482,8 @@ Some themes define additional variables:
 ### Light Themes
 
 ```css
---color-background: #ffffff;  /* White */
---color-foreground: #1a1a1a;  /* Near black */
+--color-background: #ffffff; /* White */
+--color-foreground: #1a1a1a; /* Near black */
 ```
 
 **Best for:** Traditional content, print-friendly, high-brightness environments
@@ -490,6 +509,7 @@ Some themes define additional variables:
 Use this checklist before submitting:
 
 **Visual Testing:**
+
 - [ ] Text is readable everywhere
 - [ ] Buttons are clearly visible
 - [ ] Links are distinguishable
@@ -499,6 +519,7 @@ Use this checklist before submitting:
 - [ ] No jarring color combinations
 
 **Technical Testing:**
+
 - [ ] All variables defined
 - [ ] No CSS errors in console
 - [ ] Works with all components
@@ -506,11 +527,13 @@ Use this checklist before submitting:
 - [ ] Build succeeds (`npm run build`)
 
 **Accessibility Testing:**
+
 - [ ] WCAG AA contrast ratios met
 - [ ] Color blindness simulation checked
 - [ ] Text remains readable at different zoom levels
 
 **Documentation:**
+
 - [ ] Added to README.md table
 - [ ] Added to themes.md list
 - [ ] PR description complete
@@ -532,6 +555,7 @@ Use the automated PR script:
 ```
 
 **What it does:**
+
 1. Looks for `sunset-orange.css` in current directory, then searches subdirectories
 2. Forks the statue repository (if needed)
 3. Creates a new branch
@@ -540,6 +564,7 @@ Use the automated PR script:
 6. Opens a pull request automatically
 
 **Requirements:**
+
 - GitHub CLI (`gh`) installed and authenticated
 - Your theme CSS file (e.g., `sunset-orange.css`) in current directory or subdirectories
 - Extension (`.css`) is optional in the command

@@ -49,7 +49,7 @@
 		}
 
 		// Subtract free rent (first months of first year)
-		const freeRentValue = (baseRentPerSf * totalSf / 12) * freeRent;
+		const freeRentValue = ((baseRentPerSf * totalSf) / 12) * freeRent;
 		totalRent -= freeRentValue;
 
 		totalLeaseCost = totalRent;
@@ -90,7 +90,9 @@
 				<!-- Base Rent Display -->
 				<div class="p-4 border border-[var(--color-border)] bg-[var(--color-background)]">
 					<p class="text-gray-400 text-sm mb-1">Base Rent</p>
-					<p class="text-white text-2xl font-light">{formatCurrency(baseRentPerSf)} <span class="text-lg text-gray-400">/ SF / year</span></p>
+					<p class="text-white text-2xl font-light">
+						{formatCurrency(baseRentPerSf)} <span class="text-lg text-gray-400">/ SF / year</span>
+					</p>
 				</div>
 
 				<!-- Term -->
@@ -193,7 +195,9 @@
 
 					<!-- Monthly Effective Rent -->
 					<div class="p-6 border-2 border-[var(--color-primary)] bg-[var(--color-primary)]/10">
-						<p class="text-[var(--color-primary)] text-sm font-medium mb-2">Monthly Effective Rent</p>
+						<p class="text-[var(--color-primary)] text-sm font-medium mb-2">
+							Monthly Effective Rent
+						</p>
 						<p class="text-white text-3xl font-light">{formatCurrency(monthlyEffectiveRent)}</p>
 						<p class="text-gray-400 text-xs mt-2">Including free rent & escalations</p>
 					</div>
@@ -221,7 +225,7 @@
 </section>
 
 <style>
-	input[type="range"]::-webkit-slider-thumb {
+	input[type='range']::-webkit-slider-thumb {
 		-webkit-appearance: none;
 		appearance: none;
 		width: 20px;
@@ -232,11 +236,11 @@
 		transition: all 0.2s;
 	}
 
-	input[type="range"]::-webkit-slider-thumb:hover {
+	input[type='range']::-webkit-slider-thumb:hover {
 		transform: scale(1.1);
 	}
 
-	input[type="range"]::-moz-range-thumb {
+	input[type='range']::-moz-range-thumb {
 		width: 20px;
 		height: 20px;
 		border-radius: 50%;
@@ -246,7 +250,7 @@
 		transition: all 0.2s;
 	}
 
-	input[type="range"]::-moz-range-thumb:hover {
+	input[type='range']::-moz-range-thumb:hover {
 		transform: scale(1.1);
 	}
 </style>

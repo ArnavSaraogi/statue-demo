@@ -46,27 +46,33 @@ Full control over the page. **[Learn more →](https://svelte.dev/docs/kit/routi
 Statue uses two special catch-all routes to handle markdown content:
 
 ### `[...slug]/+page.svelte`
+
 Renders individual markdown pages.
 
 **Matches:**
+
 - `/blog/hello-world` → `content/blog/hello-world.md`
 - `/docs/guide` → `content/docs/guide.md`
 - `/about` → `content/about.md`
 
 **How it works:**
+
 1. User visits `/blog/hello-world`
 2. SvelteKit matches the `[...slug]` route
 3. `+page.server.js` looks up `content/blog/hello-world.md`
 4. Markdown is parsed and rendered
 
 ### `[directory]/+page.svelte`
+
 Lists all content in a directory.
 
 **Matches:**
+
 - `/blog` → Lists all files in `content/blog/`
 - `/docs` → Lists all files in `content/docs/`
 
 **How it works:**
+
 1. User visits `/blog`
 2. SvelteKit matches the `[directory]` route
 3. `+page.server.js` finds all `*.md` files in `content/blog/`
@@ -85,6 +91,7 @@ When routes conflict, SvelteKit follows this priority:
 ### Example Conflict
 
 If you have both:
+
 - `src/routes/about/+page.svelte` (custom Svelte page)
 - `content/about.md` (markdown content)
 
@@ -99,27 +106,30 @@ The Svelte page wins - the markdown won't be shown.
 You can customize how markdown content is displayed by editing Statue's route templates.
 
 ### Content Pages Template
+
 **File:** `src/routes/[...slug]/+page.svelte`
 
 **What you must include:**
+
 ```svelte
 <script>
-  export let data;  // Statue passes content here
+	export let data; // Statue passes content here
 </script>
 ```
 
 **Typical customization:**
+
 ```svelte
 <script>
-  import { ContentHeader, ContentBody } from 'statue-ssg';
-  export let data;
+	import { ContentHeader, ContentBody } from 'statue-ssg';
+	export let data;
 
-  $: content = data.content;  // Access the markdown content
+	$: content = data.content; // Access the markdown content
 </script>
 
 <!-- Add your customizations here -->
 <aside class="table-of-contents">
-  <!-- Your TOC component -->
+	<!-- Your TOC component -->
 </aside>
 
 <ContentHeader title={content.metadata.title} />
@@ -127,32 +137,36 @@ You can customize how markdown content is displayed by editing Statue's route te
 ```
 
 **Available in `data.content`:**
+
 - `metadata.title` - From frontmatter
 - `metadata.description` - From frontmatter
 - `metadata.date` - From frontmatter
 - `content` - Rendered HTML
 
 ### Directory Pages Template
+
 **File:** `src/routes/[directory]/+page.svelte`
 
 **What you must include:**
+
 ```svelte
 <script>
-  export let data;  // Statue passes directory content here
+	export let data; // Statue passes directory content here
 </script>
 ```
 
 **Typical customization:**
+
 ```svelte
 <script>
-  import { DirectoryHeader, DirectoryContent } from 'statue-ssg';
-  export let data;
+	import { DirectoryHeader, DirectoryContent } from 'statue-ssg';
+	export let data;
 
-  // Add search/filter functionality
-  let searchTerm = '';
-  $: filtered = data.directoryContent.filter(post =>
-    post.metadata.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+	// Add search/filter functionality
+	let searchTerm = '';
+	$: filtered = data.directoryContent.filter((post) =>
+		post.metadata.title.toLowerCase().includes(searchTerm.toLowerCase())
+	);
 </script>
 
 <DirectoryHeader title={data.currentDirectory.title} />
@@ -164,6 +178,7 @@ You can customize how markdown content is displayed by editing Statue's route te
 ```
 
 **Available in `data`:**
+
 - `currentDirectory` - Info about this directory
 - `directoryContent` - Array of content items
 - `subDirectories` - Subdirectories in this directory
@@ -187,18 +202,21 @@ The folder structure becomes the URL structure.
 ### Best Practices
 
 **Use descriptive URLs:**
+
 ```
 ✅ /blog/getting-started-with-statue
 ❌ /blog/post1
 ```
 
 **Use hyphens, not underscores:**
+
 ```
 ✅ my-blog-post.md
 ❌ my_blog_post.md
 ```
 
 **Keep it simple:**
+
 ```
 ✅ /docs/routing
 ❌ /documentation/advanced-concepts/routing-system
@@ -229,13 +247,13 @@ export const prerender = true;
 export const prerender = true;
 
 export function load() {
-  // Load your data here
-  const plans = [
-    { name: 'Free', price: 0 },
-    { name: 'Pro', price: 29 }
-  ];
+	// Load your data here
+	const plans = [
+		{ name: 'Free', price: 0 },
+		{ name: 'Pro', price: 29 }
+	];
 
-  return { plans };
+	return { plans };
 }
 ```
 
@@ -246,12 +264,12 @@ export function load() {
 ```svelte
 <!-- src/routes/pricing/+page.svelte -->
 <script>
-  export let data;  // Data from +page.server.js
+	export let data; // Data from +page.server.js
 </script>
 
 <h1>Pricing</h1>
 {#each data.plans as plan}
-  <div>{plan.name}: ${plan.price}/mo</div>
+	<div>{plan.name}: ${plan.price}/mo</div>
 {/each}
 ```
 
@@ -264,6 +282,7 @@ export function load() {
 ### 404 on existing markdown file
 
 **Check:**
+
 1. File is in `content/` directory?
 2. Has `.md` extension?
 3. Restarted dev server? (`npm run dev`)
@@ -275,6 +294,7 @@ See [SvelteKit routing docs](https://svelte.dev/docs/kit/routing) for route setu
 ### Changes not appearing
 
 Clear SvelteKit cache:
+
 ```bash
 rm -rf .svelte-kit build
 npm run dev
@@ -285,12 +305,14 @@ npm run dev
 ## Learn More
 
 ### Statue Docs
+
 - **[Statue.dev](https://statue.dev)** - Official documentation
 - **[Get Started](./get-started.md)** - Overview
 - **[Site Config](./site-config.md)** - Configuration
 - **[Components](./components.md)** - Build pages
 
 ### SvelteKit Docs
+
 - **[Routing](https://svelte.dev/docs/kit/routing)** - File-based routing basics
 - **[Loading Data](https://svelte.dev/docs/kit/load)** - Server data loading
 - **[Advanced Routing](https://svelte.dev/docs/kit/advanced-routing)** - Layouts, groups, matchers
