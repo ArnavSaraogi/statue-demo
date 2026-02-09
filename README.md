@@ -46,6 +46,7 @@ Need help? Want to collaborate, contribute, or engage with the Statue community?
 Statue is **Fast, Simple, and Flexible from start to finish**. One-line setup, then fast builds, fast deploys, and a fast site.
 
 - **Markdown-first**: Write your site's content in simple `.md` files: no coding required.
+- **Custom Styling**: Built-in callouts, colored sections, and inline styling - all with clean markdown syntax.
 - **Zero Config, Zero Cost Search:** Start with your own full-site search index: no setup, totally free and yours.
 - **Powered by Great Tools**: 0->1 setup with SvelteKit, Tailwind, Pagefind, and components fully integrated.
 - **Simple yet Powerful**: Statue's Declarative Component Model makes customization easy, intuitive, and flexible.
@@ -72,6 +73,7 @@ After running the setup command above, your site is live at `http://localhost:30
 
 - **[Getting Started](/templates/developer-portfolio/content/blog/getting-started.md)** - Key concepts and quick start
 - **[New Site Checklist](/templates/default/content/docs/new-site-checklist.md)** - Step-by-step customization guide
+- **[Custom Styling](/content/docs/custom-styling.md)** - Callouts, colored sections, and inline styling
 - **[Site Configuration](/templates/default/content/docs/site-config.md)** - Configure site.config.json
 - **[Themes](/templates/default/content/docs/themes.md)** - Built-in themes and customization
 - **[Components](/templates/default/content/docs/components.md)** - Component reference

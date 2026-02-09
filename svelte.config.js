@@ -4,6 +4,7 @@ import { mdsvex } from 'mdsvex';
 import path from 'path';
 import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
+import { remarkCustomDirectives } from './src/lib/cms/remark-custom-directives.js';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -13,7 +14,7 @@ const config = {
     vitePreprocess(),
     mdsvex({
       extensions: ['.mdx'],
-      remarkPlugins: [remarkGfm],
+      remarkPlugins: [remarkCustomDirectives, remarkGfm],
       rehypePlugins: [rehypeSlug]
     })
   ],

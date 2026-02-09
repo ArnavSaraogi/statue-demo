@@ -90,10 +90,11 @@ npm publish                    # Publish (runs prepublishOnly hook)
 The CMS scans the `content/` directory and:
 1. Reads all `.md` and `.mdx` files recursively
 2. Parses frontmatter (metadata) using `gray-matter`
-3. Processes markdown to HTML using `mdsvex` (with GFM and slug support)
-4. Replaces template variables like `{{site.name}}` from `site.config.json`
-5. Transforms internal `.md` links to proper URLs
-6. Caches content in production (refreshes in dev mode)
+3. Pre-processes custom styling directives (callouts, colored sections, inline styling)
+4. Processes markdown to HTML using `mdsvex` (with GFM and slug support)
+5. Replaces template variables like `{{site.name}}` from `site.config.json`
+6. Transforms internal `.md` links to proper URLs
+7. Caches content in production (refreshes in dev mode)
 
 **Key Functions:**
 - `scanContentDirectory()` - Recursively scans content folder
@@ -151,6 +152,36 @@ Themes are CSS files in `src/lib/themes/` using the `@theme {}` block pattern. R
 ```
 
 Switch themes by editing `src/lib/index.css` imports.
+
+### Custom Styling System
+
+**Files**: `src/lib/cms/remark-custom-directives.js`, `src/lib/components/BlogPostContent.svelte`
+
+Statue includes a custom styling system that transforms directive syntax into styled HTML:
+
+**Container directives** (:::type ... :::):
+- Callouts: `:::info`, `:::warning`, `:::error`, `:::success`, `:::note`, `:::tip`
+- Colored sections: `:::colored-section{color="primary"}`
+- Supports attributes: `{title="Custom Title" icon=false .custom-class}`
+
+**Text directives** (:type[text]):
+- Highlights: `:highlight[text]`
+- Badges: `:badge[New]`
+- Colored text: `:text-primary[text]`, `:text-secondary[text]`, `:text-accent[text]`
+- Underlines: `:underline[text]`, `:underline-primary[text]`
+
+**Leaf directives** (::type):
+- Dividers: `::divider`, `::divider{color="primary"}`
+- Spacers: `::spacer{height="3rem"}`
+
+**Implementation:**
+- Directives are preprocessed BEFORE mdsvex parses markdown
+- `transformContainerDirectives()`, `transformTextDirectives()`, `transformLeafDirectives()` convert directive syntax to HTML
+- CSS styling in `BlogPostContent.svelte` uses theme CSS variables
+- Icons loaded dynamically from `lucide-svelte`
+- All styling is theme-aware and responsive
+
+**Documentation:** See `content/docs/custom-styling.md` for full syntax reference and examples.
 
 ### Template Variables
 

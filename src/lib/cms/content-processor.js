@@ -8,6 +8,11 @@ import { compile } from 'mdsvex';
 import matter from 'gray-matter';
 import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
+import {
+	transformContainerDirectives,
+	transformTextDirectives,
+	transformLeafDirectives
+} from './remark-custom-directives.js';
 
 // This error check is to provide an early warning when this module is attempted to be used in the browser
 const isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined';
@@ -41,6 +46,11 @@ const mdsvexOptions = {
  */
 const processMarkdownWithMDSvex = async (markdown) => {
   try {
+    // Pre-process custom directives BEFORE mdsvex sees the markdown
+    markdown = transformContainerDirectives(markdown);
+    markdown = transformTextDirectives(markdown);
+    markdown = transformLeafDirectives(markdown);
+
     const { code } = await compile(markdown, mdsvexOptions);
 
     // Extract HTML from mdsvex output
